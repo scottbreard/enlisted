@@ -3,11 +3,13 @@ import { stripe } from '@/lib/stripe'
 import { createClient } from '@supabase/supabase-js'
 import Stripe from 'stripe'
 
-// Use service role key to bypass RLS in webhook handler
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+// Lazy-initialized so missing keys don't crash the build
+function getSupabaseAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  )
+}
 
 // Map Stripe price IDs back to tier names
 function tierFromPriceId(priceId: string): string | null {
@@ -40,7 +42,7 @@ export async function POST(req: NextRequest) {
         const providerId = session.metadata?.provider_id
         const tier = session.metadata?.tier
         if (providerId && tier) {
-          await supabaseAdmin
+          await getSupabaseAdmin()
             .from('provider_profiles')
             .update({
               tier,
@@ -62,7 +64,7 @@ export async function POST(req: NextRequest) {
         const priceId = sub.items.data[0]?.price?.id
         const tier = priceId ? tierFromPriceId(priceId) : null
 
-        await supabaseAdmin
+        await getSupabaseAdmin()
           .from('provider_profiles')
           .update({
             ...(tier ? { tier } : {}),
@@ -78,7 +80,7 @@ export async function POST(req: NextRequest) {
         const sub = event.data.object as Stripe.Subscription
         const providerId = sub.metadata?.provider_id
         if (providerId) {
-          await supabaseAdmin
+          await getSupabaseAdmin()
             .from('provider_profiles')
             .update({ tier: 'listed', subscription_status: 'cancelled', stripe_subscription_id: null })
             .eq('id', providerId)
@@ -90,7 +92,7 @@ export async function POST(req: NextRequest) {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
         if (customerId) {
-          await supabaseAdmin
+          await getSupabaseAdmin()
             .from('provider_profiles')
             .update({ subscription_status: 'past_due' })
             .eq('stripe_customer_id', customerId)
