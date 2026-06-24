@@ -32,7 +32,7 @@ export default function RolodexPage() {
       const { data } = await supabase
         .from('executive_contacts')
         .select('*')
-        .eq('executive_id', exec.id)
+        .eq('owner_id', exec.id)
         .order('name')
       setContacts(data ?? [])
       setLoading(false)
@@ -46,7 +46,7 @@ export default function RolodexPage() {
     setSaving(true)
     const { data, error } = await supabase
       .from('executive_contacts')
-      .insert({ ...form, executive_id: execId, rating: form.rating || null })
+      .insert({ ...form, owner_id: execId, rating: form.rating || null })
       .select()
       .single()
     if (!error && data) {
