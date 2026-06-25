@@ -66,7 +66,7 @@ export default async function CompliancePage() {
           exchange_id: ee.exchange_id,
           title: t.event_name,
           description: t.description,
-          due_date: computeDueDate(fyeMonth, t.months_after_fiscal_year_end, t.days_before_or_after ?? 0)
+          due_date: computeDueDate(fyeMonth, t.months_after_fiscal_year_end, t.days_offset ?? 0)
             .toISOString().split('T')[0],
           category: t.event_category,
           is_custom: false,
