@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { Eye, Send, Star, TrendingUp, ArrowRight, AlertCircle, CheckCircle, Clock } from 'lucide-react'
+import { Eye, Send, Star, TrendingUp, ArrowRight, CheckCircle, Circle, Clock } from 'lucide-react'
 
 const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> = {
   featured:  { label: 'Featured',  color: '#92400e', bg: '#fef3c7' },
@@ -100,7 +100,41 @@ export default function ProviderDashboardPage() {
   const tierUpgrade = TIER_NEXT[profile.tier]
   const features = TIER_FEATURES[profile.tier] ?? []
   const isFree = profile.tier === 'listed'
-  const profileComplete = !!(profile.tagline && profile.description && profile.website_url && profile.email)
+
+  const onboardingSteps = [
+    {
+      label: 'Add your tagline',
+      description: 'A one-line summary of what your firm does — shown in search results.',
+      done: !!profile.tagline,
+      href: '/provider/profile',
+    },
+    {
+      label: 'Write your description',
+      description: 'Tell executives what makes your firm the right choice.',
+      done: !!profile.description,
+      href: '/provider/profile',
+    },
+    {
+      label: 'Add website & contact email',
+      description: 'Required to appear with full details on Connected and Featured plans.',
+      done: !!(profile.website_url && profile.email),
+      href: '/provider/profile',
+    },
+    {
+      label: 'Add your logo',
+      description: 'Providers with logos get significantly more profile clicks.',
+      done: !!profile.logo_url,
+      href: '/provider/profile',
+    },
+    {
+      label: 'Choose your plan',
+      description: 'Upgrade to Connected ($100/mo) to show contact details and receive RFQs.',
+      done: profile.tier !== 'listed' && profile.tier !== 'free',
+      href: '/provider/billing',
+    },
+  ]
+  const stepsComplete = onboardingSteps.filter(s => s.done).length
+  const onboardingDone = stepsComplete === onboardingSteps.length
 
   return (
     <div className="p-8 max-w-6xl mx-auto">
@@ -129,17 +163,58 @@ export default function ProviderDashboardPage() {
         </div>
       </div>
 
-      {/* Profile incomplete warning */}
-      {!profileComplete && (
-        <div className="mb-6 flex items-start gap-3 p-4 rounded-2xl border-2" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
-          <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'var(--color-gold)' }} />
-          <div className="flex-1">
-            <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>Complete your profile to attract more executives</p>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>Add your tagline, description, website, and contact email.</p>
+      {/* Onboarding checklist */}
+      {!onboardingDone && (
+        <div className="mb-8 bg-white border-2 rounded-2xl overflow-hidden" style={{ borderColor: 'var(--color-gold)' }}>
+          <div className="px-6 py-4 flex items-center justify-between" style={{ backgroundColor: 'var(--color-gold-light)' }}>
+            <div>
+              <p className="font-extrabold text-sm" style={{ color: 'var(--color-navy)' }}>
+                Get your listing ready — {stepsComplete} of {onboardingSteps.length} complete
+              </p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                Complete your profile to start appearing in executive searches.
+              </p>
+            </div>
+            <div className="w-32 hidden sm:block">
+              <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--color-border)' }}>
+                <div
+                  className="h-full rounded-full transition-all"
+                  style={{ width: `${(stepsComplete / onboardingSteps.length) * 100}%`, backgroundColor: 'var(--color-gold)' }}
+                />
+              </div>
+              <p className="text-xs text-right mt-1 font-semibold" style={{ color: 'var(--color-gold)' }}>
+                {Math.round((stepsComplete / onboardingSteps.length) * 100)}%
+              </p>
+            </div>
           </div>
-          <Link href="/provider/profile" className="text-sm font-bold px-4 py-2 rounded-xl text-white shrink-0" style={{ backgroundColor: 'var(--color-navy)' }}>
-            Edit Profile
-          </Link>
+          <ul className="divide-y" style={{ borderColor: 'var(--color-border)' }}>
+            {onboardingSteps.map((step, i) => (
+              <li key={i}>
+                <Link
+                  href={step.done ? '#' : step.href}
+                  className="flex items-center gap-4 px-6 py-4 transition-colors hover:bg-gray-50"
+                  style={{ pointerEvents: step.done ? 'none' : 'auto' }}
+                >
+                  {step.done
+                    ? <CheckCircle className="w-5 h-5 shrink-0" style={{ color: '#10b981' }} />
+                    : <Circle className="w-5 h-5 shrink-0" style={{ color: 'var(--color-border)' }} />
+                  }
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold" style={{
+                      color: step.done ? 'var(--color-gray-light)' : 'var(--color-navy)',
+                      textDecoration: step.done ? 'line-through' : 'none',
+                    }}>
+                      {step.label}
+                    </p>
+                    {!step.done && (
+                      <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>{step.description}</p>
+                    )}
+                  </div>
+                  {!step.done && <ArrowRight className="w-4 h-4 shrink-0" style={{ color: 'var(--color-gray-light)' }} />}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
