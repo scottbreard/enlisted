@@ -89,7 +89,7 @@ export default function ProviderRegisterPage() {
           <Link href="/" className="inline-flex items-center gap-2 justify-center mb-6">
             <Building2 className="w-6 h-6" style={{ color: 'var(--color-navy)' }} />
             <span className="text-xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)', fontSize: '0.75em', fontWeight: 800, letterSpacing: '0.05em' }}>.ca</span>
             </span>
           </Link>
           <h1 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--color-navy)' }}>
