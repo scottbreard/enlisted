@@ -52,7 +52,8 @@ export default function ProviderRegisterPage() {
       slug,
       email: data.email,
       website_url: data.website_url || null,
-      tier: 'free',
+      tier: 'listed',
+      is_active: true,
     })
 
     if (profileError) {
@@ -60,14 +61,24 @@ export default function ProviderRegisterPage() {
       return
     }
 
+    // Send welcome email (fire and forget)
+    fetch('/api/email/welcome', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'provider',
+        email: data.email,
+        companyName: data.company_name,
+      }),
+    }).catch(() => {})
+
     router.push('/provider/dashboard')
   }
 
   const tiers = [
-    { name: 'Free', price: '$0', features: ['Basic listing', 'Searchable profile', 'Contact details'] },
-    { name: 'Listed', price: '$499/yr', features: ['+ Logo', 'Description', 'Website link'], highlight: false },
-    { name: 'Featured', price: '$1,500/yr', features: ['+ Featured badge', 'Team bios', 'Member discounts'], highlight: true },
-    { name: 'Professional', price: '$3,000/yr', features: ['+ Case studies', 'Video embed', 'Newsletter'], highlight: false },
+    { name: 'Listed', price: 'Free', features: ['Name + category listed', 'Searchable by executives', 'No contact details shown'], highlight: false },
+    { name: 'Connected', price: '$100/mo', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
+    { name: 'Featured', price: '$499/mo', features: ['Top placement', 'Instant RFQs', 'Video + team + email blasts'], highlight: false },
   ]
 
   return (
@@ -90,7 +101,7 @@ export default function ProviderRegisterPage() {
         </div>
 
         {/* Tier preview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
           {tiers.map(tier => (
             <div
               key={tier.name}

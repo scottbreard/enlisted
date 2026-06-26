@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
-import { Building2, CheckCircle } from 'lucide-react'
+import { Building2, CheckCircle, Star } from 'lucide-react'
 
 const schema = z.object({
   first_name: z.string().min(1, 'Required'),
@@ -37,9 +37,18 @@ export default function ExecutiveRegisterPage() {
   const router = useRouter()
   const supabase = createClient()
   const [serverError, setServerError] = useState('')
+  const [foundingCount, setFoundingCount] = useState<number | null>(null)
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
+
+  useEffect(() => {
+    supabase
+      .from('executive_profiles')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_founding_member', true)
+      .then(({ count }) => setFoundingCount(count ?? 0))
+  }, [])
 
   async function onSubmit(data: FormData) {
     setServerError('')
@@ -84,6 +93,18 @@ export default function ExecutiveRegisterPage() {
       setServerError('Account created but profile setup failed. Please contact support.')
       return
     }
+
+    // Send welcome email (fire and forget — never block redirect)
+    fetch('/api/email/welcome', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'executive',
+        email: data.email,
+        firstName: data.first_name,
+        foundingNumber,
+      }),
+    }).catch(() => {})
 
     router.push('/dashboard')
   }
@@ -137,9 +158,26 @@ export default function ExecutiveRegisterPage() {
             <h1 className="text-2xl font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>
               Create your free account
             </h1>
-            <p className="text-sm mb-6" style={{ color: 'var(--color-gray)' }}>
+            <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>
               For CEOs, CFOs, IROs, and corporate secretaries of listed companies.
             </p>
+
+            {/* Founding member counter */}
+            {foundingCount !== null && foundingCount < 500 && (
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl mb-5 text-sm font-semibold"
+                style={{ backgroundColor: 'var(--color-gold-light)', color: 'var(--color-navy)', border: '1px solid var(--color-gold)' }}>
+                <Star className="w-4 h-4 shrink-0 fill-current" style={{ color: 'var(--color-gold)' }} />
+                <span>
+                  <span className="font-extrabold" style={{ color: 'var(--color-gold)' }}>{500 - foundingCount} </span>
+                  Founding Member {500 - foundingCount === 1 ? 'spot' : 'spots'} remaining
+                </span>
+              </div>
+            )}
+            {foundingCount !== null && foundingCount >= 500 && (
+              <div className="px-4 py-2.5 rounded-xl mb-5 text-sm" style={{ backgroundColor: '#f3f4f6', color: 'var(--color-gray)' }}>
+                Founding Member spots are full — you'll still get full free access.
+              </div>
+            )}
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
