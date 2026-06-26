@@ -46,7 +46,7 @@ export default async function DirectoryPage() {
           <Link href="/" className="flex items-center gap-2">
             <Building2 className="w-5 h-5" style={{ color: 'var(--color-navy)' }} />
             <span className="text-lg font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)', fontSize: '0.75em', fontWeight: 800, letterSpacing: '0.05em' }}>.ca</span>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>

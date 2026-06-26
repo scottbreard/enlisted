@@ -33,7 +33,7 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Building2 className="w-6 h-6 text-[var(--color-navy)]" />
             <span className="text-xl font-extrabold text-[var(--color-navy)] tracking-tight">
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)', fontSize: '0.75em', fontWeight: 800, letterSpacing: '0.05em' }}>.ca</span>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
             </span>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-gray)]">
@@ -287,7 +287,7 @@ export default function Home() {
       <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <span className="text-white font-extrabold text-lg">
-            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)', fontSize: '0.75em', fontWeight: 800, letterSpacing: '0.05em' }}>.ca</span>
+            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
           </span>
           <span>© 2026 Enlisted Inc. All rights reserved.</span>
           <span>enlisted.ca · enlisted.au · enlisted.co.uk · enlisted.us</span>

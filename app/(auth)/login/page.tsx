@@ -45,7 +45,7 @@ export default function LoginPage() {
           <Link href="/" className="inline-flex items-center gap-2 justify-center">
             <Building2 className="w-7 h-7" style={{ color: 'var(--color-navy)' }} />
             <span className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)', fontSize: '0.75em', fontWeight: 800, letterSpacing: '0.05em' }}>.ca</span>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
             </span>
           </Link>
           <p className="mt-2 text-sm" style={{ color: 'var(--color-gray)' }}>Sign in to your account</p>
