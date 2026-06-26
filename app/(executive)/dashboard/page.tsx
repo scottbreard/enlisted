@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import {
   Search, Calendar, Briefcase, Send,
-  ArrowRight, Star, TrendingUp, Bell
+  ArrowRight, Star, TrendingUp, CheckCircle, Circle
 } from 'lucide-react'
 
 export const metadata = { title: 'Dashboard — Enlisted' }
@@ -38,6 +38,52 @@ export default async function DashboardPage() {
     .select('id')
     .eq('executive_id', profile.id)
     .eq('status', 'open')
+
+  const { data: execExchanges } = await supabase
+    .from('executive_exchanges')
+    .select('id')
+    .eq('executive_id', profile?.id)
+    .limit(1)
+
+  const { count: vaultCount } = await supabase
+    .from('executive_vault')
+    .select('*', { count: 'exact', head: true })
+    .eq('executive_id', profile?.id)
+
+  const steps = [
+    {
+      label: 'Complete your profile',
+      description: 'Add your title, company, and sector.',
+      done: !!(profile?.title && profile?.sector),
+      href: '/profile',
+    },
+    {
+      label: 'Add your ticker & exchange',
+      description: 'Unlocks the compliance calendar and stock dashboard.',
+      done: !!(profile?.company_ticker && execExchanges && execExchanges.length > 0),
+      href: '/profile',
+    },
+    {
+      label: 'Review your compliance calendar',
+      description: 'Auto-generated from your exchange and fiscal year end.',
+      done: !!(upcomingEvents && upcomingEvents.length > 0),
+      href: '/compliance',
+    },
+    {
+      label: 'Browse the provider directory',
+      description: 'Find IR firms, lawyers, auditors, and 90+ more categories.',
+      done: false,
+      href: '/directory',
+    },
+    {
+      label: 'Save a provider to your vault',
+      description: 'Track your current service providers and contract renewals.',
+      done: !!(vaultCount && vaultCount > 0),
+      href: '/vault',
+    },
+  ]
+  const stepsComplete = steps.filter(s => s.done).length
+  const onboardingDone = stepsComplete === steps.length
 
   const { count: providerCount } = await supabase
     .from('provider_profiles')
@@ -198,19 +244,56 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Setup CTA if profile is new */}
-      {!profile.company_ticker && (
-        <div className="mt-6 border rounded-2xl p-6 flex items-center gap-4"
-          style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
-          <Bell className="w-6 h-6 shrink-0" style={{ color: 'var(--color-gold)' }} />
-          <div className="flex-1">
-            <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>Complete your profile</p>
-            <p className="text-xs" style={{ color: 'var(--color-gray)' }}>Add your ticker and exchange to unlock your compliance calendar and stock dashboard.</p>
+      {/* Onboarding checklist — hidden once all steps complete */}
+      {!onboardingDone && (
+        <div className="mt-6 bg-white border-2 rounded-2xl overflow-hidden" style={{ borderColor: 'var(--color-gold)' }}>
+          <div className="px-6 py-4 flex items-center justify-between" style={{ backgroundColor: 'var(--color-gold-light)' }}>
+            <div>
+              <p className="font-extrabold text-sm" style={{ color: 'var(--color-navy)' }}>
+                Getting started — {stepsComplete} of {steps.length} complete
+              </p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                Complete these steps to get the most out of Enlisted.
+              </p>
+            </div>
+            {/* Progress bar */}
+            <div className="w-32 hidden sm:block">
+              <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--color-border)' }}>
+                <div
+                  className="h-full rounded-full transition-all"
+                  style={{ width: `${(stepsComplete / steps.length) * 100}%`, backgroundColor: 'var(--color-gold)' }}
+                />
+              </div>
+              <p className="text-xs text-right mt-1 font-semibold" style={{ color: 'var(--color-gold)' }}>
+                {Math.round((stepsComplete / steps.length) * 100)}%
+              </p>
+            </div>
           </div>
-          <Link href="/profile" className="text-sm font-bold px-4 py-2 rounded-xl text-white shrink-0"
-            style={{ backgroundColor: 'var(--color-navy)' }}>
-            Update Profile <ArrowRight className="w-4 h-4 inline ml-1" />
-          </Link>
+          <ul className="divide-y" style={{ borderColor: 'var(--color-border)' }}>
+            {steps.map((step, i) => (
+              <li key={i}>
+                <Link
+                  href={step.done ? '#' : step.href}
+                  className="flex items-center gap-4 px-6 py-4 transition-colors hover:bg-gray-50"
+                  style={{ pointerEvents: step.done ? 'none' : 'auto' }}
+                >
+                  {step.done
+                    ? <CheckCircle className="w-5 h-5 shrink-0" style={{ color: '#10b981' }} />
+                    : <Circle className="w-5 h-5 shrink-0" style={{ color: 'var(--color-border)' }} />
+                  }
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold" style={{ color: step.done ? 'var(--color-gray-light)' : 'var(--color-navy)', textDecoration: step.done ? 'line-through' : 'none' }}>
+                      {step.label}
+                    </p>
+                    {!step.done && (
+                      <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>{step.description}</p>
+                    )}
+                  </div>
+                  {!step.done && <ArrowRight className="w-4 h-4 shrink-0" style={{ color: 'var(--color-gray-light)' }} />}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
