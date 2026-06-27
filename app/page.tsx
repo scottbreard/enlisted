@@ -3,8 +3,10 @@ import Image from 'next/image'
 import {
   TrendingUp, Users, FileText, Scale, BarChart2, Briefcase,
   Radio, Globe, Shield, Search, Calendar, Leaf,
-  ArrowRight, CheckCircle, Star, Building2
+  ArrowRight, CheckCircle, Star
 } from 'lucide-react'
+import HomeNav from '@/components/HomeNav'
+import { getMarket } from '@/lib/market'
 
 const categories = [
   { label: 'IR Firms', slug: 'ir_firm', icon: TrendingUp },
@@ -21,107 +23,143 @@ const categories = [
   { label: 'ESG & Governance', slug: 'esg_governance', icon: Leaf },
 ]
 
-const exchanges = ['TSX', 'TSXV', 'CSE', 'NEO']
-
 export default function Home() {
+  const market = getMarket()
+  const { exchanges, copy, comingSoon } = market
   return (
     <div className="flex flex-col min-h-screen">
 
-      {/* ── Nav ── */}
-      <header className="bg-white border-b border-[var(--color-border)] sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Building2 className="w-6 h-6 text-[var(--color-navy)]" />
-            <span className="text-xl font-extrabold text-[var(--color-navy)] tracking-tight">
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-gray)]">
-            <Link href="/directory" className="hover:text-[var(--color-navy)] transition-colors">Directory</Link>
-            <Link href="/pricing" className="hover:text-[var(--color-navy)] transition-colors">Pricing</Link>
-            <Link href="/about" className="hover:text-[var(--color-navy)] transition-colors">About</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm font-semibold text-[var(--color-navy)] hover:underline">
-              Sign In
-            </Link>
-            <Link
-              href="/register/executive"
-              className="text-sm font-bold px-4 py-2 rounded-lg text-white transition-colors"
-              style={{ backgroundColor: 'var(--color-navy)' }}
-            >
-              Register Free
-            </Link>
-          </div>
-        </div>
-      </header>
+      <HomeNav />
 
       <main className="flex-1">
 
         {/* ── Hero ── */}
         <section className="relative overflow-hidden text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
-          <Image
-            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=2070&q=80"
-            alt="Stock market"
-            fill
-            className="object-cover opacity-10"
-            priority
-          />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #1B3A6B 60%, #122850 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #1B3A6B 0%, #0e2347 100%)' }} />
 
-          <div className="relative max-w-7xl mx-auto px-6 py-28 md:py-36">
-            {/* Exchange pills */}
-            <div className="flex flex-wrap items-center gap-2 mb-8">
-              {exchanges.map(ex => (
-                <span
-                  key={ex}
-                  className="text-xs font-bold px-3 py-1 rounded-full border tracking-wider"
-                  style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold)', backgroundColor: 'rgba(184,134,11,0.1)' }}
+          <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left: copy */}
+            <div>
+              {/* Exchange pills */}
+              <div className="flex flex-wrap items-center gap-2 mb-7">
+                {exchanges.map(ex => (
+                  <span
+                    key={ex}
+                    className="text-xs font-bold px-3 py-1 rounded-full border tracking-wider"
+                    style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold)', backgroundColor: 'rgba(184,134,11,0.12)' }}
+                  >
+                    {ex}
+                  </span>
+                ))}
+              </div>
+
+              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
+                {copy.heroHeadlinePre}{' '}
+                <span style={{ color: 'var(--color-gold)' }}>{copy.heroHeadlineGold}</span>{' '}
+                {copy.heroHeadlinePost}
+              </h1>
+              <p className="text-lg text-white/65 mb-8 leading-relaxed max-w-xl">
+                {copy.heroSub}
+              </p>
+              <div className="flex flex-wrap gap-3 mb-10">
+                <Link
+                  href="/register/executive"
+                  className="font-bold px-7 py-3.5 rounded-xl text-base transition-all inline-flex items-center gap-2 hover:brightness-110"
+                  style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}
                 >
-                  {ex}
-                </span>
-              ))}
-              <span className="text-xs text-white/40 ml-1">+ ASX · LSE · NYSE coming soon</span>
+                  Register Free <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/directory"
+                  className="font-semibold px-7 py-3.5 rounded-xl text-base transition-all border text-white hover:bg-white/10"
+                  style={{ borderColor: 'rgba(255,255,255,0.25)', backgroundColor: 'rgba(255,255,255,0.06)' }}
+                >
+                  Browse Providers
+                </Link>
+              </div>
+
+              {/* Stats row */}
+              <div className="flex flex-wrap gap-8 pt-8 border-t border-white/10">
+                {[
+                  { value: '92', label: 'Service categories' },
+                  { value: '4', label: 'Canadian exchanges' },
+                  { value: '500', label: 'Founding Member spots' },
+                  { value: '$0', label: 'For executives' },
+                ].map(s => (
+                  <div key={s.label}>
+                    <p className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>{s.value}</p>
+                    <p className="text-xs text-white/45 mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 max-w-3xl">
-              Every service your{' '}
-              <span style={{ color: 'var(--color-gold)' }}>public company</span>{' '}
-              needs.
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mb-10 leading-relaxed">
-              The independent marketplace connecting Canadian public company executives with IR firms, market makers, legal counsel, and 90+ specialist categories. Free for executives. Always.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/register/executive"
-                className="font-bold px-8 py-4 rounded-xl text-lg transition-colors inline-flex items-center gap-2 text-[var(--color-navy)]"
-                style={{ backgroundColor: 'var(--color-gold)' }}
-              >
-                Register Free <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/directory"
-                className="font-semibold px-8 py-4 rounded-xl text-lg transition-colors border text-white"
-                style={{ borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.08)' }}
-              >
-                Browse Providers
-              </Link>
-            </div>
-
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-10 mt-16 pt-10 border-t border-white/10">
-              {[
-                { value: '500+', label: 'Founding Member spots' },
-                { value: '92', label: 'Service categories' },
-                { value: '4', label: 'Canadian exchanges' },
-                { value: 'Free', label: 'For executives, always' },
-              ].map(s => (
-                <div key={s.label}>
-                  <p className="text-3xl font-extrabold" style={{ color: 'var(--color-gold)' }}>{s.value}</p>
-                  <p className="text-sm text-white/50 mt-1">{s.label}</p>
+            {/* Right: mock dashboard preview */}
+            <div className="hidden lg:block">
+              <div className="rounded-2xl border border-white/10 overflow-hidden shadow-2xl" style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
+                {/* Dashboard header */}
+                <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs text-white/50 mb-0.5">Good morning</p>
+                    <p className="text-sm font-bold text-white">Sarah Chen — CFO</p>
+                    <p className="text-xs text-white/40">Aurex Mining Corp · {copy.heroMockTicker}</p>
+                  </div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5" style={{ backgroundColor: 'rgba(184,134,11,0.2)', color: 'var(--color-gold)' }}>
+                    <Star className="w-3 h-3 fill-current" /> Founding Member #12
+                  </span>
                 </div>
-              ))}
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-px p-0" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+                  {[
+                    { label: 'Providers', value: '247' },
+                    { label: 'Vault', value: '5' },
+                    { label: 'Open RFQs', value: '2' },
+                  ].map(s => (
+                    <div key={s.label} className="text-center py-4" style={{ backgroundColor: 'rgba(14,35,71,0.6)' }}>
+                      <p className="text-xl font-extrabold text-white">{s.value}</p>
+                      <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Compliance deadlines */}
+                <div className="px-5 py-4 border-b border-white/10">
+                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Upcoming Deadlines</p>
+                  <div className="space-y-2.5">
+                    {[
+                      { title: 'Q1 Interim Financials', days: '18d', color: '#f59e0b' },
+                      { title: 'Annual Financials (AIF)', days: '47d', color: '#10b981' },
+                      { title: 'AGM Notice & Proxy', days: '63d', color: '#10b981' },
+                    ].map(item => (
+                      <div key={item.title} className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                        <p className="text-xs text-white/70 flex-1">{item.title}</p>
+                        <p className="text-xs font-bold" style={{ color: item.color }}>{item.days}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Category quick links */}
+                <div className="px-5 py-4">
+                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Top Categories</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { name: 'IR Firms', count: 34 },
+                      { name: 'Securities Law', count: 18 },
+                      { name: 'Market Makers', count: 12 },
+                      { name: 'Auditors', count: 27 },
+                    ].map(cat => (
+                      <div key={cat.name} className="rounded-xl px-3 py-2.5 flex items-center justify-between" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                        <p className="text-xs text-white/70">{cat.name}</p>
+                        <p className="text-xs font-bold text-white">{cat.count}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-xs text-white/25 mt-3">Dashboard preview — your data, live</p>
             </div>
           </div>
         </section>
@@ -197,7 +235,7 @@ export default function Home() {
                 Built for the people running public companies.
               </h2>
               <p className="leading-relaxed mb-8 text-lg" style={{ color: 'var(--color-gray)' }}>
-                Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO company. Search, compare, and connect with vetted service providers — plus manage your contracts, track compliance deadlines, and monitor your stock.
+                {copy.executiveFreeNote}
               </p>
               <ul className="space-y-4 mb-8">
                 {[
@@ -258,10 +296,10 @@ export default function Home() {
               For Service Providers
             </p>
             <h2 className="text-4xl font-extrabold text-white mb-4">
-              Reach every public company executive in Canada.
+              Reach Canadian Public Company Executives.
             </h2>
             <p className="text-lg mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
-              Get your firm in front of the CEOs, CFOs, and IR officers of every TSX, TSXV, CSE, and NEO company. Founding Partner pricing available now — 20% off year one.
+              {copy.providerCTA}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
@@ -269,7 +307,7 @@ export default function Home() {
                 className="font-bold px-8 py-4 rounded-xl text-lg transition-colors"
                 style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}
               >
-                Get Listed from $499/yr
+                Get Listed from $1,000/yr
               </Link>
               <Link
                 href="/pricing"
@@ -287,10 +325,13 @@ export default function Home() {
       <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <span className="text-white font-extrabold text-lg">
-            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+            Enlisted.ca
           </span>
           <span>© 2026 Enlisted Inc. All rights reserved.</span>
-          <span>enlisted.ca · enlisted.au · enlisted.co.uk · enlisted.us</span>
+          <span className="flex flex-wrap gap-4">
+            <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>
+          </span>
         </div>
       </footer>
     </div>
