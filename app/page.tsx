@@ -54,12 +54,12 @@ export default function Home() {
               </div>
 
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
-                {copy.heroHeadlinePre}{' '}
-                <span style={{ color: 'var(--color-gold)' }}>{copy.heroHeadlineGold}</span>{' '}
-                {copy.heroHeadlinePost}
+                Find the right firm.{' '}
+                <span style={{ color: 'var(--color-gold)' }}>Run a tighter</span>{' '}
+                public company.
               </h1>
               <p className="text-lg text-white/65 mb-8 leading-relaxed max-w-xl">
-                {copy.heroSub}
+                The independent directory of every professional service provider for TSX, TSXV, CSE, and NEO executives. Compare IR firms, lawyers, auditors, market makers, and 90+ categories — then manage everything in one place. Free for executives. Always.
               </p>
               <div className="flex flex-wrap gap-3 mb-10">
                 <Link
@@ -161,6 +161,22 @@ export default function Home() {
               </div>
               <p className="text-center text-xs text-white/25 mt-3">Dashboard preview — your data, live</p>
             </div>
+          </div>
+        </section>
+
+        {/* ── Trust bar ── */}
+        <section className="py-6 px-6 bg-white border-b" style={{ borderColor: 'var(--color-border)' }}>
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold" style={{ color: 'var(--color-gray)' }}>
+            {[
+              'Independent — not owned by any provider',
+              'Every listing vetted before going live',
+              'Free for executives. Always.',
+              'Built for TSX · TSXV · CSE · NEO',
+            ].map((item, i) => (
+              <span key={i} className="flex items-center gap-2">
+                <span style={{ color: 'var(--color-gold)' }}>✓</span> {item}
+              </span>
+            ))}
           </div>
         </section>
 
@@ -310,11 +326,11 @@ export default function Home() {
                 Get Listed from $1,000/yr
               </Link>
               <Link
-                href="/pricing"
+                href="/directory"
                 className="font-semibold px-8 py-4 rounded-xl text-lg text-white border transition-colors"
                 style={{ borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.08)' }}
               >
-                See All Plans
+                Browse the Directory
               </Link>
             </div>
           </div>
@@ -327,7 +343,7 @@ export default function Home() {
           <span className="text-white font-extrabold text-lg">
             Enlisted.ca
           </span>
-          <span>© 2026 Enlisted Inc. All rights reserved.</span>
+          <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
           <span className="flex flex-wrap gap-4">
             <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>

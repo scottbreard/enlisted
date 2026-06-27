@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 const EFFECTIVE = 'June 26, 2026'
-const COMPANY = 'Enlisted Inc.'
+const COMPANY = 'Stock Marketing Inc. (operating as Enlisted.ca)'
 const EMAIL = 'legal@enlisted.ca'
 
 export default function TermsPage() {
