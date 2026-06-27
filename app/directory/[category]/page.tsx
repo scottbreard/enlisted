@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Building2, ChevronRight, Globe, Mail, Phone, Star } from 'lucide-react'
 import { getMarketCode } from '@/lib/market'
@@ -46,6 +46,8 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect(`/login?next=/directory/${category}`)
   const marketCode = getMarketCode()
 
   const { data: cat } = await supabase

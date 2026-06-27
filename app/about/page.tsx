@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Target, Shield, Users, TrendingUp } from 'lucide-react'
+import { ArrowRight, Shield, Users, TrendingUp } from 'lucide-react'
 import HomeNav from '@/components/HomeNav'
 import { Metadata } from 'next'
 
@@ -49,11 +49,6 @@ export default function AboutPage() {
               </div>
               <div className="space-y-5">
                 {[
-                  {
-                    icon: Target,
-                    title: 'Independent',
-                    desc: 'We are not owned by any IR firm, law firm, or exchange. Our only job is to serve executives and surface the best providers.',
-                  },
                   {
                     icon: Shield,
                     title: 'Vetted',

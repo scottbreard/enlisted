@@ -1,52 +1,84 @@
 import { createClient } from '@/lib/supabase/server'
+import ExecutiveActions from './ExecutiveActions'
 
 export const metadata = { title: 'Executives — Enlisted Admin' }
 
 export default async function AdminExecutivesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; market?: string }>
+  searchParams: Promise<{ q?: string; status?: string }>
 }) {
-  const { q = '', market = '' } = await searchParams
+  const { q = '', status = 'active' } = await searchParams
   const supabase = await createClient()
 
   let query = supabase
     .from('executive_profiles')
     .select('*')
+    .eq('is_active', status !== 'suspended')
     .order('created_at', { ascending: false })
+    .limit(200)
 
   if (q) {
     query = query.or(
       `first_name.ilike.%${q}%,last_name.ilike.%${q}%,company_name.ilike.%${q}%,company_ticker.ilike.%${q}%`
     )
   }
-  if (market) query = query.eq('market_code', market)
 
-  const { data: executives } = await query.limit(200)
+  const { data: executives } = await query
 
   const [
-    { count: totalExecs },
+    { count: activeCount },
+    { count: suspendedCount },
     { count: foundingCount },
-    { count: caCount },
   ] = await Promise.all([
-    supabase.from('executive_profiles').select('*', { count: 'exact', head: true }),
+    supabase.from('executive_profiles').select('*', { count: 'exact', head: true }).eq('is_active', true),
+    supabase.from('executive_profiles').select('*', { count: 'exact', head: true }).eq('is_active', false),
     supabase.from('executive_profiles').select('*', { count: 'exact', head: true }).eq('is_founding_member', true),
-    supabase.from('executive_profiles').select('*', { count: 'exact', head: true }).eq('market_code', 'CA'),
   ])
+
+  const tabs = [
+    { key: 'active',    label: 'Active',    count: activeCount ?? 0,    color: '#10b981' },
+    { key: 'suspended', label: 'Suspended',  count: suspendedCount ?? 0, color: '#ef4444' },
+  ]
 
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Executives</h1>
         <div className="flex items-center gap-4 text-sm" style={{ color: 'var(--color-gray)' }}>
-          <span><strong style={{ color: 'var(--color-navy)' }}>{totalExecs ?? 0}</strong> total</span>
-          <span><strong style={{ color: 'var(--color-gold)' }}>{foundingCount ?? 0}</strong> founding members</span>
-          <span><strong style={{ color: 'var(--color-blue)' }}>{caCount ?? 0}</strong> Canada</span>
+          <span><strong style={{ color: 'var(--color-navy)' }}>{(activeCount ?? 0) + (suspendedCount ?? 0)}</strong> total</span>
+          <span><strong style={{ color: 'var(--color-gold)' }}>{foundingCount ?? 0}</strong> founding</span>
         </div>
       </div>
 
-      {/* Search + filter */}
+      {/* Tabs */}
+      <div className="flex gap-2 mb-5">
+        {tabs.map(tab => (
+          <a
+            key={tab.key}
+            href={`/admin/executives?status=${tab.key}${q ? `&q=${q}` : ''}`}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all"
+            style={{
+              backgroundColor: status === tab.key ? tab.color : 'white',
+              color: status === tab.key ? 'white' : 'var(--color-gray)',
+              borderColor: status === tab.key ? tab.color : 'var(--color-border)',
+            }}
+          >
+            {tab.label}
+            <span className="text-xs font-bold px-1.5 py-0.5 rounded-full"
+              style={{
+                backgroundColor: status === tab.key ? 'rgba(255,255,255,0.25)' : '#f3f4f6',
+                color: status === tab.key ? 'white' : 'var(--color-gray)',
+              }}>
+              {tab.count}
+            </span>
+          </a>
+        ))}
+      </div>
+
+      {/* Search */}
       <form className="flex gap-3 mb-6">
+        <input type="hidden" name="status" value={status} />
         <input
           name="q"
           defaultValue={q}
@@ -54,23 +86,7 @@ export default async function AdminExecutivesPage({
           className="flex-1 px-4 py-2.5 rounded-xl border text-sm outline-none"
           style={{ borderColor: 'var(--color-border)' }}
         />
-        <select
-          name="market"
-          defaultValue={market}
-          className="px-3 py-2.5 rounded-xl border text-sm outline-none"
-          style={{ borderColor: 'var(--color-border)' }}
-        >
-          <option value="">All markets</option>
-          <option value="CA">Canada</option>
-          <option value="AU">Australia</option>
-          <option value="UK">UK</option>
-          <option value="US">USA</option>
-        </select>
-        <button
-          type="submit"
-          className="px-5 py-2.5 rounded-xl text-sm font-bold text-white"
-          style={{ backgroundColor: 'var(--color-navy)' }}
-        >
+        <button type="submit" className="px-5 py-2.5 rounded-xl text-sm font-bold text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
           Search
         </button>
       </form>
@@ -80,7 +96,7 @@ export default async function AdminExecutivesPage({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b" style={{ borderColor: 'var(--color-border)', backgroundColor: '#f8f9fc' }}>
-              {['Executive', 'Company', 'Title', 'Market', 'Founding', 'Joined'].map(h => (
+              {['Executive', 'Company / Ticker', 'Title', 'Founding', 'Joined', 'Actions'].map(h => (
                 <th key={h} className="text-left px-5 py-3 text-xs font-bold" style={{ color: 'var(--color-gray)' }}>{h}</th>
               ))}
             </tr>
@@ -102,12 +118,6 @@ export default async function AdminExecutivesPage({
                 </td>
                 <td className="px-5 py-3 text-xs" style={{ color: 'var(--color-gray)' }}>{e.title ?? '—'}</td>
                 <td className="px-5 py-3">
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: 'var(--color-blue-light)', color: 'var(--color-navy)' }}>
-                    {e.market_code ?? 'CA'}
-                  </span>
-                </td>
-                <td className="px-5 py-3">
                   {e.is_founding_member
                     ? <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gold)' }}>
                         #{e.founding_member_number}
@@ -117,6 +127,9 @@ export default async function AdminExecutivesPage({
                 </td>
                 <td className="px-5 py-3 text-xs" style={{ color: 'var(--color-gray-light)' }}>
                   {new Date(e.created_at).toLocaleDateString()}
+                </td>
+                <td className="px-5 py-3">
+                  <ExecutiveActions id={e.id} isActive={e.is_active} name={`${e.first_name} ${e.last_name}`} />
                 </td>
               </tr>
             ))}

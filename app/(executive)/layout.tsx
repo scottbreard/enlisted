@@ -16,6 +16,7 @@ export default async function ExecutiveLayout({ children }: { children: React.Re
     .single()
 
   if (!profile) redirect('/register/executive')
+  if (profile.is_active === false) redirect('/suspended')
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row" style={{ backgroundColor: '#f8f9fc' }}>

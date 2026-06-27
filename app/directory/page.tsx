@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Building2, ChevronRight, Star, Globe, ArrowRight } from 'lucide-react'
 import DirectoryClient from './DirectoryClient'
@@ -11,6 +12,8 @@ export const metadata = {
 
 export default async function DirectoryPage() {
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login?next=/directory')
   const marketCode = getMarketCode()
 
   const [

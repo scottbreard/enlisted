@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Building2, ChevronRight, Globe, Mail, Phone, Link2, CheckCircle } from 'lucide-react'
 
@@ -23,6 +23,8 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 export default async function ProviderProfilePage({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { category, slug } = await params
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect(`/login?next=/directory/${category}/${slug}`)
 
   const { data: provider } = await supabase
     .from('provider_profiles')
