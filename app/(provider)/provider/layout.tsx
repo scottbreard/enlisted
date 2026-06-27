@@ -17,7 +17,7 @@ export default async function ProviderLayout({ children }: { children: React.Rea
   if (!profile) redirect('/register/provider')
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#f8f9fc' }}>
+    <div className="min-h-screen flex flex-col md:flex-row" style={{ backgroundColor: '#f8f9fc' }}>
       <ProviderNav profile={profile} />
       <main className="flex-1 min-w-0 overflow-auto">
         {children}

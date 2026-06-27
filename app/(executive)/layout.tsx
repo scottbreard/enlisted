@@ -18,7 +18,7 @@ export default async function ExecutiveLayout({ children }: { children: React.Re
   if (!profile) redirect('/register/executive')
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#f8f9fc' }}>
+    <div className="min-h-screen flex flex-col md:flex-row" style={{ backgroundColor: '#f8f9fc' }}>
       <DashboardNav profile={profile} />
       <main className="flex-1 min-w-0 overflow-auto">
         {children}

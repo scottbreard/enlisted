@@ -2,15 +2,37 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Building2, ChevronRight, Globe, Mail, Phone, Star } from 'lucide-react'
+import { getMarketCode } from '@/lib/market'
+
+const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  ir_firm:               'Investor relations firms help TSX, TSXV, CSE, and NEO listed companies build shareholder value through strategic communications, roadshows, and retail investor outreach. Compare Canadian IR agencies by exchange expertise and sector focus.',
+  market_maker:          'Registered market makers and designated brokers provide continuous two-sided quotes for Canadian public company shares, improving liquidity and reducing bid-ask spreads on TSX, TSXV, CSE, and NEO.',
+  securities_law:        'Securities lawyers advise Canadian public companies on prospectus filings, continuous disclosure obligations, M&A, and regulatory compliance under provincial securities law and exchange rules.',
+  auditor_accounting:    'Audit firms and accounting practices serving Canadian public issuers provide financial statement audits, NI 52-110 audit committee support, and IFRS or ASPE reporting for TSX, TSXV, CSE, and NEO companies.',
+  transfer_agent:        'Transfer agents maintain shareholder registers, process share transfers and dividends, and manage DRS services for Canadian public companies listed on TSX, TSXV, CSE, and NEO.',
+  outsourced_cfo:        'Outsourced CFO firms provide part-time or interim chief financial officer services to smaller listed companies, handling financial reporting, treasury, and board-level financial governance.',
+  pr_communications:     'PR and communications firms help Canadian public companies craft news releases, manage media relations, and build brand awareness with retail and institutional investors.',
+  ir_website:            'IR website and digital agencies design investor relations websites, shareholder portals, and digital communications tools that meet Canadian disclosure requirements.',
+  compliance_consultant: 'Compliance consultants help Canadian listed companies navigate continuous disclosure, insider reporting, NI 51-102, NI 45-106, and exchange filing requirements.',
+  research_analyst:      'Independent equity research analysts provide paid and sponsored research coverage for small and mid-cap Canadian public companies seeking institutional visibility.',
+  investor_events:       'Investor conference organizers and event firms connect Canadian listed companies with institutional investors, family offices, and retail shareholders through conferences, roadshows, and virtual events.',
+  esg_governance:        'ESG and governance consultants help Canadian public companies build environmental, social, and governance programs, prepare sustainability reports, and meet shareholder and regulatory expectations.',
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params
   const supabase = await createClient()
   const { data: cat } = await supabase.from('service_categories').select('name, group_name').eq('slug', category).single()
   if (!cat) return { title: 'Not Found' }
+  const description = CATEGORY_DESCRIPTIONS[category]
+    ?? `Browse ${cat.name} service providers for Canadian public companies on TSX, TSXV, CSE, and NEO listed on Enlisted.ca.`
   return {
-    title: `${cat.name} — Enlisted Directory`,
-    description: `Browse ${cat.name} service providers for Canadian public companies on TSX, TSXV, CSE, and NEO.`,
+    title: `${cat.name} for Canadian Public Companies`,
+    description,
+    openGraph: {
+      title: `${cat.name} — Enlisted.ca`,
+      description,
+    },
   }
 }
 
@@ -24,6 +46,7 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params
   const supabase = await createClient()
+  const marketCode = getMarketCode()
 
   const { data: cat } = await supabase
     .from('service_categories')
@@ -33,7 +56,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   if (!cat) notFound()
 
-  // Get providers in this category
+  // Get providers in this category for this market
   const { data: providerCategories } = await supabase
     .from('provider_categories')
     .select('provider_id, is_primary')
@@ -48,6 +71,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       .select('*')
       .in('id', providerIds)
       .eq('is_active', true)
+      .eq('approval_status', 'approved')
+      .eq('primary_market_code', marketCode)
       .order('created_at')
     providers = (data ?? []).sort((a, b) => (TIER_ORDER[a.tier] ?? 9) - (TIER_ORDER[b.tier] ?? 9))
   }
@@ -66,9 +91,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-navy)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+            <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
+            <span className="text-lg font-extrabold" style={{ color: 'var(--color-canada)' }}>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -101,6 +126,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       <div className="max-w-7xl mx-auto px-6 py-10 flex gap-8">
         {/* Main content */}
         <div className="flex-1">
+          {CATEGORY_DESCRIPTIONS[category] && (
+            <div className="bg-white border rounded-2xl px-6 py-5 mb-6" style={{ borderColor: 'var(--color-border)' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-gray)' }}>
+                {CATEGORY_DESCRIPTIONS[category]}
+              </p>
+            </div>
+          )}
           {providers.length === 0 ? (
             <div className="bg-white border rounded-2xl p-16 text-center" style={{ borderColor: 'var(--color-border)' }}>
               <p className="text-4xl mb-4">🔍</p>

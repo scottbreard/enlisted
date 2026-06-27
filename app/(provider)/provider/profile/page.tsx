@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Save, CheckCircle, Globe, Mail, Phone, Building2, Tag } from 'lucide-react'
+import { Save, CheckCircle, Globe, Mail, Phone, Building2, Tag, Layers } from 'lucide-react'
 
 const exchanges = ['TSX', 'TSXV', 'CSE', 'NEO']
 
@@ -18,6 +18,8 @@ export default function ProviderProfilePage() {
   })
   const [selectedExchanges, setSelectedExchanges] = useState<string[]>([])
   const [allExchanges, setAllExchanges] = useState<any[]>([])
+  const [allCategories, setAllCategories] = useState<any[]>([])
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
   useEffect(() => {
     async function load() {
@@ -56,6 +58,20 @@ export default function ProviderProfilePage() {
         .eq('provider_id', p.id)
       const codes = pe?.map((r: any) => r.exchanges?.code).filter(Boolean) ?? []
       setSelectedExchanges(codes)
+
+      // Load all categories
+      const { data: cats } = await supabase
+        .from('service_categories')
+        .select('id, slug, name, group_name')
+        .order('sort_order')
+      setAllCategories(cats ?? [])
+
+      // Load provider categories
+      const { data: pc } = await supabase
+        .from('provider_categories')
+        .select('category_id')
+        .eq('provider_id', p.id)
+      setSelectedCategories(pc?.map((r: any) => r.category_id) ?? [])
     }
     load()
   }, [])
@@ -63,6 +79,12 @@ export default function ProviderProfilePage() {
   function toggleExchange(code: string) {
     setSelectedExchanges(prev =>
       prev.includes(code) ? prev.filter(c => c !== code) : [...prev, code]
+    )
+  }
+
+  function toggleCategory(id: string) {
+    setSelectedCategories(prev =>
+      prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
     )
   }
 
@@ -79,14 +101,18 @@ export default function ProviderProfilePage() {
     // Sync exchanges
     if (allExchanges.length > 0) {
       await supabase.from('provider_exchanges').delete().eq('provider_id', profile.id)
-
       const toInsert = allExchanges
         .filter(ex => selectedExchanges.includes(ex.code))
         .map(ex => ({ provider_id: profile.id, exchange_id: ex.id }))
+      if (toInsert.length > 0) await supabase.from('provider_exchanges').insert(toInsert)
+    }
 
-      if (toInsert.length > 0) {
-        await supabase.from('provider_exchanges').insert(toInsert)
-      }
+    // Sync categories
+    await supabase.from('provider_categories').delete().eq('provider_id', profile.id)
+    if (selectedCategories.length > 0) {
+      await supabase.from('provider_categories').insert(
+        selectedCategories.map(category_id => ({ provider_id: profile.id, category_id }))
+      )
     }
 
     setSaving(false)
@@ -213,6 +239,50 @@ export default function ProviderProfilePage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Service Categories */}
+      <div className="bg-white border rounded-2xl p-6 mb-6" style={{ borderColor: 'var(--color-border)' }}>
+        <div className="flex items-center gap-2 mb-2">
+          <Layers className="w-4 h-4" style={{ color: 'var(--color-navy)' }} />
+          <h2 className="font-extrabold" style={{ color: 'var(--color-navy)' }}>Service Categories</h2>
+        </div>
+        <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>
+          Select every category that applies. Executives filter the directory by category.
+          {isFree && <span style={{ color: 'var(--color-gray-light)' }}> Connected plan: up to 3 · Featured: unlimited.</span>}
+        </p>
+        {Object.entries(
+          allCategories.reduce((groups: Record<string, any[]>, cat) => {
+            if (!groups[cat.group_name]) groups[cat.group_name] = []
+            groups[cat.group_name].push(cat)
+            return groups
+          }, {})
+        ).map(([group, cats]) => (
+          <div key={group} className="mb-5">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--color-gray)' }}>{group}</p>
+            <div className="flex flex-wrap gap-2">
+              {cats.map((cat: any) => {
+                const selected = selectedCategories.includes(cat.id)
+                return (
+                  <button key={cat.id} onClick={() => toggleCategory(cat.id)}
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+                    style={{
+                      borderColor: selected ? 'var(--color-navy)' : 'var(--color-border)',
+                      backgroundColor: selected ? 'var(--color-navy)' : 'white',
+                      color: selected ? 'white' : 'var(--color-gray-dark)',
+                    }}>
+                    {cat.name}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+        {selectedCategories.length > 0 && (
+          <p className="text-xs mt-2" style={{ color: 'var(--color-blue)' }}>
+            {selectedCategories.length} categor{selectedCategories.length === 1 ? 'y' : 'ies'} selected
+          </p>
+        )}
       </div>
 
       {/* Exchanges served */}

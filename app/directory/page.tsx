@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { Building2, ChevronRight, Star, Globe, ArrowRight } from 'lucide-react'
 import DirectoryClient from './DirectoryClient'
+import { getMarketCode } from '@/lib/market'
 
 export const metadata = {
   title: 'Service Provider Directory — Enlisted',
@@ -10,6 +11,7 @@ export const metadata = {
 
 export default async function DirectoryPage() {
   const supabase = await createClient()
+  const marketCode = getMarketCode()
 
   const [
     { data: categories },
@@ -24,7 +26,9 @@ export default async function DirectoryPage() {
     supabase
       .from('provider_profiles')
       .select('*', { count: 'exact', head: true })
-      .eq('is_active', true),
+      .eq('is_active', true)
+      .eq('approval_status', 'approved')
+      .eq('primary_market_code', marketCode),
     supabase
       .from('provider_profiles')
       .select(`
@@ -33,6 +37,8 @@ export default async function DirectoryPage() {
       `)
       .eq('tier', 'featured')
       .eq('is_active', true)
+      .eq('approval_status', 'approved')
+      .eq('primary_market_code', marketCode)
       .order('created_at', { ascending: false })
       .limit(6),
   ])
@@ -44,9 +50,9 @@ export default async function DirectoryPage() {
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-navy)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+            <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
+            <span className="text-lg font-extrabold" style={{ color: 'var(--color-canada)' }}>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>

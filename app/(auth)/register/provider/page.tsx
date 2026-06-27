@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
 import { Building2 } from 'lucide-react'
+import { getMarketCode } from '@/lib/market'
 
 const schema = z.object({
   company_name: z.string().min(2, 'Required'),
@@ -54,6 +55,7 @@ export default function ProviderRegisterPage() {
       website_url: data.website_url || null,
       tier: 'listed',
       is_active: true,
+      primary_market_code: getMarketCode(),
     })
 
     if (profileError) {
@@ -62,14 +64,10 @@ export default function ProviderRegisterPage() {
     }
 
     // Send welcome email (fire and forget)
-    fetch('/api/email/welcome', {
+    fetch('/api/email/welcome-provider', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'provider',
-        email: data.email,
-        companyName: data.company_name,
-      }),
+      body: JSON.stringify({ to: data.email, companyName: data.company_name, tier: 'listed' }),
     }).catch(() => {})
 
     router.push('/provider/dashboard')
@@ -87,9 +85,9 @@ export default function ProviderRegisterPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <Link href="/" className="inline-flex items-center gap-2 justify-center mb-6">
-            <Building2 className="w-6 h-6" style={{ color: 'var(--color-navy)' }} />
-            <span className="text-xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+            <Building2 className="w-6 h-6" style={{ color: 'var(--color-canada)' }} />
+            <span className="text-xl font-extrabold" style={{ color: 'var(--color-canada)' }}>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
             </span>
           </Link>
           <h1 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--color-navy)' }}>

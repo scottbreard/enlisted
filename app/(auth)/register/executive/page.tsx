@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
 import { Building2, CheckCircle, Star } from 'lucide-react'
+import { getMarketCode } from '@/lib/market'
 
 const schema = z.object({
   first_name: z.string().min(1, 'Required'),
@@ -47,6 +48,7 @@ export default function ExecutiveRegisterPage() {
       .from('executive_profiles')
       .select('*', { count: 'exact', head: true })
       .eq('is_founding_member', true)
+      .eq('market_code', getMarketCode())
       .then(({ count }) => setFoundingCount(count ?? 0))
   }, [])
 
@@ -64,11 +66,12 @@ export default function ExecutiveRegisterPage() {
       return
     }
 
-    // 2. Check founding member count
+    // 2. Check founding member count (per market — each market has its own 500 spots)
     const { count } = await supabase
       .from('executive_profiles')
       .select('*', { count: 'exact', head: true })
       .eq('is_founding_member', true)
+      .eq('market_code', getMarketCode())
     const isFoundingMember = (count ?? 0) < 500
     const foundingNumber = isFoundingMember ? (count ?? 0) + 1 : null
 
@@ -87,6 +90,7 @@ export default function ExecutiveRegisterPage() {
       is_founding_member: isFoundingMember,
       founding_member_number: foundingNumber,
       referral_code: referralCode,
+      market_code: getMarketCode(),
     })
 
     if (profileError) {
@@ -115,7 +119,7 @@ export default function ExecutiveRegisterPage() {
       <div className="hidden lg:flex lg:w-2/5 flex-col justify-between p-12 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
         <Link href="/" className="inline-flex items-center gap-2">
           <Building2 className="w-6 h-6" />
-          <span className="text-xl font-extrabold">Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span></span>
+          <span className="text-xl font-extrabold" style={{ color: 'var(--color-canada)' }}>Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span></span>
         </Link>
         <div>
           <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
@@ -147,9 +151,9 @@ export default function ExecutiveRegisterPage() {
         <div className="w-full max-w-lg">
           <div className="lg:hidden text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 justify-center">
-              <Building2 className="w-6 h-6" style={{ color: 'var(--color-navy)' }} />
-              <span className="text-xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-                Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+              <Building2 className="w-6 h-6" style={{ color: 'var(--color-canada)' }} />
+              <span className="text-xl font-extrabold" style={{ color: 'var(--color-canada)' }}>
+                Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
               </span>
             </Link>
           </div>

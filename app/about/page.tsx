@@ -37,9 +37,9 @@ export default function AboutPage() {
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-6 h-6" style={{ color: 'var(--color-navy)' }} />
-            <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-navy)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
+            <Building2 className="w-6 h-6" style={{ color: 'var(--color-canada)' }} />
+            <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-canada)' }}>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
@@ -274,6 +274,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style={{ color: 'var(--color-gray-light)' }}>
           <span>© 2026 Enlisted Inc. All rights reserved.</span>
           <div className="flex gap-6">
+            <Link href="/terms" className="hover:text-[var(--color-navy)] transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-[var(--color-navy)] transition-colors">Privacy</Link>
             <Link href="/directory" className="hover:text-[var(--color-navy)] transition-colors">Directory</Link>
             <Link href="/pricing" className="hover:text-[var(--color-navy)] transition-colors">Pricing</Link>
             <Link href="/login" className="hover:text-[var(--color-navy)] transition-colors">Sign In</Link>
