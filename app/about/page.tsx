@@ -38,7 +38,7 @@ export default function AboutPage() {
               <div>
                 <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>Our Mission</p>
                 <h2 className="text-3xl font-extrabold mb-6 leading-tight" style={{ color: 'var(--color-navy)' }}>
-                  Give every public company executive independent access to the best service providers in Canada.
+                  Give public company executives direct access to the best service providers in Canada.
                 </h2>
                 <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-gray)' }}>
                   Canada has over 3,000 publicly listed companies. Their CEOs, CFOs, COOs, and IROs need lawyers, auditors, IR firms, market makers, transfer agents, and dozens of other specialists — yet there has never been a single, independent place to find, compare, and connect with them.
@@ -158,7 +158,7 @@ export default function AboutPage() {
                 <div className="rounded-2xl p-6 border-2" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
                   <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--color-gold)' }}>Our Purpose</p>
                   <p className="text-xl font-bold leading-snug" style={{ color: 'var(--color-navy)' }}>
-                    "To give every public company executive — regardless of company size or market cap — independent, unbiased access to the best professional services in their market."
+                    "To give public company executives — regardless of company size or market cap — direct access to the best professional services in their market."
                   </p>
                 </div>
                 <div className="rounded-2xl p-6 border" style={{ backgroundColor: '#f8f9fc', borderColor: 'var(--color-border)' }}>

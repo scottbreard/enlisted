@@ -165,7 +165,7 @@ export default function DirectoryClient({ categories }: { categories: Category[]
         {/* Provider CTA */}
         <div className="mt-16 rounded-2xl p-10 text-center" style={{ backgroundColor: 'var(--color-navy)' }}>
           <h2 className="text-2xl font-extrabold text-white mb-2">Are you a service provider?</h2>
-          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>Get listed and reach every public company executive in Canada.</p>
+          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>Get listed in Canada's directory for public company services.</p>
           <Link href="/register/provider" className="font-bold px-8 py-3 rounded-xl inline-block" style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
             List Your Firm →
           </Link>

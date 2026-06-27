@@ -8,7 +8,7 @@ import { Check, Zap, Star, ArrowRight, ExternalLink, AlertCircle, CheckCircle } 
 const TIERS = [
   {
     key: 'connected',
-    name: 'Good',
+    name: 'Popular',
     monthly: 83,
     annual: 1000,
     annualSaving: 0,
@@ -29,9 +29,9 @@ const TIERS = [
   },
   {
     key: 'featured',
-    name: 'Best',
-    monthly: 500,
-    annual: 6000,
+    name: 'Featured',
+    monthly: 417,
+    annual: 5000,
     annualSaving: 0,
     icon: Star,
     color: '#92400e',
@@ -39,7 +39,7 @@ const TIERS = [
     borderColor: '#f59e0b',
     popular: true,
     features: [
-      'Everything in Good',
+      'Everything in Popular',
       'Top placement in category',
       '"Featured" badge on profile + listings',
       'Homepage rotation module',
@@ -49,7 +49,7 @@ const TIERS = [
       'Video embed',
       'Instant RFQ access (priority window)',
       'Full analytics dashboard',
-      '12 email blasts/yr to verified executives',
+      'Email blasts to verified executives',
       'AI Assistant integration',
       'Priority support — 24h SLA',
     ],
@@ -285,7 +285,7 @@ function BillingContent() {
       <div className="text-center p-5 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>
         <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Listed plan — always free</p>
         <p className="text-xs" style={{ color: 'var(--color-gray)' }}>
-          Your company name and category stay in the directory at no cost. Upgrade to Connected or Featured to show contact details, receive RFQs, and get full profile visibility.
+          Your company name and category stay in the directory at no cost. Upgrade to Popular or Featured to show contact details, receive RFQs, and get full profile visibility.
         </p>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { Building2, Check, ArrowRight, Zap, Star, Shield } from 'lucide-react'
 
 const TIERS = [
   {
-    name: 'Free',
+    name: 'Listed',
     badge: null,
     monthly: 0,
     annual: 0,
@@ -26,7 +26,7 @@ const TIERS = [
     featureStatus: [true, true, true, true, false, false, false],
   },
   {
-    name: 'Good',
+    name: 'Popular',
     badge: 'Most Popular',
     monthly: 83,
     annual: 1000,
@@ -35,7 +35,7 @@ const TIERS = [
     ctaHref: '/register/provider',
     highlight: true,
     features: [
-      'Everything in Free',
+      'Everything in Listed',
       'Logo + website link',
       'Full contact details',
       '300-word company description',
@@ -46,42 +46,22 @@ const TIERS = [
     featureStatus: [true, true, true, true, true, true, true],
   },
   {
-    name: 'Better',
-    badge: null,
-    monthly: 250,
-    annual: 3000,
-    description: 'Priority placement, deeper profile, case studies, team bios, newsletter inclusion, and full analytics.',
-    cta: 'Get Better',
-    ctaHref: '/register/provider',
-    highlight: false,
-    features: [
-      'Everything in Good',
-      'Priority placement in category',
-      '750-word profile + case studies',
-      'Team profiles',
-      'Newsletter inclusion',
-      'Full analytics dashboard',
-      'Instant RFQ access',
-    ],
-    featureStatus: [true, true, true, true, true, true, true],
-  },
-  {
-    name: 'Best',
+    name: 'Featured',
     badge: 'Maximum Visibility',
-    monthly: 500,
-    annual: 6000,
-    description: 'Top placement, video, 12 email blasts/yr to executives, AI Assistant integration, and homepage feature.',
-    cta: 'Get Best',
+    monthly: 417,
+    annual: 5000,
+    description: 'Top placement, video, email blasts to executives, AI Assistant integration, and homepage feature.',
+    cta: 'Get Featured',
     ctaHref: '/register/provider',
     highlight: false,
     features: [
-      'Everything in Better',
+      'Everything in Popular',
       'Top of category placement',
-      'Video embed',
-      '12 email blasts/yr to executives',
+      '750-word profile + case studies',
+      'Team profiles + video embed',
+      'Email blasts to executives',
       'AI Assistant integration',
       'Homepage feature rotation',
-      'Full analytics + RFQ click-through',
     ],
     featureStatus: [true, true, true, true, true, true, true],
   },
@@ -175,7 +155,7 @@ export default function PricingPage() {
 
         {/* Pricing cards */}
         <section className="px-6 pb-20 -mt-8">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-5">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-5">
             {TIERS.map((tier) => (
               <div
                 key={tier.name}

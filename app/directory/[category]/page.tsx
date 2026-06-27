@@ -263,7 +263,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <div className="rounded-2xl p-5 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
             <p className="font-bold mb-1">List your firm</p>
             <p className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              Reach every public company executive in Canada.
+              Get listed in Canada's directory for public company services.
             </p>
             <Link href="/register/provider" className="block text-center text-sm font-bold py-2 rounded-lg" style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
               Get Listed
