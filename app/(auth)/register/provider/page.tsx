@@ -75,8 +75,8 @@ export default function ProviderRegisterPage() {
 
   const tiers = [
     { name: 'Listed', price: '$0', features: ['Name + category + city only', 'No contact details shown', 'No website or logo'], highlight: false },
-    { name: 'Popular', price: '$1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
-    { name: 'Featured', price: '$5,000/yr', features: ['Top placement', '750-word profile + case studies', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
+    { name: 'Popular', price: '$100/mo or $1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
+    { name: 'Featured', price: '$500/mo or $5,000/yr', features: ['Top placement', '750-word profile + case studies', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
   ]
 
   return (

@@ -28,7 +28,7 @@ const TIERS = [
   {
     name: 'Popular',
     badge: 'Most Popular',
-    monthly: 83,
+    monthly: 100,
     annual: 1000,
     description: 'Full profile, direct contact details, logo, and inbound RFQs from verified public company executives.',
     cta: 'Get Started',
@@ -48,7 +48,7 @@ const TIERS = [
   {
     name: 'Featured',
     badge: 'Maximum Visibility',
-    monthly: 417,
+    monthly: 500,
     annual: 5000,
     description: 'Top placement, video, email blasts to executives, AI Assistant integration, and homepage feature.',
     cta: 'Get Featured',

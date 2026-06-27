@@ -9,7 +9,7 @@ const TIERS = [
   {
     key: 'connected',
     name: 'Popular',
-    monthly: 83,
+    monthly: 100,
     annual: 1000,
     annualSaving: 0,
     icon: Zap,
@@ -30,7 +30,7 @@ const TIERS = [
   {
     key: 'featured',
     name: 'Featured',
-    monthly: 417,
+    monthly: 500,
     annual: 5000,
     annualSaving: 0,
     icon: Star,
