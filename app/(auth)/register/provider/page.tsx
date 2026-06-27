@@ -74,9 +74,10 @@ export default function ProviderRegisterPage() {
   }
 
   const tiers = [
-    { name: 'Listed', price: 'Free', features: ['Name + category listed', 'Searchable by executives', 'No contact details shown'], highlight: false },
-    { name: 'Connected', price: '$100/mo', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
-    { name: 'Featured', price: '$499/mo', features: ['Top placement', 'Instant RFQs', 'Video + team + email blasts'], highlight: false },
+    { name: 'Free', price: '$0', features: ['Name + category + city only', 'No contact details shown', 'No website or logo'], highlight: false },
+    { name: 'Good', price: '$1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
+    { name: 'Better', price: '$3,000/yr', features: ['Priority placement', '750-word profile + case studies', 'Full analytics'], highlight: false },
+    { name: 'Best', price: '$6,000/yr', features: ['Top placement', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
   ]
 
   return (
@@ -99,7 +100,7 @@ export default function ProviderRegisterPage() {
         </div>
 
         {/* Tier preview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {tiers.map(tier => (
             <div
               key={tier.name}

@@ -6,11 +6,11 @@ import { Building2, Check, ArrowRight, Zap, Star, Shield } from 'lucide-react'
 
 const TIERS = [
   {
-    name: 'Listed',
+    name: 'Free',
     badge: null,
     monthly: 0,
     annual: 0,
-    description: 'Get found. Your name and category appear in the directory — no cost, ever.',
+    description: 'Your company name and service category appear in the directory. No contact details, no website — free forever.',
     cta: 'Create Free Listing',
     ctaHref: '/register/provider',
     highlight: false,
@@ -26,47 +26,64 @@ const TIERS = [
     featureStatus: [true, true, true, true, false, false, false],
   },
   {
-    name: 'Connected',
+    name: 'Good',
     badge: 'Most Popular',
-    monthly: 100,
+    monthly: 83,
     annual: 1000,
-    description: 'Full profile, direct contact, and inbound RFQs from verified public company executives.',
-    cta: 'Get Connected',
+    description: 'Full profile, direct contact details, logo, and inbound RFQs from verified public company executives.',
+    cta: 'Get Started',
     ctaHref: '/register/provider',
     highlight: true,
     features: [
-      'Everything in Listed',
+      'Everything in Free',
       'Logo + website link',
       'Full contact details',
       '300-word company description',
       'Exchange badges (TSX, TSXV, etc.)',
-      'Receive RFQ requests (24h delay)',
-      'Analytics dashboard',
+      'Receive RFQ requests',
+      'Basic analytics dashboard',
     ],
     featureStatus: [true, true, true, true, true, true, true],
   },
   {
-    name: 'Featured',
-    badge: 'Maximum Visibility',
-    monthly: 499,
-    annual: 4990,
-    description: 'Top placement, priority RFQs, AI-powered profile, and 12 email blasts to verified executives per year.',
-    cta: 'Get Featured',
+    name: 'Better',
+    badge: null,
+    monthly: 250,
+    annual: 3000,
+    description: 'Priority placement, deeper profile, case studies, team bios, newsletter inclusion, and full analytics.',
+    cta: 'Get Better',
     ctaHref: '/register/provider',
     highlight: false,
     features: [
-      'Everything in Connected',
-      'Top of category placement',
+      'Everything in Good',
+      'Priority placement in category',
       '750-word profile + case studies',
       'Team profiles',
+      'Newsletter inclusion',
+      'Full analytics dashboard',
+      'Instant RFQ access',
+    ],
+    featureStatus: [true, true, true, true, true, true, true],
+  },
+  {
+    name: 'Best',
+    badge: 'Maximum Visibility',
+    monthly: 500,
+    annual: 6000,
+    description: 'Top placement, video, 12 email blasts/yr to executives, AI Assistant integration, and homepage feature.',
+    cta: 'Get Best',
+    ctaHref: '/register/provider',
+    highlight: false,
+    features: [
+      'Everything in Better',
+      'Top of category placement',
       'Video embed',
-      'Instant RFQ access (no delay)',
       '12 email blasts/yr to executives',
       'AI Assistant integration',
       'Homepage feature rotation',
       'Full analytics + RFQ click-through',
     ],
-    featureStatus: [true, true, true, true, true, true, true, true, true, true],
+    featureStatus: [true, true, true, true, true, true, true],
   },
 ]
 
@@ -158,7 +175,7 @@ export default function PricingPage() {
 
         {/* Pricing cards */}
         <section className="px-6 pb-20 -mt-8">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-5">
             {TIERS.map((tier) => (
               <div
                 key={tier.name}
@@ -332,7 +349,7 @@ export default function PricingPage() {
       {/* Footer */}
       <footer className="border-t py-8 px-6" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style={{ color: 'var(--color-gray-light)' }}>
-          <span>© 2026 Enlisted Inc. All rights reserved.</span>
+          <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
           <div className="flex gap-6">
             <Link href="/terms" className="hover:text-[var(--color-navy)] transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-[var(--color-navy)] transition-colors">Privacy</Link>
