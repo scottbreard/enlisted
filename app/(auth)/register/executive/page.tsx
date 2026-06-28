@@ -132,7 +132,7 @@ export default function ExecutiveRegisterPage() {
               'Compliance calendar auto-built for your exchange',
               'Private vault to manage your provider relationships',
               'AI assistant trained on Canadian public markets',
-              'Founding Member status — only 500 spots',
+              'Founding Executive status — only 500 spots',
             ].map(item => (
               <li key={item} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>
                 <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--color-gold)' }} />
@@ -166,13 +166,13 @@ export default function ExecutiveRegisterPage() {
                 <Star className="w-4 h-4 shrink-0 fill-current" style={{ color: 'var(--color-gold)' }} />
                 <span>
                   <span className="font-extrabold" style={{ color: 'var(--color-gold)' }}>{500 - foundingCount} </span>
-                  Founding Member {500 - foundingCount === 1 ? 'spot' : 'spots'} remaining
+                  Founding Executive {500 - foundingCount === 1 ? 'spot' : 'spots'} remaining
                 </span>
               </div>
             )}
             {foundingCount !== null && foundingCount >= 500 && (
               <div className="px-4 py-2.5 rounded-xl mb-5 text-sm" style={{ backgroundColor: '#f3f4f6', color: 'var(--color-gray)' }}>
-                Founding Member spots are full — you'll still get full free access.
+                Founding Executive spots are full — you'll still get full free access.
               </div>
             )}
 

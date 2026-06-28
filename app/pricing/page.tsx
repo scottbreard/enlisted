@@ -77,7 +77,7 @@ const EXEC_FEATURES = [
   'Company news feed (ticker + Canadian markets)',
   'Rolodex — personal contact manager',
   'Provider vault — track contracts & renewals',
-  'Founding Member badge (first 500)',
+  'Founding Executive badge (first 500)',
 ]
 
 export default function PricingPage() {
@@ -258,7 +258,7 @@ export default function PricingPage() {
               Register as an Executive <ArrowRight className="w-5 h-5" />
             </Link>
             <p className="text-xs mt-3" style={{ color: 'var(--color-gray-light)' }}>
-              First 500 executives receive a permanent Founding Member badge.
+              First 500 executives receive a permanent Founding Executive badge.
             </p>
           </div>
         </section>

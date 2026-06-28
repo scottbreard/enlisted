@@ -120,7 +120,7 @@ export default async function DashboardPage() {
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold"
               style={{ backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gold)' }}>
               <Star className="w-4 h-4 fill-current" />
-              Founding Member #{profile.founding_member_number}
+              Founding Executive #{profile.founding_member_number}
             </div>
           )}
         </div>

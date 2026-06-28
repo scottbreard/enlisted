@@ -89,7 +89,7 @@ export default async function Home() {
                 {[
                   { value: '92', label: 'Service categories' },
                   { value: '4', label: 'Canadian exchanges' },
-                  { value: '500', label: 'Founding Member spots' },
+                  { value: '500', label: 'Founding Executive spots' },
                   { value: '$0', label: 'For executives' },
                 ].map(s => (
                   <div key={s.label}>
@@ -272,16 +272,16 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── Founding Member banner ── */}
+        {/* ── Founding Executive banner ── */}
         <section className="py-10 px-6" style={{ backgroundColor: 'var(--color-gold-light)', borderTop: '1px solid #e8d5a0', borderBottom: '1px solid #e8d5a0' }}>
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <p className="text-sm font-bold tracking-widest uppercase mb-1" style={{ color: 'var(--color-gold)' }}>Limited Offer</p>
               <h3 className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-                Founding Member spots — only 500 available
+                Founding Executive spots — only 500 available
               </h3>
               <p className="mt-1" style={{ color: 'var(--color-gray)' }}>
-                The first 500 executives to register receive permanent Founding Member status and exclusive benefits.
+                The first 500 executives to register receive permanent Founding Executive status and exclusive benefits.
               </p>
             </div>
             <Link
