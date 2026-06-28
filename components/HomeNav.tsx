@@ -12,9 +12,9 @@ export default function HomeNav() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Building2 className="w-6 h-6" style={{ color: 'var(--color-canada)' }} />
-          <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-canada)' }}>
-            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
+          <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
+          <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-gold)' }}>
+            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
           </span>
         </Link>
 

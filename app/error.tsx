@@ -11,8 +11,8 @@ export default function Error({
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
       style={{ backgroundColor: '#f8f9fc' }}>
       <div className="mb-6">
-        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-canada)' }}>
-          Enlisted<span style={{ color: 'var(--color-canada)' }}>.ca</span>
+        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
+          Enlisted<span style={{ color: 'var(--color-gold)' }}>.ca</span>
         </span>
       </div>
       <h1 className="text-5xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Something went wrong</h1>

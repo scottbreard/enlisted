@@ -28,9 +28,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="min-h-screen flex" style={{ backgroundColor: '#f8f9fc' }}>
       <aside className="w-56 shrink-0 flex flex-col border-r bg-white" style={{ borderColor: 'var(--color-border)', minHeight: '100vh' }}>
         <div className="h-16 flex items-center px-5 border-b gap-2" style={{ borderColor: 'var(--color-border)' }}>
-          <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
-          <span className="text-lg font-extrabold" style={{ color: 'var(--color-canada)' }}>
-            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
+          <Building2 className="w-5 h-5" style={{ color: 'var(--color-gold)' }} />
+          <span className="text-lg font-extrabold" style={{ color: 'var(--color-gold)' }}>
+            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
           </span>
           <span className="ml-auto text-xs font-bold px-1.5 py-0.5 rounded" style={{ backgroundColor: '#fef3c7', color: '#92400e' }}>Admin</span>
         </div>

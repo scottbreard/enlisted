@@ -7,9 +7,9 @@ export default function SuspendedPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center" style={{ backgroundColor: '#f8f9fc' }}>
       <Link href="/" className="flex items-center gap-2 mb-10">
-        <Building2 className="w-6 h-6" style={{ color: 'var(--color-canada)' }} />
-        <span className="text-xl font-extrabold" style={{ color: 'var(--color-canada)' }}>
-          Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
+        <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
+        <span className="text-xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
+          Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
         </span>
       </Link>
       <div className="bg-white border rounded-2xl p-12 max-w-md w-full" style={{ borderColor: 'var(--color-border)' }}>

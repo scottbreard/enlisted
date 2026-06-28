@@ -18,9 +18,9 @@ export default function PrivacyPage() {
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-canada)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
+            <Building2 className="w-5 h-5" style={{ color: 'var(--color-gold)' }} />
+            <span className="text-lg font-extrabold" style={{ color: 'var(--color-gold)' }}>
+              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
             </span>
           </Link>
           <div className="flex items-center gap-3">
