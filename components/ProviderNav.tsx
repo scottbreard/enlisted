@@ -94,7 +94,7 @@ export default function ProviderNav({ profile }: { profile: Record<string, any> 
       {/* ── Desktop sidebar ── */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r bg-white" style={{ borderColor: 'var(--color-border)', minHeight: '100vh' }}>
         <div className="h-16 flex items-center px-5 border-b" style={{ borderColor: 'var(--color-border)' }}>
-          <EnlistedLogo size={26} />
+          <EnlistedLogo size={20} />
         </div>
         <ProfileBlock />
         <NavLinks />
@@ -103,7 +103,7 @@ export default function ProviderNav({ profile }: { profile: Record<string, any> 
       {/* ── Mobile top bar ── */}
       <header className="md:hidden bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="h-14 px-4 flex items-center justify-between">
-          <EnlistedLogo size={24} />
+          <EnlistedLogo size={20} />
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold px-2 py-0.5 rounded-full"
               style={{ backgroundColor: tier.bg, color: tier.color }}>
