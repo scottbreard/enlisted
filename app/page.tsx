@@ -174,7 +174,6 @@ export default async function Home() {
         <section className="py-6 px-6 bg-white border-b" style={{ borderColor: 'var(--color-border)' }}>
           <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold" style={{ color: 'var(--color-gray)' }}>
             {[
-              'Independent — not owned by any provider',
               'Every listing vetted before going live',
               'Free for executives. Always.',
               'Built for TSX · TSXV · CSE · NEO',
