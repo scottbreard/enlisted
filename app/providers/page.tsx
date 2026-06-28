@@ -280,7 +280,7 @@ export default function ProvidersPage() {
         <section className="py-16 px-6 border-t" style={{ borderColor: 'var(--color-border)', backgroundColor: '#FAFBFD' }}>
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>Service categories</p>
-            <h2 className="text-3xl font-extrabold mb-8" style={{ color: 'var(--color-navy)' }}>92 categories across 15 groups</h2>
+            <h2 className="text-3xl font-extrabold mb-8" style={{ color: 'var(--color-navy)' }}>92 service categories</h2>
             <div className="flex flex-wrap justify-center gap-2.5 mb-6">
               {CATEGORIES.map(c => (
                 <span key={c} className="text-sm px-3.5 py-1.5 rounded-full border font-medium"
