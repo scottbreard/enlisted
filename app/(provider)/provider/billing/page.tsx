@@ -50,7 +50,7 @@ const TIERS = [
       'Instant RFQ access (priority window)',
       'Full analytics dashboard',
       'Email blasts to verified executives',
-      'AI Assistant integration',
+      'AI Assistant trained on public markets',
       'Priority support — 24h SLA',
     ],
   },
