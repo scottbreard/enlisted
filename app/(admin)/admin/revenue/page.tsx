@@ -19,7 +19,7 @@ export default async function AdminRevenuePage() {
   ])
 
   const mrrConnected = (connected ?? 0) * 100
-  const mrrFeatured  = (featured ?? 0) * 500
+  const mrrFeatured  = (featured ?? 0) * 1000
   const mrr = mrrConnected + mrrFeatured
   const arr = mrr * 12
 

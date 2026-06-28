@@ -100,27 +100,30 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right: mock dashboard preview */}
+            {/* Right: mock provider profile preview */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 overflow-hidden shadow-2xl" style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
-                {/* Dashboard header */}
+
+                {/* Provider header */}
                 <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs text-white/50 mb-0.5">Good morning</p>
-                    <p className="text-sm font-bold text-white">Sarah Chen — CFO</p>
-                    <p className="text-xs text-white/40">Aurex Mining Corp · {copy.heroMockTicker}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-extrabold shrink-0" style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>P</div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Pacific IR Group</p>
+                      <p className="text-xs text-white/40">Investor Relations · Vancouver, BC</p>
+                    </div>
                   </div>
                   <span className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5" style={{ backgroundColor: 'rgba(184,134,11,0.2)', color: 'var(--color-gold)' }}>
-                    <Star className="w-3 h-3 fill-current" /> Founding Member #12
+                    <Star className="w-3 h-3 fill-current" /> Featured
                   </span>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-px p-0" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+                <div className="grid grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
                   {[
-                    { label: 'Providers', value: '247' },
-                    { label: 'Vault', value: '5' },
-                    { label: 'Open RFQs', value: '2' },
+                    { label: 'Profile Views', value: '1,284' },
+                    { label: 'RFQs Received', value: '17' },
+                    { label: 'This Month', value: '+23%' },
                   ].map(s => (
                     <div key={s.label} className="text-center py-4" style={{ backgroundColor: 'rgba(14,35,71,0.6)' }}>
                       <p className="text-xl font-extrabold text-white">{s.value}</p>
@@ -129,43 +132,30 @@ export default async function Home() {
                   ))}
                 </div>
 
-                {/* Compliance deadlines */}
+                {/* Exchange badges */}
                 <div className="px-5 py-4 border-b border-white/10">
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Upcoming Deadlines</p>
-                  <div className="space-y-2.5">
-                    {[
-                      { title: 'Q1 Interim Financials', days: '18d', color: '#f59e0b' },
-                      { title: 'Annual Financials (AIF)', days: '47d', color: '#10b981' },
-                      { title: 'AGM Notice & Proxy', days: '63d', color: '#10b981' },
-                    ].map(item => (
-                      <div key={item.title} className="flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                        <p className="text-xs text-white/70 flex-1">{item.title}</p>
-                        <p className="text-xs font-bold" style={{ color: item.color }}>{item.days}</p>
-                      </div>
+                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Exchanges Serviced</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['TSX', 'TSXV', 'CSE', 'NYSE', 'Nasdaq'].map(ex => (
+                      <span key={ex} className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}>{ex}</span>
                     ))}
                   </div>
                 </div>
 
-                {/* Category quick links */}
+                {/* Latest RFQ */}
                 <div className="px-5 py-4">
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Top Categories</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { name: 'IR Firms', count: 34 },
-                      { name: 'Securities Law', count: 18 },
-                      { name: 'Market Makers', count: 12 },
-                      { name: 'Auditors', count: 27 },
-                    ].map(cat => (
-                      <div key={cat.name} className="rounded-xl px-3 py-2.5 flex items-center justify-between" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                        <p className="text-xs text-white/70">{cat.name}</p>
-                        <p className="text-xs font-bold text-white">{cat.count}</p>
-                      </div>
-                    ))}
+                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Latest RFQ</p>
+                  <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <p className="text-xs font-bold text-white">CFO · Aurex Mining Corp · {copy.heroMockExchange}</p>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>New</span>
+                    </div>
+                    <p className="text-xs text-white/50 leading-relaxed">"Looking for an IR firm with junior mining experience ahead of our Q3 roadshow…"</p>
                   </div>
                 </div>
+
               </div>
-              <p className="text-center text-xs text-white/25 mt-3">Dashboard preview — your data, live</p>
+              <p className="text-center text-xs text-white/25 mt-3">Provider dashboard — your data, live</p>
             </div>
           </div>
         </section>

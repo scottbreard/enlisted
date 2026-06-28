@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import ProviderReviewList from './ProviderReviewList'
+import AddProviderModal from './AddProviderModal'
 
 export const metadata = { title: 'Providers — Enlisted Admin' }
 
@@ -37,11 +38,12 @@ export default async function AdminProvidersPage({
     <div className="p-8 max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Provider Review</h1>
-        <p className="text-sm" style={{ color: 'var(--color-gray)' }}>
+        <div className="flex items-center gap-4">
           {(pendingCount ?? 0) > 0 && (
-            <span className="font-bold" style={{ color: '#f59e0b' }}>{pendingCount} pending</span>
+            <span className="text-sm font-bold" style={{ color: '#f59e0b' }}>{pendingCount} pending</span>
           )}
-        </p>
+          <AddProviderModal />
+        </div>
       </div>
 
       {/* Tabs */}

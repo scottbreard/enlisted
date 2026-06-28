@@ -10,6 +10,13 @@ import { createClient } from '@/lib/supabase/client'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
 
+const EXCHANGE_GROUPS = [
+  { market: 'Canada', code: 'CA', exchanges: ['TSX', 'TSXV', 'CSE', 'NEO'] },
+  { market: 'United States', code: 'US', exchanges: ['NYSE', 'Nasdaq', 'OTC'] },
+  { market: 'United Kingdom', code: 'UK', exchanges: ['LSE', 'AIM'] },
+  { market: 'Australia', code: 'AU', exchanges: ['ASX', 'NSX'] },
+]
+
 const schema = z.object({
   company_name: z.string().min(2, 'Required'),
   email: z.string().email('Enter a valid email'),
@@ -26,12 +33,25 @@ export default function ProviderRegisterPage() {
   const router = useRouter()
   const supabase = createClient()
   const [serverError, setServerError] = useState('')
+  const [selectedExchanges, setSelectedExchanges] = useState<string[]>([])
+  const [exchangeError, setExchangeError] = useState('')
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
 
+  function toggleExchange(exchange: string) {
+    setSelectedExchanges(prev =>
+      prev.includes(exchange) ? prev.filter(e => e !== exchange) : [...prev, exchange]
+    )
+    setExchangeError('')
+  }
+
   async function onSubmit(data: FormData) {
     setServerError('')
+    if (selectedExchanges.length === 0) {
+      setExchangeError('Select at least one exchange you service.')
+      return
+    }
 
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: data.email,
@@ -63,6 +83,19 @@ export default function ProviderRegisterPage() {
       return
     }
 
+    // Save selected exchanges
+    const { data: profile } = await supabase
+      .from('provider_profiles')
+      .select('id')
+      .eq('user_id', authData.user.id)
+      .single()
+
+    if (profile && selectedExchanges.length > 0) {
+      await supabase.from('provider_exchanges').insert(
+        selectedExchanges.map(code => ({ provider_id: profile.id, exchange_code: code }))
+      )
+    }
+
     // Send welcome email (fire and forget)
     fetch('/api/email/welcome-provider', {
       method: 'POST',
@@ -76,7 +109,7 @@ export default function ProviderRegisterPage() {
   const tiers = [
     { name: 'Free', price: '$0', features: ['Name + category + city only', 'No contact details shown', 'No website or logo'], highlight: false },
     { name: 'Listed', price: '$100/mo or $1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
-    { name: 'Featured', price: '$500/mo or $5,000/yr', features: ['Top placement', '750-word profile + case studies', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
+    { name: 'Featured', price: '$1,000/mo or $10,000/yr', features: ['Top placement', '750-word profile + case studies', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
   ]
 
   return (
@@ -170,6 +203,41 @@ export default function ProviderRegisterPage() {
                 style={{ borderColor: errors.password ? '#ef4444' : 'var(--color-border)' }}
               />
               {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+            </div>
+
+            {/* Exchange selection */}
+            <div>
+              <label className="block text-xs font-semibold mb-2" style={{ color: 'var(--color-gray-dark)' }}>
+                Which stock exchanges do you service? <span className="text-red-500">*</span>
+              </label>
+              <div className="space-y-3">
+                {EXCHANGE_GROUPS.map(({ market, exchanges }) => (
+                  <div key={market}>
+                    <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-gray-light)' }}>{market}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {exchanges.map(ex => {
+                        const active = selectedExchanges.includes(ex)
+                        return (
+                          <button
+                            key={ex}
+                            type="button"
+                            onClick={() => toggleExchange(ex)}
+                            className="px-3 py-1.5 rounded-lg text-xs font-bold border transition-all"
+                            style={{
+                              backgroundColor: active ? 'var(--color-navy)' : 'white',
+                              color: active ? 'white' : 'var(--color-gray)',
+                              borderColor: active ? 'var(--color-navy)' : 'var(--color-border)',
+                            }}
+                          >
+                            {ex}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {exchangeError && <p className="text-red-500 text-xs mt-2">{exchangeError}</p>}
             </div>
 
             {serverError && (

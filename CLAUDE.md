@@ -22,8 +22,8 @@ Enlisted Inc. is the global marketplace for public company services — an indep
 |------|--------|---------|--------------|
 | Free | $0 | $0 | Name, category, city only — no logo, website, or contact shown |
 | Good | $1,000/yr | $100/mo | Full contact, logo, 300-word description, exchange badges, RFQ receive |
-| Better | $3,000/yr | $250/mo | + Priority placement, 750-word profile, case studies, team, newsletter, analytics |
-| Best | $6,000/yr | $500/mo | + Top placement, video, 12 email blasts/yr, AI Assistant, homepage feature |
+| Listed | $1,000/yr | $100/mo | Full contact, logo, 300-word description, exchange badges, RFQ receive |
+| Featured | $10,000/yr | $1,000/mo | + Top placement, video, 12 email blasts/yr, AI Assistant, homepage feature |
 
 Executives are always FREE.
 

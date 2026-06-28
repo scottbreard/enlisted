@@ -49,8 +49,8 @@ const TIERS = [
   {
     name: 'Featured',
     badge: 'Maximum Visibility',
-    monthly: 500,
-    annual: 5000,
+    monthly: 1000,
+    annual: 10000,
     description: 'Top placement, video, email blasts to executives, AI Assistant integration, and homepage feature.',
     cta: 'Get Featured',
     ctaHref: '/register/provider',

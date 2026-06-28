@@ -19,7 +19,7 @@ export default async function AdminOverviewPage() {
   ])
 
   const mrrConnected = (connectedCount ?? 0) * 100
-  const mrrFeatured  = (featuredCount ?? 0) * 500
+  const mrrFeatured  = (featuredCount ?? 0) * 1000
   const mrr = mrrConnected + mrrFeatured
 
   // Recent signups
@@ -62,7 +62,7 @@ export default async function AdminOverviewPage() {
         <div className="bg-white border rounded-2xl p-5" style={{ borderColor: 'var(--color-border)' }}>
           <h2 className="font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Provider Tier Breakdown</h2>
           {[
-            { label: 'Featured', count: featuredCount ?? 0,  color: '#92400e', bg: '#fef3c7', mrr: (featuredCount ?? 0) * 500 },
+            { label: 'Featured', count: featuredCount ?? 0,  color: '#92400e', bg: '#fef3c7', mrr: (featuredCount ?? 0) * 1000 },
             { label: 'Listed',   count: connectedCount ?? 0, color: '#1e40af', bg: '#dbeafe', mrr: (connectedCount ?? 0) * 100 },
             { label: 'Free',     count: (providerCount ?? 0) - (connectedCount ?? 0) - (featuredCount ?? 0), color: '#6b7280', bg: '#f3f4f6', mrr: 0 },
           ].map(t => (
