@@ -158,7 +158,7 @@ export default function ProvidersPage() {
                 {
                   icon: Users,
                   title: 'A verified, exclusive audience',
-                  body: 'Every executive on Enlisted is verified against their company's exchange listing. You're not reaching anyone — you're reaching the CEOs, CFOs, and IROs of Canadian public companies.',
+                  body: "Every executive on Enlisted is verified against their company's exchange listing. You're not reaching anyone — you're reaching the CEOs, CFOs, and IROs of Canadian public companies.",
                 },
                 {
                   icon: Inbox,
