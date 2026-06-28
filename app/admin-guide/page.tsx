@@ -94,7 +94,7 @@ export default function AdminGuidePage() {
             <div className="card">
               <h3>Recent activity feeds</h3>
               <ul>
-                <li>Last 8 executive signups with company and Founding Member badge</li>
+                <li>Last 8 executive signups with company and Founding Executive badge</li>
                 <li>Last 8 provider signups with tier</li>
                 <li>Provider tier breakdown with per-tier MRR</li>
               </ul>
@@ -178,7 +178,7 @@ export default function AdminGuidePage() {
                 <li>Name & user ID</li>
                 <li>Company & ticker</li>
                 <li>Title (CEO, CFO, IRO…)</li>
-                <li>Founding Member number</li>
+                <li>Founding Executive number</li>
                 <li>Registration date</li>
                 <li>Actions</li>
               </ul>
