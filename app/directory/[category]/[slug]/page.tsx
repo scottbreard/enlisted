@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Building2, ChevronRight, Globe, Mail, Phone, Link2, CheckCircle } from 'lucide-react'
+import { ChevronRight, Globe, Mail, Phone, Link2, CheckCircle } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { slug } = await params
@@ -82,12 +83,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
       {/* Nav */}
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={26} />
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
             <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>

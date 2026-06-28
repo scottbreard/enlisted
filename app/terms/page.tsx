@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Building2 } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export const metadata = {
   title: 'Terms of Service — Enlisted.ca',
@@ -17,12 +17,7 @@ export default function TermsPage() {
       {/* Nav */}
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={24} />
           <div className="flex items-center gap-3">
             <Link href="/privacy" className="text-sm hover:underline" style={{ color: 'var(--color-blue)' }}>Privacy Policy</Link>
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>

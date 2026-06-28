@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
-import { Building2 } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
 
 const schema = z.object({
@@ -84,12 +84,7 @@ export default function ProviderRegisterPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex items-center gap-2 justify-center mb-6">
-            <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <div className="mb-6"><EnlistedLogo size={28} /></div>
           <h1 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--color-navy)' }}>
             List your firm on Enlisted
           </h1>

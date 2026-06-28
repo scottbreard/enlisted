@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
-import { Building2 } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 const schema = z.object({
   email: z.string().email('Enter a valid email'),
@@ -42,12 +42,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 justify-center">
-            <Building2 className="w-7 h-7" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={32} />
           <p className="mt-2 text-sm" style={{ color: 'var(--color-gray)' }}>Sign in to your account</p>
         </div>
 

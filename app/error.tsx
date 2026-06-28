@@ -1,5 +1,7 @@
 'use client'
 
+import EnlistedLogo from '@/components/EnlistedLogo'
+
 export default function Error({
   error,
   reset,
@@ -11,9 +13,7 @@ export default function Error({
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
       style={{ backgroundColor: '#f8f9fc' }}>
       <div className="mb-6">
-        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-          Enlisted<span style={{ color: 'var(--color-gold)' }}>.ca</span>
-        </span>
+        <EnlistedLogo size={28} />
       </div>
       <h1 className="text-5xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Something went wrong</h1>
       <p className="text-sm mb-8 max-w-sm" style={{ color: 'var(--color-gray)' }}>

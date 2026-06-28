@@ -5,9 +5,10 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import {
-  Building2, LayoutDashboard, User, BarChart2,
+  LayoutDashboard, User, BarChart2,
   FileText, LogOut, Settings, Menu, X
 } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> = {
   featured:  { label: 'Featured',  color: '#92400e', bg: '#fef3c7' },
@@ -93,12 +94,7 @@ export default function ProviderNav({ profile }: { profile: Record<string, any> 
       {/* ── Desktop sidebar ── */}
       <aside className="hidden md:flex w-60 shrink-0 flex-col border-r bg-white" style={{ borderColor: 'var(--color-border)', minHeight: '100vh' }}>
         <div className="h-16 flex items-center px-5 border-b" style={{ borderColor: 'var(--color-border)' }}>
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-canada)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={26} />
         </div>
         <ProfileBlock />
         <NavLinks />
@@ -107,12 +103,7 @@ export default function ProviderNav({ profile }: { profile: Record<string, any> 
       {/* ── Mobile top bar ── */}
       <header className="md:hidden bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="h-14 px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-canada)' }} />
-            <span className="text-base font-extrabold" style={{ color: 'var(--color-canada)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-canada)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={24} />
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold px-2 py-0.5 rounded-full"
               style={{ backgroundColor: tier.bg, color: tier.color }}>

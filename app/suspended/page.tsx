@@ -1,17 +1,12 @@
 import Link from 'next/link'
-import { Building2 } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export const metadata = { title: 'Account Suspended — Enlisted' }
 
 export default function SuspendedPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center" style={{ backgroundColor: '#f8f9fc' }}>
-      <Link href="/" className="flex items-center gap-2 mb-10">
-        <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
-        <span className="text-xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-          Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-        </span>
-      </Link>
+      <div className="mb-10"><EnlistedLogo size={28} /></div>
       <div className="bg-white border rounded-2xl p-12 max-w-md w-full" style={{ borderColor: 'var(--color-border)' }}>
         <p className="text-4xl mb-4">🔒</p>
         <h1 className="text-2xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>Account suspended</h1>

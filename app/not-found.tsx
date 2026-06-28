@@ -1,13 +1,12 @@
 import Link from 'next/link'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
       style={{ backgroundColor: '#f8f9fc' }}>
       <div className="mb-6">
-        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-          Enlisted<span style={{ color: 'var(--color-gold)' }}>.ca</span>
-        </span>
+        <EnlistedLogo size={28} />
       </div>
       <h1 className="text-8xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>404</h1>
       <p className="text-xl font-bold mb-2" style={{ color: 'var(--color-navy)' }}>Page not found</p>

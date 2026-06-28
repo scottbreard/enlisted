@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Building2, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export default function HomeNav() {
   const [open, setOpen] = useState(false)
@@ -11,12 +12,7 @@ export default function HomeNav() {
     <header className="bg-white border-b border-[var(--color-border)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
-          <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-gold)' }}>
-            Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-          </span>
-        </Link>
+        <EnlistedLogo size={30} />
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>

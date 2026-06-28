@@ -7,7 +7,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
-import { Building2, CheckCircle, Star } from 'lucide-react'
+import { CheckCircle, Star } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
 
 const schema = z.object({
@@ -117,10 +118,7 @@ export default function ExecutiveRegisterPage() {
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left panel */}
       <div className="hidden lg:flex lg:w-2/5 flex-col justify-between p-12 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
-        <Link href="/" className="inline-flex items-center gap-2">
-          <Building2 className="w-6 h-6" />
-          <span className="text-xl font-extrabold" style={{ color: 'var(--color-gold)' }}>Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span></span>
-        </Link>
+        <EnlistedLogo size={28} />
         <div>
           <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
             Free for executives. Always.
@@ -150,12 +148,7 @@ export default function ExecutiveRegisterPage() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12" style={{ backgroundColor: 'var(--color-blue-light)' }}>
         <div className="w-full max-w-lg">
           <div className="lg:hidden text-center mb-8">
-            <Link href="/" className="inline-flex items-center gap-2 justify-center">
-              <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
-              <span className="text-xl font-extrabold" style={{ color: 'var(--color-gold)' }}>
-                Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-              </span>
-            </Link>
+            <EnlistedLogo size={28} />
           </div>
 
           <div className="bg-white rounded-2xl shadow-sm border p-8" style={{ borderColor: 'var(--color-border)' }}>

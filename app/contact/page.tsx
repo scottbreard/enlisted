@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Building2, Mail, MapPin, Clock } from 'lucide-react'
+import { Mail, MapPin, Clock } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 
 export const metadata = {
   title: 'Contact — Enlisted',
@@ -13,12 +14,7 @@ export default function ContactPage() {
       {/* Nav */}
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-6 h-6" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={28} />
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
             <Link href="/directory" className="hover:text-[var(--color-navy)] transition-colors">Directory</Link>
             <Link href="/pricing" className="hover:text-[var(--color-navy)] transition-colors">Pricing</Link>

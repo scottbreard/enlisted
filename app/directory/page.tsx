@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Building2, ChevronRight, Star, Globe, ArrowRight } from 'lucide-react'
+import { ChevronRight, Star, Globe, ArrowRight } from 'lucide-react'
+import EnlistedLogo from '@/components/EnlistedLogo'
 import DirectoryClient from './DirectoryClient'
 import { getMarketCode } from '@/lib/market'
 
@@ -52,12 +53,7 @@ export default async function DirectoryPage() {
       {/* Nav */}
       <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" style={{ color: 'var(--color-gold)' }} />
-            <span className="text-lg font-extrabold" style={{ color: 'var(--color-gold)' }}>
-              Enlisted<span style={{ color: 'var(--color-gold)' }}>.</span><span style={{ color: 'var(--color-gold)' }}>ca</span>
-            </span>
-          </Link>
+          <EnlistedLogo size={26} />
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
             <Link href="/pricing" className="hover:text-[var(--color-navy)] transition-colors">Pricing</Link>
             <Link href="/about" className="hover:text-[var(--color-navy)] transition-colors">About</Link>
