@@ -64,7 +64,7 @@ export default async function Home() {
                 <span style={{ color: 'var(--color-gold)' }}>Run a better</span>{' '}
                 public company.
               </h1>
-              <p className="text-lg text-white/65 mb-8 leading-relaxed max-w-xl">
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-xl">
                 The independent directory of every professional service provider for TSX, TSXV, CSE, and NEO executives. Compare IR firms, lawyers, auditors, market makers, and 90+ categories — then manage everything in one place. Free for executives. Always.
               </p>
               <div className="flex flex-wrap gap-3 mb-10">
