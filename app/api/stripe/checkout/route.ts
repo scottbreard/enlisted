@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     if (!profile) return NextResponse.json({ error: 'Provider profile not found' }, { status: 404 })
 
-    if (!['connected', 'featured'].includes(tier)) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
+    if (!['listed', 'featured'].includes(tier)) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
     const priceConfig = PRICES[tier]
     if (!priceConfig) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
 

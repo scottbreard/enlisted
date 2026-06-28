@@ -23,7 +23,7 @@ export const stripe = new Proxy({} as Stripe, {
 
 // Price IDs — create in Stripe dashboard (Products), paste IDs here
 export const PRICES: Record<string, { monthly: string; annual: string; amount_monthly: number; amount_annual: number }> = {
-  connected: {
+  listed: {
     monthly: process.env.STRIPE_PRICE_CONNECTED_MONTHLY ?? '',
     annual:  process.env.STRIPE_PRICE_CONNECTED_ANNUAL  ?? '',
     amount_monthly: 10000,  // $100.00 CAD
@@ -32,13 +32,13 @@ export const PRICES: Record<string, { monthly: string; annual: string; amount_mo
   featured: {
     monthly: process.env.STRIPE_PRICE_FEATURED_MONTHLY ?? '',
     annual:  process.env.STRIPE_PRICE_FEATURED_ANNUAL  ?? '',
-    amount_monthly: 49900,  // $499.00 CAD
-    amount_annual:  499000, // $4,990.00 CAD
+    amount_monthly: 50000,  // $500.00 CAD
+    amount_annual:  500000, // $5,000.00 CAD
   },
 }
 
 export const TIER_NAMES: Record<string, string> = {
-  listed:    'Listed',
-  connected: 'Connected',
-  featured:  'Featured',
+  free:     'Free',
+  listed:   'Listed',
+  featured: 'Featured',
 }

@@ -7,11 +7,11 @@ import { Check, Zap, Star, ArrowRight, ExternalLink, AlertCircle, CheckCircle } 
 
 const TIERS = [
   {
-    key: 'connected',
-    name: 'Popular',
+    key: 'listed',
+    name: 'Listed',
     monthly: 100,
     annual: 1000,
-    annualSaving: 0,
+    annualSaving: 200,
     icon: Zap,
     color: '#1e40af',
     bg: '#dbeafe',
@@ -32,7 +32,7 @@ const TIERS = [
     name: 'Featured',
     monthly: 500,
     annual: 5000,
-    annualSaving: 0,
+    annualSaving: 1000,
     icon: Star,
     color: '#92400e',
     bg: '#fef3c7',
@@ -56,7 +56,7 @@ const TIERS = [
   },
 ]
 
-const TIER_ORDER = ['listed', 'connected', 'featured']
+const TIER_ORDER = ['free', 'listed', 'featured']
 
 function BillingContent() {
   const supabase = createClient()
@@ -111,8 +111,8 @@ function BillingContent() {
     }
   }
 
-  const currentTier = profile?.tier ?? 'listed'
-  const hasPaidPlan = currentTier !== 'listed'
+  const currentTier = profile?.tier ?? 'free'
+  const hasPaidPlan = currentTier !== 'free'
   const currentTierIndex = TIER_ORDER.indexOf(currentTier)
 
   return (
@@ -161,7 +161,7 @@ function BillingContent() {
               </p>
             )}
           </div>
-          {currentTier === 'listed' ? (
+          {currentTier === 'free' ? (
             <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Choose a plan below to unlock your full profile.</p>
           ) : (
             <button onClick={handlePortal} disabled={portalLoading}
@@ -283,9 +283,9 @@ function BillingContent() {
 
       {/* Listed / free note */}
       <div className="text-center p-5 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>
-        <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Listed plan — always free</p>
+        <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Free plan — always free</p>
         <p className="text-xs" style={{ color: 'var(--color-gray)' }}>
-          Your company name and category stay in the directory at no cost. Upgrade to Popular or Featured to show contact details, receive RFQs, and get full profile visibility.
+          Your company name and category stay in the directory at no cost. Upgrade to Listed or Featured to show contact details, receive RFQs, and get full profile visibility.
         </p>
       </div>
     </div>

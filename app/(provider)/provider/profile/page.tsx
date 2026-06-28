@@ -126,7 +126,7 @@ export default function ProviderProfilePage() {
     </div>
   )
 
-  const isFree = profile.tier === 'listed'
+  const isFree = profile.tier === 'free'
 
   return (
     <div className="p-8 max-w-3xl mx-auto">
@@ -148,7 +148,7 @@ export default function ProviderProfilePage() {
 
       {isFree && (
         <div className="mb-6 p-4 rounded-2xl border-2 text-sm" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)', color: 'var(--color-navy)' }}>
-          <strong>Free plan:</strong> Only your company name appears in search results. Upgrade to Good ($100/mo) to show your full profile, logo, contact details, and description.
+          <strong>Free plan:</strong> Only your company name appears in search results. Upgrade to Listed ($100/mo) to show your full profile, logo, contact details, and description.
         </div>
       )}
 
@@ -167,7 +167,7 @@ export default function ProviderProfilePage() {
           </div>
           <div>
             <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--color-gray-dark)' }}>
-              Tagline {isFree && <span style={{ color: 'var(--color-gray-light)' }}>(Good+ plan)</span>}
+              Tagline {isFree && <span style={{ color: 'var(--color-gray-light)' }}>(Connected+ plan)</span>}
             </label>
             <input value={form.tagline} onChange={e => setForm(p => ({ ...p, tagline: e.target.value }))}
               disabled={isFree}
@@ -177,7 +177,7 @@ export default function ProviderProfilePage() {
           </div>
           <div>
             <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--color-gray-dark)' }}>
-              Description {isFree && <span style={{ color: 'var(--color-gray-light)' }}>(Good+ plan — up to 300 words)</span>}
+              Description {isFree && <span style={{ color: 'var(--color-gray-light)' }}>(Connected+ plan — up to 300 words)</span>}
             </label>
             <textarea value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))}
               disabled={isFree}
@@ -186,7 +186,7 @@ export default function ProviderProfilePage() {
               style={{ borderColor: 'var(--color-border)' }} />
             {!isFree && (
               <p className="text-xs mt-1" style={{ color: 'var(--color-gray-light)' }}>
-                {form.description.trim().split(/\s+/).filter(Boolean).length} / {profile.tier === 'good' ? 300 : 750} words
+                {form.description.trim().split(/\s+/).filter(Boolean).length} / {profile.tier === 'listed' ? 300 : 750} words
               </p>
             )}
           </div>
@@ -221,7 +221,7 @@ export default function ProviderProfilePage() {
         <div className="flex items-center gap-2 mb-5">
           <Globe className="w-4 h-4" style={{ color: 'var(--color-navy)' }} />
           <h2 className="font-extrabold" style={{ color: 'var(--color-navy)' }}>Contact Information</h2>
-          {isFree && <span className="text-xs ml-auto" style={{ color: 'var(--color-gray-light)' }}>Shown on Good+ plan</span>}
+          {isFree && <span className="text-xs ml-auto" style={{ color: 'var(--color-gray-light)' }}>Shown on Connected+ plan</span>}
         </div>
         <div className="space-y-4">
           {[

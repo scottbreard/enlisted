@@ -53,7 +53,7 @@ export default function ProviderRegisterPage() {
       slug,
       email: data.email,
       website_url: data.website_url || null,
-      tier: 'listed',
+      tier: 'free',
       is_active: true,
       primary_market_code: getMarketCode(),
     })
@@ -67,15 +67,15 @@ export default function ProviderRegisterPage() {
     fetch('/api/email/welcome-provider', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ to: data.email, companyName: data.company_name, tier: 'listed' }),
+      body: JSON.stringify({ to: data.email, companyName: data.company_name, tier: 'free' }),
     }).catch(() => {})
 
     router.push('/provider/dashboard')
   }
 
   const tiers = [
-    { name: 'Listed', price: '$0', features: ['Name + category + city only', 'No contact details shown', 'No website or logo'], highlight: false },
-    { name: 'Popular', price: '$100/mo or $1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
+    { name: 'Free', price: '$0', features: ['Name + category + city only', 'No contact details shown', 'No website or logo'], highlight: false },
+    { name: 'Listed', price: '$100/mo or $1,000/yr', features: ['Full contact + logo', '300-word description', 'RFQ access'], highlight: true },
     { name: 'Featured', price: '$500/mo or $5,000/yr', features: ['Top placement', '750-word profile + case studies', 'Video + email blasts', 'AI Assistant + homepage feature'], highlight: false },
   ]
 

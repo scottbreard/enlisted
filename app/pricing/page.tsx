@@ -6,7 +6,7 @@ import { Building2, Check, ArrowRight, Zap, Star, Shield } from 'lucide-react'
 
 const TIERS = [
   {
-    name: 'Listed',
+    name: 'Free',
     badge: null,
     monthly: 0,
     annual: 0,
@@ -26,7 +26,7 @@ const TIERS = [
     featureStatus: [true, true, true, true, false, false, false],
   },
   {
-    name: 'Popular',
+    name: 'Listed',
     badge: 'Most Popular',
     monthly: 100,
     annual: 1000,
@@ -35,7 +35,7 @@ const TIERS = [
     ctaHref: '/register/provider',
     highlight: true,
     features: [
-      'Everything in Listed',
+      'Everything in Free',
       'Logo + website link',
       'Full contact details',
       '300-word company description',
@@ -55,7 +55,7 @@ const TIERS = [
     ctaHref: '/register/provider',
     highlight: false,
     features: [
-      'Everything in Popular',
+      'Everything in Listed',
       'Top of category placement',
       '750-word profile + case studies',
       'Team profiles + video embed',
@@ -68,7 +68,7 @@ const TIERS = [
 ]
 
 const EXEC_FEATURES = [
-  'Full access to all 106 service categories',
+  'Full access to all 92 service categories',
   'Send RFQs to any Connected or Featured provider',
   'AI Assistant (powered by Claude)',
   'Compliance calendar — auto-generated from your exchange',

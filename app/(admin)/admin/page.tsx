@@ -13,13 +13,13 @@ export default async function AdminOverviewPage() {
   ] = await Promise.all([
     supabase.from('executive_profiles').select('*', { count: 'exact', head: true }),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }),
-    supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'connected'),
+    supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'listed'),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'featured'),
     supabase.from('rfq_requests').select('*', { count: 'exact', head: true }),
   ])
 
   const mrrConnected = (connectedCount ?? 0) * 100
-  const mrrFeatured  = (featuredCount ?? 0) * 499
+  const mrrFeatured  = (featuredCount ?? 0) * 500
   const mrr = mrrConnected + mrrFeatured
 
   // Recent signups
@@ -62,9 +62,9 @@ export default async function AdminOverviewPage() {
         <div className="bg-white border rounded-2xl p-5" style={{ borderColor: 'var(--color-border)' }}>
           <h2 className="font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Provider Tier Breakdown</h2>
           {[
-            { label: 'Featured',  count: featuredCount ?? 0,  color: '#92400e', bg: '#fef3c7', mrr: (featuredCount ?? 0) * 499 },
-            { label: 'Connected', count: connectedCount ?? 0, color: '#1e40af', bg: '#dbeafe', mrr: (connectedCount ?? 0) * 100 },
-            { label: 'Listed',    count: (providerCount ?? 0) - (connectedCount ?? 0) - (featuredCount ?? 0), color: '#6b7280', bg: '#f3f4f6', mrr: 0 },
+            { label: 'Featured', count: featuredCount ?? 0,  color: '#92400e', bg: '#fef3c7', mrr: (featuredCount ?? 0) * 500 },
+            { label: 'Listed',   count: connectedCount ?? 0, color: '#1e40af', bg: '#dbeafe', mrr: (connectedCount ?? 0) * 100 },
+            { label: 'Free',     count: (providerCount ?? 0) - (connectedCount ?? 0) - (featuredCount ?? 0), color: '#6b7280', bg: '#f3f4f6', mrr: 0 },
           ].map(t => (
             <div key={t.label} className="flex items-center gap-3 py-2.5 border-b last:border-0" style={{ borderColor: 'var(--color-border)' }}>
               <span className="text-xs font-bold px-2.5 py-1 rounded-full w-24 text-center" style={{ backgroundColor: t.bg, color: t.color }}>{t.label}</span>
@@ -80,7 +80,7 @@ export default async function AdminOverviewPage() {
           {[
             { label: 'Total RFQs sent', value: rfqCount ?? 0 },
             { label: 'Featured MRR', value: `$${mrrFeatured.toLocaleString()}` },
-            { label: 'Connected MRR', value: `$${mrrConnected.toLocaleString()}` },
+            { label: 'Listed MRR', value: `$${mrrConnected.toLocaleString()}` },
             { label: 'ARR estimate', value: `$${(mrr * 12).toLocaleString()}` },
           ].map(s => (
             <div key={s.label} className="flex justify-between py-2.5 border-b last:border-0 text-sm" style={{ borderColor: 'var(--color-border)' }}>
@@ -119,8 +119,8 @@ export default async function AdminOverviewPage() {
                 </div>
                 <span className="text-xs font-bold px-2 py-0.5 rounded-full capitalize"
                   style={{
-                    backgroundColor: p.tier === 'featured' ? '#fef3c7' : p.tier === 'connected' ? '#dbeafe' : '#f3f4f6',
-                    color: p.tier === 'featured' ? '#92400e' : p.tier === 'connected' ? '#1e40af' : '#6b7280',
+                    backgroundColor: p.tier === 'featured' ? '#fef3c7' : p.tier === 'listed' ? '#dbeafe' : '#f3f4f6',
+                    color: p.tier === 'featured' ? '#92400e' : p.tier === 'listed' ? '#1e40af' : '#6b7280',
                   }}>{p.tier}</span>
                 <span className="text-xs shrink-0" style={{ color: 'var(--color-gray-light)' }}>{new Date(p.created_at).toLocaleDateString()}</span>
               </div>

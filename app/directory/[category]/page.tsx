@@ -148,7 +148,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <div className="space-y-4">
               {providers.map(provider => {
                 const tier = TIER_LABELS[provider.tier] ?? TIER_LABELS.free
-                const isFree = provider.tier === 'listed'
+                const isFree = provider.tier === 'free'
                 return (
                   <div
                     key={provider.id}

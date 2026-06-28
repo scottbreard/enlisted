@@ -9,23 +9,23 @@ export default async function AdminRevenuePage() {
     { count: featured },
     { data: recentSubs },
   ] = await Promise.all([
-    supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'connected').eq('subscription_status', 'active'),
+    supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'listed').eq('subscription_status', 'active'),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('tier', 'featured').eq('subscription_status', 'active'),
     supabase.from('provider_profiles')
       .select('company_name, tier, subscription_status, subscription_interval, created_at')
-      .in('tier', ['connected', 'featured'])
+      .in('tier', ['listed', 'featured'])
       .order('created_at', { ascending: false })
       .limit(20),
   ])
 
   const mrrConnected = (connected ?? 0) * 100
-  const mrrFeatured  = (featured ?? 0) * 499
+  const mrrFeatured  = (featured ?? 0) * 500
   const mrr = mrrConnected + mrrFeatured
   const arr = mrr * 12
 
   const TIER_STYLE: Record<string, { color: string; bg: string }> = {
-    featured:  { color: '#92400e', bg: '#fef3c7' },
-    connected: { color: '#1e40af', bg: '#dbeafe' },
+    featured: { color: '#92400e', bg: '#fef3c7' },
+    listed:   { color: '#1e40af', bg: '#dbeafe' },
   }
 
   return (

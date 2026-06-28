@@ -76,7 +76,7 @@ export default function AnalyticsPage() {
       if (!p) return
       setProfile(p)
 
-      if (p.tier === 'listed') { setLoading(false); return }
+      if (p.tier === 'free') { setLoading(false); return }
 
       const thirtyDaysAgo = new Date()
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
@@ -118,7 +118,7 @@ export default function AnalyticsPage() {
     </div>
   )
 
-  if (profile.tier === 'listed') return (
+  if (profile.tier === 'free') return (
     <div className="p-8 max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-6" style={{ color: 'var(--color-navy)' }}>Analytics</h1>
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>

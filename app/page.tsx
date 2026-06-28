@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import HomeNav from '@/components/HomeNav'
 import { getMarket } from '@/lib/market'
+import { createClient } from '@/lib/supabase/server'
 
 const categories = [
   { label: 'IR Firms', slug: 'ir_firm', icon: TrendingUp },
@@ -23,7 +24,12 @@ const categories = [
   { label: 'ESG & Governance', slug: 'esg_governance', icon: Leaf },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isLoggedIn = !!user
+  const directoryHref = isLoggedIn ? '/directory' : '/register/executive'
+
   const market = getMarket()
   const { exchanges, copy, comingSoon } = market
   return (
@@ -55,7 +61,7 @@ export default function Home() {
 
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
                 Find the right firm.{' '}
-                <span style={{ color: 'var(--color-gold)' }}>Run a tighter</span>{' '}
+                <span style={{ color: 'var(--color-gold)' }}>Run a better</span>{' '}
                 public company.
               </h1>
               <p className="text-lg text-white/65 mb-8 leading-relaxed max-w-xl">
@@ -70,7 +76,7 @@ export default function Home() {
                   Register Free <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/directory"
+                  href={directoryHref}
                   className="font-semibold px-7 py-3.5 rounded-xl text-base transition-all border text-white hover:bg-white/10"
                   style={{ borderColor: 'rgba(255,255,255,0.25)', backgroundColor: 'rgba(255,255,255,0.06)' }}
                 >
@@ -323,10 +329,10 @@ export default function Home() {
                 className="font-bold px-8 py-4 rounded-xl text-lg transition-colors"
                 style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}
               >
-                Get Listed from $1,000/yr
+                List Your Firm
               </Link>
               <Link
-                href="/directory"
+                href={directoryHref}
                 className="font-semibold px-8 py-4 rounded-xl text-lg text-white border transition-colors"
                 style={{ borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.08)' }}
               >

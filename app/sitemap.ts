@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       )
     `)
     .eq('is_active', true)
-    .in('tier', ['connected', 'featured'])
+    .in('tier', ['listed', 'featured'])
 
   const providerRoutes: MetadataRoute.Sitemap = []
   for (const p of providers ?? []) {

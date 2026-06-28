@@ -6,20 +6,20 @@ import { createClient } from '@/lib/supabase/client'
 import { Eye, Send, Star, TrendingUp, ArrowRight, CheckCircle, Circle, Clock } from 'lucide-react'
 
 const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> = {
-  featured:  { label: 'Featured',  color: '#92400e', bg: '#fef3c7' },
-  connected: { label: 'Connected', color: '#1e40af', bg: '#dbeafe' },
-  listed:    { label: 'Listed',    color: '#6b7280', bg: '#f3f4f6' },
+  featured: { label: 'Featured', color: '#92400e', bg: '#fef3c7' },
+  listed:   { label: 'Listed',   color: '#1e40af', bg: '#dbeafe' },
+  free:     { label: 'Free',     color: '#6b7280', bg: '#f3f4f6' },
 }
 
 const TIER_NEXT: Record<string, { next: string; price: string }> = {
-  listed:    { next: 'Connected', price: '$100/mo' },
-  connected: { next: 'Featured',  price: '$499/mo' },
+  free:   { next: 'Listed',   price: '$100/mo' },
+  listed: { next: 'Featured', price: '$500/mo' },
 }
 
 const TIER_FEATURES: Record<string, string[]> = {
-  listed:    ['Name + category in directory', 'No contact details shown', 'No RFQ access'],
-  connected: ['Full contact details + logo', '200-word bio, up to 3 categories', 'RFQ access (24h after Featured)', 'Basic analytics'],
-  featured:  ['Top placement (rotated)', 'Unlimited categories + all exchanges', 'Priority RFQ window + direct messaging', 'Video, team page, case studies', 'Quarterly blog post + verified badge'],
+  free:     ['Name + category in directory', 'No contact details shown', 'No RFQ access'],
+  listed:   ['Full contact details + logo', '300-word description, up to 3 categories', 'RFQ access (24h after Featured)', 'Basic analytics'],
+  featured: ['Top placement (rotated)', 'Unlimited categories + all exchanges', 'Priority RFQ window + direct messaging', 'Video, team page, case studies', 'Quarterly blog post + verified badge'],
 }
 
 export default function ProviderDashboardPage() {
@@ -99,7 +99,7 @@ export default function ProviderDashboardPage() {
   const tier = TIER_LABELS[profile.tier] ?? TIER_LABELS.listed
   const tierUpgrade = TIER_NEXT[profile.tier]
   const features = TIER_FEATURES[profile.tier] ?? []
-  const isFree = profile.tier === 'listed'
+  const isFree = profile.tier === 'free'
 
   const onboardingSteps = [
     {
@@ -129,7 +129,7 @@ export default function ProviderDashboardPage() {
     {
       label: 'Choose your plan',
       description: 'Upgrade to Connected ($100/mo) to show contact details and receive RFQs.',
-      done: profile.tier !== 'listed' && profile.tier !== 'free',
+      done: profile.tier !== 'free',
       href: '/provider/billing',
     },
   ]
@@ -250,7 +250,7 @@ export default function ProviderDashboardPage() {
               <div className="text-center py-8">
                 <p className="text-3xl mb-2">📬</p>
                 <p className="font-bold text-sm mb-1" style={{ color: 'var(--color-navy)' }}>RFQs require a paid plan</p>
-                <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Good ($100/mo) to receive quote requests from executives.</p>
+                <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($100/mo) to receive quote requests from executives.</p>
                 <Link href="/provider/billing" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
                   Upgrade Plan
                 </Link>

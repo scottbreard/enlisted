@@ -9,7 +9,7 @@ export async function GET() {
   const { data } = await supabase
     .from('provider_profiles')
     .select('id, company_name, tier')
-    .in('tier', ['connected', 'featured'])
+    .in('tier', ['listed', 'featured'])
     .eq('is_active', true)
     .order('company_name')
 

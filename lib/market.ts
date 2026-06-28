@@ -58,7 +58,7 @@ const MARKETS: Record<MarketCode, MarketConfig> = {
       heroHeadlinePost: 'executives.',
       heroSub: 'Find and compare IR firms, market makers, legal counsel, auditors, and 90+ specialist categories — all in one place. Free for executives. Always.',
       executiveFreeNote: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO company. Search, compare, and connect with vetted service providers — plus manage your contracts, track compliance deadlines, and monitor your stock.',
-      providerCTA: 'Get your firm in front of the CEOs, CFOs, and IR officers of every TSX, TSXV, CSE, and NEO company. Founding Partner pricing available now — 20% off year one.',
+      providerCTA: 'Get your firm in front of the CEOs, CFOs, and IR officers of every TSX, TSXV, CSE, and NEO company. Free to list — upgrade anytime.',
       heroMockTicker: 'TSX:AXM',
       heroMockExchange: 'TSX',
     },

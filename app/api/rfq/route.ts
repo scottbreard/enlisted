@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     .eq('id', provider_id)
     .single()
 
-  if (!provider || provider.tier === 'listed') {
+  if (!provider || provider.tier === 'free') {
     return NextResponse.json({ error: 'This provider cannot receive RFQs' }, { status: 400 })
   }
 
