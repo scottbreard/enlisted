@@ -307,7 +307,7 @@ export default async function Home() {
               For Service Providers
             </p>
             <h2 className="text-4xl font-extrabold text-white mb-4">
-              Reach Canadian Public Company Executives.
+              Reach Public Company Executives from Around the World.
             </h2>
             <p className="text-lg mb-8 leading-relaxed font-semibold text-white">
               {copy.providerCTA}
