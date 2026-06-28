@@ -319,7 +319,7 @@ export default async function Home() {
             <h2 className="text-4xl font-extrabold text-white mb-4">
               Reach Canadian Public Company Executives.
             </h2>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            <p className="text-lg mb-8 leading-relaxed font-semibold text-white">
               {copy.providerCTA}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
