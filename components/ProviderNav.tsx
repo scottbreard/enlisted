@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import {
   LayoutDashboard, User, BarChart2,
-  FileText, LogOut, Settings, Menu, X
+  FileText, LogOut, Settings, Menu, X, Globe
 } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 
@@ -21,6 +21,7 @@ const navItems = [
   { href: '/provider/profile',   label: 'My Profile',  icon: User },
   { href: '/provider/analytics', label: 'Analytics',   icon: BarChart2 },
   { href: '/provider/rfq',       label: 'RFQ Inbox',   icon: FileText },
+  { href: '/directory',          label: 'Directory',   icon: Globe },
   { href: '/provider/billing',   label: 'Billing',     icon: Settings },
 ]
 
