@@ -13,7 +13,7 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 
 const TIER_NEXT: Record<string, { next: string; price: string }> = {
   free:   { next: 'Listed',   price: '$100/mo' },
-  listed: { next: 'Featured', price: '$500/mo' },
+  listed: { next: 'Featured', price: '$1,000/mo' },
 }
 
 const TIER_FEATURES: Record<string, string[]> = {
@@ -128,7 +128,7 @@ export default function ProviderDashboardPage() {
     },
     {
       label: 'Choose your plan',
-      description: 'Upgrade to Connected ($100/mo) to show contact details and receive RFQs.',
+      description: 'Upgrade to Listed ($100/mo) to show contact details and receive RFQs.',
       done: profile.tier !== 'free',
       href: '/provider/billing',
     },
@@ -162,6 +162,37 @@ export default function ProviderDashboardPage() {
           )}
         </div>
       </div>
+
+      {/* Free tier upgrade banner */}
+      {isFree && (
+        <div className="mb-8 rounded-2xl overflow-hidden" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <div className="px-6 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--color-gold)' }}>
+                Launching September 1, 2026
+              </p>
+              <p className="text-lg font-extrabold text-white mb-1">
+                Upgrade now — your annual term starts September 1
+              </p>
+              <p className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                Pay today and get immediate directory access. Your 12-month term begins Sept 1 when executives go live — giving you the summer to complete your profile.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 shrink-0">
+              <Link href="/provider/billing"
+                className="flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-xl text-sm whitespace-nowrap"
+                style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>
+                Upgrade to Listed · $100/mo <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/provider/billing"
+                className="flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-xl text-sm whitespace-nowrap border"
+                style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
+                Get Featured · $1,000/mo
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Onboarding checklist */}
       {!onboardingDone && (
