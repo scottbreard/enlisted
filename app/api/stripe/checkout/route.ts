@@ -37,6 +37,11 @@ export async function POST(req: NextRequest) {
       await supabase.from('provider_profiles').update({ stripe_customer_id: customerId }).eq('id', profile.id)
     }
 
+    // Bill anchor: Sept 1 2026 — pay now, annual term starts Sept 1
+    const sept1 = Math.floor(new Date('2026-09-01T00:00:00Z').getTime() / 1000)
+    const now = Math.floor(Date.now() / 1000)
+    const billingAnchor = sept1 > now ? sept1 : undefined
+
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
@@ -46,6 +51,7 @@ export async function POST(req: NextRequest) {
       cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/provider/billing?cancelled=1`,
       subscription_data: {
         metadata: { provider_id: profile.id, tier },
+        ...(billingAnchor && interval === 'year' ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' } : {}),
       },
       metadata: { provider_id: profile.id, tier },
     })

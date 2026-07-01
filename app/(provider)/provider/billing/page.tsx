@@ -68,6 +68,7 @@ function BillingContent() {
   const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('month')
   const [loading, setLoading] = useState<string | null>(null)
   const [portalLoading, setPortalLoading] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -260,7 +261,7 @@ function BillingContent() {
 
               <button
                 onClick={() => !isCurrent && !isDowngrade && handleCheckout(tier.key)}
-                disabled={isCurrent || loading === tier.key || isDowngrade}
+                disabled={isCurrent || loading === tier.key || isDowngrade || !termsAccepted}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
                 style={{
                   backgroundColor: isCurrent ? tier.bg : 'var(--color-navy)',
@@ -280,6 +281,28 @@ function BillingContent() {
           )
         })}
       </div>
+
+      {/* T&C checkbox */}
+      {!hasPaidPlan && (
+        <div className="max-w-3xl mx-auto mb-6 p-4 rounded-2xl border" style={{ borderColor: termsAccepted ? 'var(--color-navy)' : 'var(--color-border)', backgroundColor: termsAccepted ? '#eef2ff' : '#f8f9fc' }}>
+          <label className="flex items-start gap-3 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={termsAccepted}
+              onChange={e => setTermsAccepted(e.target.checked)}
+              className="mt-0.5 w-4 h-4 shrink-0 accent-[var(--color-navy)] cursor-pointer"
+            />
+            <span className="text-sm" style={{ color: 'var(--color-gray-dark)' }}>
+              I agree to the{' '}
+              <a href="/terms/providers" target="_blank" className="font-semibold underline" style={{ color: 'var(--color-navy)' }}>
+                Enlisted Provider Terms &amp; Conditions
+              </a>
+              . For annual subscriptions, I understand that my 12-month term begins{' '}
+              <span className="font-semibold">September 1, 2026</span> — access provided immediately upon payment.
+            </span>
+          </label>
+        </div>
+      )}
 
       {/* Listed / free note */}
       <div className="text-center p-5 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>

@@ -32,8 +32,8 @@ export const PRICES: Record<string, { monthly: string; annual: string; amount_mo
   featured: {
     monthly: process.env.STRIPE_PRICE_FEATURED_MONTHLY ?? '',
     annual:  process.env.STRIPE_PRICE_FEATURED_ANNUAL  ?? '',
-    amount_monthly: 50000,  // $500.00 CAD
-    amount_annual:  500000, // $5,000.00 CAD
+    amount_monthly: 100000,  // $1,000.00 CAD
+    amount_annual:  1000000, // $10,000.00 CAD
   },
 }
 
