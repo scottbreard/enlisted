@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { CheckCircle, XCircle, Globe, Mail, Phone, ChevronDown, ChevronUp, Edit2, ToggleLeft, ToggleRight } from 'lucide-react'
+import { CheckCircle, XCircle, Globe, Mail, Phone, ChevronDown, ChevronUp, Edit2, ToggleLeft, ToggleRight, Link2, Check } from 'lucide-react'
 
 const TIER_STYLE: Record<string, { color: string; bg: string }> = {
-  featured:  { color: '#92400e', bg: '#fef3c7' },
-  connected: { color: '#1e40af', bg: '#dbeafe' },
-  listed:    { color: '#6b7280', bg: '#f3f4f6' },
+  featured: { color: '#92400e', bg: '#fef3c7' },
+  listed:   { color: '#1e40af', bg: '#dbeafe' },
+  free:     { color: '#6b7280', bg: '#f3f4f6' },
 }
 
 export default function ProviderReviewList({
@@ -24,6 +24,27 @@ export default function ProviderReviewList({
   const [editTarget, setEditTarget] = useState<string | null>(null)
   const [editFields, setEditFields] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState<string | null>(null)
+  const [linkState, setLinkState] = useState<Record<string, 'loading' | 'copied' | null>>({})
+
+  async function copyPaymentLink(id: string, tier: 'listed' | 'featured') {
+    const key = `${id}:${tier}`
+    setLinkState(prev => ({ ...prev, [key]: 'loading' }))
+    try {
+      const res = await fetch(`/api/admin/providers/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'checkout_link', tier }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.url) throw new Error(data.error ?? 'Failed')
+      await navigator.clipboard.writeText(data.url)
+      setLinkState(prev => ({ ...prev, [key]: 'copied' }))
+      setTimeout(() => setLinkState(prev => ({ ...prev, [key]: null })), 3000)
+    } catch (e: any) {
+      setLinkState(prev => ({ ...prev, [key]: null }))
+      alert(`Payment link failed: ${e.message}`)
+    }
+  }
 
   async function callApi(id: string, body: object) {
     setLoading(id)
@@ -53,7 +74,7 @@ export default function ProviderReviewList({
   return (
     <div className="space-y-4">
       {providers.map(p => {
-        const tier = TIER_STYLE[p.tier] ?? TIER_STYLE.listed
+        const tier = TIER_STYLE[p.tier] ?? TIER_STYLE.free
         const isExpanded = expanded === p.id
         const isEditing = editTarget === p.id
         const isRejecting = rejectTarget === p.id
@@ -163,8 +184,8 @@ export default function ProviderReviewList({
                         className="px-3 py-2 rounded-xl border text-sm outline-none"
                         style={{ borderColor: 'var(--color-border)' }}
                       >
+                        <option value="free">Free</option>
                         <option value="listed">Listed</option>
-                        <option value="connected">Connected</option>
                         <option value="featured">Featured</option>
                       </select>
                     </div>
@@ -283,6 +304,21 @@ export default function ProviderReviewList({
                       style={{ borderColor: 'var(--color-border)', color: 'var(--color-navy)' }}>
                       <Edit2 className="w-4 h-4" /> Edit Profile
                     </button>
+                    {status === 'approved' && p.tier !== 'featured' && (['listed', 'featured'] as const).map(t => {
+                      const state = linkState[`${p.id}:${t}`]
+                      if (t === 'listed' && p.tier === 'listed') return null
+                      return (
+                        <button key={t}
+                          disabled={state === 'loading'}
+                          onClick={() => copyPaymentLink(p.id, t)}
+                          className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border disabled:opacity-50"
+                          style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold)' }}>
+                          {state === 'copied'
+                            ? <><Check className="w-4 h-4" /> Copied!</>
+                            : <><Link2 className="w-4 h-4" /> {state === 'loading' ? 'Creating…' : `Payment Link — ${t === 'listed' ? 'Listed $1,000/yr' : 'Featured $10,000/yr'}`}</>}
+                        </button>
+                      )
+                    })}
                     <button
                       disabled={loading === p.id}
                       onClick={() => callApi(p.id, { action: 'toggle_active' })}
