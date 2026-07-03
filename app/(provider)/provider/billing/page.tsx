@@ -65,7 +65,8 @@ function BillingContent() {
   const cancelled = searchParams.get('cancelled')
 
   const [profile, setProfile] = useState<any>(null)
-  const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('month')
+  // Annual-only for the first year — monthly plans return post-launch
+  const billingInterval = 'year' as const
   const [loading, setLoading] = useState<string | null>(null)
   const [portalLoading, setPortalLoading] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -138,7 +139,7 @@ function BillingContent() {
       <div className="flex items-start justify-between mb-8">
         <div>
           <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Billing & Plan</h1>
-          <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>All prices in CAD. Cancel monthly plans anytime. Annual plans non-refundable after 7 days.</p>
+          <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>All prices in CAD. Annual subscription — renews each September 1 unless cancelled. Non-refundable after 7 days.</p>
         </div>
         {hasPaidPlan && (
           <button onClick={handlePortal} disabled={portalLoading}
@@ -174,27 +175,13 @@ function BillingContent() {
         </div>
       )}
 
-      {/* Monthly / Annual toggle */}
+      {/* Annual-only note */}
       <div className="flex justify-center mb-8">
-        <div className="flex items-center gap-1 p-1 rounded-xl" style={{ backgroundColor: '#f1f3f5' }}>
-          {(['month', 'year'] as const).map(i => (
-            <button key={i} onClick={() => setBillingInterval(i)}
-              className="px-5 py-2 rounded-lg text-sm font-bold transition-all"
-              style={{
-                backgroundColor: billingInterval === i ? 'white' : 'transparent',
-                color: billingInterval === i ? 'var(--color-navy)' : 'var(--color-gray)',
-                boxShadow: billingInterval === i ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-              }}>
-              {i === 'month' ? 'Monthly' : (
-                <span className="flex items-center gap-2">
-                  Annual — pay once
-                  <span className="text-xs font-bold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
-                    2 months free
-                  </span>
-                </span>
-              )}
-            </button>
-          ))}
+        <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold" style={{ backgroundColor: '#f1f3f5', color: 'var(--color-navy)' }}>
+          Annual subscription · renews automatically each September 1
+          <span className="text-xs font-bold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
+            2 months free vs monthly
+          </span>
         </div>
       </div>
 

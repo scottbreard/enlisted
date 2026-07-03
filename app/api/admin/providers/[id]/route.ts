@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { sendProviderApprovedEmail, sendProviderRejectedEmail } from '@/lib/email'
+import { stripe, PRICES } from '@/lib/stripe'
 
 async function assertAdmin(supabase: Awaited<ReturnType<typeof createClient>>) {
   const { data: { user } } = await supabase.auth.getUser()
@@ -85,6 +86,54 @@ export async function PATCH(
       .eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ ok: true })
+  }
+
+  // Generate a Stripe checkout link the admin can send to a provider
+  // (annual subscription, Sept 1 billing anchor — same terms as self-serve)
+  if (action === 'checkout_link') {
+    const tier = body.tier as string
+    if (!['listed', 'featured'].includes(tier)) {
+      return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
+    }
+    const priceId = PRICES[tier]?.annual
+    if (!priceId) return NextResponse.json({ error: 'Annual price not configured yet' }, { status: 400 })
+
+    const { data: provider } = await supabase
+      .from('provider_profiles')
+      .select('id, company_name, email, stripe_customer_id')
+      .eq('id', id)
+      .single()
+    if (!provider) return NextResponse.json({ error: 'Provider not found' }, { status: 404 })
+
+    let customerId = provider.stripe_customer_id
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: provider.email ?? undefined,
+        name: provider.company_name,
+        metadata: { provider_id: provider.id },
+      })
+      customerId = customer.id
+      await supabase.from('provider_profiles').update({ stripe_customer_id: customerId }).eq('id', provider.id)
+    }
+
+    const sept1 = Math.floor(new Date('2026-09-01T00:00:00Z').getTime() / 1000)
+    const billingAnchor = sept1 > Math.floor(Date.now() / 1000) ? sept1 : undefined
+
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      mode: 'subscription',
+      line_items: [{ price: priceId, quantity: 1 }],
+      currency: 'cad',
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/provider/billing?success=1`,
+      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/provider/billing?cancelled=1`,
+      subscription_data: {
+        metadata: { provider_id: provider.id, tier },
+        ...(billingAnchor ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' as const } : {}),
+      },
+      metadata: { provider_id: provider.id, tier },
+      expires_at: Math.floor(Date.now() / 1000) + 23 * 60 * 60, // ~24h link validity
+    })
+    return NextResponse.json({ url: session.url })
   }
 
   // Edit fields (company_name, tagline, description, tier)
