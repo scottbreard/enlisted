@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
-import { CheckCircle, Star } from 'lucide-react'
+import { CheckCircle, Star, Search, BadgeCheck } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
 
@@ -40,9 +40,51 @@ export default function ExecutiveRegisterPage() {
   const supabase = createClient()
   const [serverError, setServerError] = useState('')
   const [foundingCount, setFoundingCount] = useState<number | null>(null)
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
+
+  // Issuer type-ahead: search the live TSX/TSXV/CSE/NEO listing database
+  type Issuer = { id: string; name: string; symbol: string; exchange_code: string }
+  const [issuerQuery, setIssuerQuery] = useState('')
+  const [issuerResults, setIssuerResults] = useState<Issuer[]>([])
+  const [selectedIssuer, setSelectedIssuer] = useState<Issuer | null>(null)
+  const [issuerOpen, setIssuerOpen] = useState(false)
+  const [manualCompany, setManualCompany] = useState(false)
+
+  useEffect(() => {
+    if (selectedIssuer || manualCompany || issuerQuery.trim().length < 2) { setIssuerResults([]); return }
+    const t = setTimeout(async () => {
+      const q = issuerQuery.trim()
+      const { data } = await supabase
+        .from('issuers')
+        .select('id, name, symbol, exchange_code')
+        .eq('is_live', true)
+        .eq('is_etf', false)
+        .or(`name.ilike.%${q}%,symbol.ilike.${q}%`)
+        .order('name')
+        .limit(8)
+      setIssuerResults(data ?? [])
+      setIssuerOpen(true)
+    }, 200)
+    return () => clearTimeout(t)
+  }, [issuerQuery, selectedIssuer, manualCompany])
+
+  function pickIssuer(issuer: Issuer) {
+    setSelectedIssuer(issuer)
+    setIssuerOpen(false)
+    setIssuerQuery(issuer.name)
+    setValue('company_name', issuer.name, { shouldValidate: true })
+    setValue('company_ticker', issuer.symbol)
+    setValue('exchange', issuer.exchange_code as FormData['exchange'], { shouldValidate: true })
+  }
+
+  function clearIssuer() {
+    setSelectedIssuer(null)
+    setIssuerQuery('')
+    setValue('company_name', '')
+    setValue('company_ticker', '')
+  }
 
   useEffect(() => {
     supabase
@@ -200,9 +242,53 @@ export default function ExecutiveRegisterPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>Company Name</label>
-                <input {...register('company_name')} placeholder="Acme Mining Corp." className="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style={{ borderColor: errors.company_name ? '#ef4444' : 'var(--color-border)' }} />
-                {errors.company_name && <p className="text-red-500 text-xs mt-1">{errors.company_name.message}</p>}
+                <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>Company</label>
+                {manualCompany ? (
+                  <>
+                    <input {...register('company_name')} placeholder="Acme Mining Corp." className="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style={{ borderColor: errors.company_name ? '#ef4444' : 'var(--color-border)' }} />
+                    <p className="text-xs mt-1" style={{ color: 'var(--color-gray-light)' }}>
+                      Manual entry — your account will be verified by our team.{' '}
+                      <button type="button" className="underline" onClick={() => { setManualCompany(false); clearIssuer() }}>Search listings instead</button>
+                    </p>
+                  </>
+                ) : (
+                  <div className="relative">
+                    <div className="flex items-center gap-2 w-full px-3 py-2.5 rounded-xl border text-sm"
+                      style={{ borderColor: errors.company_name ? '#ef4444' : selectedIssuer ? '#10b981' : 'var(--color-border)' }}>
+                      {selectedIssuer
+                        ? <BadgeCheck className="w-4 h-4 shrink-0" style={{ color: '#10b981' }} />
+                        : <Search className="w-4 h-4 shrink-0" style={{ color: 'var(--color-gray-light)' }} />}
+                      <input
+                        value={issuerQuery}
+                        onChange={e => { setIssuerQuery(e.target.value); if (selectedIssuer) clearIssuer() }}
+                        onFocus={() => issuerResults.length && setIssuerOpen(true)}
+                        placeholder="Search your listed company or ticker…"
+                        className="flex-1 outline-none bg-transparent"
+                      />
+                      {selectedIssuer && (
+                        <span className="text-xs font-bold shrink-0 px-2 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
+                          {selectedIssuer.exchange_code}:{selectedIssuer.symbol}
+                        </span>
+                      )}
+                    </div>
+                    {issuerOpen && issuerResults.length > 0 && (
+                      <div className="absolute z-50 mt-1 w-full bg-white rounded-xl border shadow-xl overflow-hidden" style={{ borderColor: 'var(--color-border)' }}>
+                        {issuerResults.map(i => (
+                          <button key={i.id} type="button" onClick={() => pickIssuer(i)}
+                            className="w-full text-left px-4 py-2.5 text-sm hover:bg-[var(--color-blue-light)] flex items-center justify-between gap-2">
+                            <span style={{ color: 'var(--color-gray-dark)' }}>{i.name}</span>
+                            <span className="text-xs font-bold shrink-0" style={{ color: 'var(--color-gray-light)' }}>{i.exchange_code}:{i.symbol}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    <p className="text-xs mt-1" style={{ color: 'var(--color-gray-light)' }}>
+                      Matched against all 9,900+ TSX, TSXV, CSE &amp; NEO listings.{' '}
+                      <button type="button" className="underline" onClick={() => { setManualCompany(true); clearIssuer() }}>Can&apos;t find your company?</button>
+                    </p>
+                  </div>
+                )}
+                {errors.company_name && <p className="text-red-500 text-xs mt-1">Select your company from the list</p>}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
