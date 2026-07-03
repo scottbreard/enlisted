@@ -10,18 +10,18 @@ import { getMarket } from '@/lib/market'
 import { createClient } from '@/lib/supabase/server'
 
 const categories = [
-  { label: 'IR Firms', slug: 'ir_firm', icon: TrendingUp },
-  { label: 'Market Makers', slug: 'market_maker', icon: BarChart2 },
-  { label: 'Transfer Agents', slug: 'transfer_agent', icon: Users },
-  { label: 'Securities Law', slug: 'securities_law', icon: Scale },
-  { label: 'Auditors & Accounting', slug: 'auditor_accounting', icon: FileText },
-  { label: 'Outsourced CFO', slug: 'outsourced_cfo', icon: Briefcase },
-  { label: 'PR & Communications', slug: 'pr_communications', icon: Radio },
-  { label: 'IR Website & Digital', slug: 'ir_website', icon: Globe },
-  { label: 'Compliance', slug: 'compliance_consultant', icon: Shield },
-  { label: 'Research Analysts', slug: 'research_analyst', icon: Search },
-  { label: 'Investor Events', slug: 'investor_events', icon: Calendar },
-  { label: 'ESG & Governance', slug: 'esg_governance', icon: Leaf },
+  { label: 'IR Firms', slug: 'ir-firms', icon: TrendingUp },
+  { label: 'Market Makers', slug: 'market-makers', icon: BarChart2 },
+  { label: 'Transfer Agents', slug: 'transfer-agents', icon: Users },
+  { label: 'Securities Law', slug: 'securities-law', icon: Scale },
+  { label: 'Audit Firms', slug: 'audit-firms', icon: FileText },
+  { label: 'Outsourced CFO', slug: 'outsourced-cfo', icon: Briefcase },
+  { label: 'PR & Communications', slug: 'pr-corporate-comms', icon: Radio },
+  { label: 'IR Website Design', slug: 'ir-website', icon: Globe },
+  { label: 'Regulatory Compliance', slug: 'regulatory-compliance', icon: Shield },
+  { label: 'Equity Research', slug: 'equity-research', icon: Search },
+  { label: 'Investor Events', slug: 'investor-events', icon: Calendar },
+  { label: 'ESG Reporting', slug: 'esg-reporting', icon: Leaf },
 ]
 
 export default async function Home() {
@@ -32,6 +32,13 @@ export default async function Home() {
 
   const market = getMarket()
   const { exchanges, copy, comingSoon } = market
+
+  const { count: providerCount } = await supabase
+    .from('provider_profiles')
+    .select('*', { count: 'exact', head: true })
+    .eq('is_active', true)
+    .eq('approval_status', 'approved')
+  const providerStat = providerCount && providerCount >= 50 ? `${Math.floor(providerCount / 10) * 10}+` : '92'
   return (
     <div className="flex flex-col min-h-screen">
 
@@ -87,7 +94,7 @@ export default async function Home() {
               {/* Stats row */}
               <div className="flex flex-wrap gap-8 pt-8 border-t border-white/10">
                 {[
-                  { value: '92', label: 'Service categories' },
+                  { value: providerStat, label: providerCount && providerCount >= 50 ? 'Firms listed' : 'Service categories' },
                   { value: '4', label: 'Canadian exchanges' },
                   { value: '500', label: 'Founding Executive spots' },
                   { value: '$0', label: 'For executives' },
@@ -164,7 +171,10 @@ export default async function Home() {
         <section className="py-6 px-6 bg-white border-b" style={{ borderColor: 'var(--color-border)' }}>
           <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold" style={{ color: 'var(--color-gray)' }}>
             {[
-              'Every listing vetted before going live',
+              providerCount && providerCount >= 50
+                ? `${Math.floor(providerCount / 10) * 10}+ firms listed — Computershare, TSX Trust, Stikeman Elliott, Osler & more`
+                : 'Every listing vetted before going live',
+              'Every CPAB-registered audit firm in Canada',
               'Free for executives. Always.',
               'Built for TSX · TSXV · CSE · NEO',
             ].map((item, i) => (
@@ -180,7 +190,7 @@ export default async function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>
-                92 Categories · 15 Groups
+                92 Categories
               </p>
               <h2 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>
                 Browse by category
@@ -193,7 +203,7 @@ export default async function Home() {
                 return (
                   <Link
                     key={cat.slug}
-                    href={`/directory?category=${cat.slug}`}
+                    href={`/directory/${cat.slug}`}
                     className="group border rounded-2xl p-5 transition-all hover:shadow-lg flex flex-col gap-3"
                     style={{ borderColor: 'var(--color-border)' }}
                   >
@@ -223,8 +233,8 @@ export default async function Home() {
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
               <Image
-                src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=800&q=80"
-                alt="Business professionals"
+                src="https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=800&q=80"
+                alt="Toronto financial district skyline"
                 fill
                 className="object-cover"
               />
@@ -333,16 +343,26 @@ export default async function Home() {
       </main>
 
       {/* ── Footer ── */}
-      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-10 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-          <span className="text-white font-extrabold text-lg">
-            Enlisted.ca
-          </span>
-          <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
-          <span className="flex flex-wrap gap-4">
-            <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
-            <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>
-          </span>
+      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+            <div>
+              <span className="text-white font-extrabold text-lg block">Enlisted.ca</span>
+              <span className="text-xs">🇨🇦 Proudly Canadian — built for TSX, TSXV, CSE &amp; NEO issuers</span>
+            </div>
+            <span className="flex flex-wrap gap-4">
+              <Link href="/directory" className="hover:text-white/80 transition-colors">Directory</Link>
+              <Link href="/pricing" className="hover:text-white/80 transition-colors">Pricing</Link>
+              <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
+              <Link href="/terms/providers" className="hover:text-white/80 transition-colors">Provider Terms</Link>
+              <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>
+              <Link href="/contact" className="hover:text-white/80 transition-colors">Contact</Link>
+            </span>
+          </div>
+          <div className="mt-6 pt-6 border-t border-white/10 text-xs flex flex-col md:flex-row justify-between gap-2">
+            <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. · Toronto, Ontario, Canada</span>
+            <span>All prices in Canadian dollars (CAD)</span>
+          </div>
         </div>
       </footer>
     </div>
