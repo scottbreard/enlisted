@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { ChevronRight, Globe, Mail, Phone, Star } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
@@ -37,18 +37,16 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   }
 }
 
-const TIER_ORDER: Record<string, number> = { featured: 0, connected: 1, listed: 2 }
+const TIER_ORDER: Record<string, number> = { featured: 0, listed: 1, free: 2 }
 const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> = {
-  featured:  { label: 'Featured',  color: '#92400e', bg: '#fef3c7' },
-  connected: { label: 'Connected', color: '#1e40af', bg: '#dbeafe' },
-  listed:    { label: 'Listed',    color: '#6b7280', bg: '#f3f4f6' },
+  featured: { label: 'Featured', color: '#92400e', bg: '#fef3c7' },
+  listed:   { label: 'Listed',   color: '#1e40af', bg: '#dbeafe' },
+  free:     { label: 'Free',     color: '#6b7280', bg: '#f3f4f6' },
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/login?next=/directory/${category}`)
   const marketCode = getMarketCode()
 
   const { data: cat } = await supabase
@@ -78,6 +76,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       .eq('primary_market_code', marketCode)
       .order('created_at')
     providers = (data ?? []).sort((a, b) => (TIER_ORDER[a.tier] ?? 9) - (TIER_ORDER[b.tier] ?? 9))
+
+    const { data: locations } = await supabase
+      .from('provider_locations')
+      .select('provider_id, city, region')
+      .in('provider_id', providers.map(p => p.id))
+    const locByProvider = new Map((locations ?? []).map(l => [l.provider_id, l]))
+    providers = providers.map(p => ({ ...p, location: locByProvider.get(p.id) ?? null }))
   }
 
   // Related categories in same group
@@ -217,6 +222,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
                         {isFree && (
                           <p className="text-xs italic" style={{ color: 'var(--color-gray-light)' }}>
+                            {provider.location?.city ? `${provider.location.city}, ${provider.location.region} · ` : ''}
                             Contact details available on paid listings
                           </p>
                         )}
