@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { LayoutDashboard, Users, DollarSign, Shield, UserCheck } from 'lucide-react'
+import { LayoutDashboard, Users, DollarSign, Shield, UserCheck, Target } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -22,6 +22,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: '/admin',             label: 'Overview',   icon: LayoutDashboard, badge: null },
     { href: '/admin/providers',   label: 'Providers',  icon: Users,           badge: pendingCount && pendingCount > 0 ? pendingCount : null },
     { href: '/admin/executives',  label: 'Executives', icon: UserCheck,       badge: null },
+    { href: '/admin/prospects',   label: 'Prospects',  icon: Target,          badge: null },
     { href: '/admin/revenue',     label: 'Revenue',    icon: DollarSign,      badge: null },
   ]
 
