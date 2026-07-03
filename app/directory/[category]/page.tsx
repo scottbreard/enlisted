@@ -224,6 +224,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                           <p className="text-xs italic" style={{ color: 'var(--color-gray-light)' }}>
                             {provider.location?.city ? `${provider.location.city}, ${provider.location.region} · ` : ''}
                             Contact details available on paid listings
+                            {!provider.user_id && (
+                              <>
+                                {' · '}
+                                <Link href={`/claim/${provider.slug}`} className="not-italic font-semibold underline" style={{ color: 'var(--color-blue)' }}>
+                                  This is my firm — claim it
+                                </Link>
+                              </>
+                            )}
                           </p>
                         )}
                       </div>

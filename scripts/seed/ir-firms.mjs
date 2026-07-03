@@ -51,12 +51,26 @@ function htmlToText(html) {
     .trim()
 }
 
-// ── 1. Collect release IDs from the Newsfile business feed ──
-async function latestReleaseId() {
-  const res = await fetch('https://www.newsfilecorp.com/news/business', { headers: UA })
-  const ids = [...(await res.text()).matchAll(/href="\/release\/(\d+)/g)].map((m) => parseInt(m[1], 10))
-  if (!ids.length) throw new Error('No release IDs found on /news/business')
-  return Math.max(...ids)
+// ── 1. Collect release URLs from the Newsfile business feed ──
+// Paginated via ?pg=N, 20 releases per page. Class-action solicitations
+// (US plaintiff firms) dominate some days — skip them by title.
+const SPAM_TITLE = /(class action|deadline alert|investors? of|shareholder alert|lawsuit|law firm)/i
+
+async function collectReleaseUrls(target) {
+  const urls = []
+  for (let pg = 1; urls.length < target && pg <= 60; pg++) {
+    const res = await fetch(`https://www.newsfilecorp.com/news/business?pg=${pg}`, { headers: UA })
+    if (!res.ok) break
+    const links = [...(await res.text()).matchAll(/href="(\/release\/\d+[^"]*)"/g)].map((m) => m[1])
+    if (!links.length) break
+    for (const l of links) {
+      const slugTitle = decodeURIComponent(l).replace(/-/g, ' ')
+      if (SPAM_TITLE.test(slugTitle)) continue
+      urls.push(`https://www.newsfilecorp.com${l}`)
+    }
+    await sleep(200)
+  }
+  return [...new Set(urls)].slice(0, target)
 }
 
 // ── 2. Parse one release ─────────────────────────────────────
@@ -106,25 +120,30 @@ async function classify(title, contact) {
 
 // ── 4. Scrape + classify ─────────────────────────────────────
 async function scrape() {
-  console.log(`Finding latest release ID…`)
-  const latest = await latestReleaseId()
-  console.log(`Latest ID ~${latest}; walking back ${N_RELEASES} releases`)
+  console.log(`Collecting release URLs (target ${N_RELEASES})…`)
+  const releaseUrls = await collectReleaseUrls(N_RELEASES)
+  console.log(`Collected ${releaseUrls.length} release URLs`)
 
   const found = [] // { firm, type, email, domain, issuer, release_id }
   let fetched = 0, withContact = 0, sentToClaude = 0
 
-  for (let id = latest; id > latest - N_RELEASES; id--) {
-    let html
-    try {
-      const res = await fetch(`https://www.newsfilecorp.com/release/${id}/`, { headers: UA })
-      if (!res.ok) continue
-      html = await res.text()
-    } catch { continue }
+  let failed = 0
+  for (const url of releaseUrls) {
+    const id = url.match(/\/release\/(\d+)/)?.[1]
+    let html = null
+    for (let attempt = 0; attempt < 3 && html === null; attempt++) {
+      try {
+        const res = await fetch(url, { headers: UA })
+        if (res.ok) { html = await res.text(); break }
+        if (res.status === 429 || res.status >= 500) await sleep(5000 * (attempt + 1))
+        else break // hard 4xx — skip
+      } catch { await sleep(3000) }
+    }
+    if (html === null) { failed++; continue }
     fetched++
     const { title, contact } = parseRelease(html)
     if (!contact) continue
     withContact++
-    if (!looksExternal(contact)) continue
 
     try {
       sentToClaude++
@@ -135,7 +154,7 @@ async function scrape() {
         console.log(`  [${id}] ${f.name} (${f.type}) ← ${title?.slice(0, 60)}`)
       }
     } catch (e) { console.warn(`  [${id}] classify failed: ${e.message}`) }
-    await sleep(250)
+    await sleep(600)
   }
 
   // Aggregate by normalized firm name
@@ -155,7 +174,7 @@ async function scrape() {
 
   mkdirSync(DATA, { recursive: true })
   writeFileSync(OUT, JSON.stringify(firms, null, 2))
-  console.log(`\nScanned ${fetched} releases · ${withContact} contact blocks · ${sentToClaude} sent to Claude`)
+  console.log(`\nScanned ${fetched} releases · ${failed} failed · ${withContact} contact blocks · ${sentToClaude} sent to Claude`)
   console.log(`Found ${firms.length} distinct firms → ${OUT}`)
   console.log(`Top firms:`)
   for (const f of firms.slice(0, 15)) console.log(`  ${f.client_count}× ${f.name} (${f.domains[0] ?? 'no domain'})`)
@@ -202,5 +221,5 @@ async function load() {
   console.log(`Done. Inserted ${inserted}, skipped ${skipped}.`)
 }
 
-;(LOAD ? load() : DRY ? (async () => { const l = await latestReleaseId(); console.log('latest id', l, '— dry, no classify') })() : scrape())
+;(LOAD ? load() : DRY ? (async () => { const u = await collectReleaseUrls(20); console.log(`collected ${u.length} urls — dry, no classify`) })() : scrape())
   .catch((e) => { console.error(e); process.exit(1) })
