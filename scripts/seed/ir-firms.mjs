@@ -183,7 +183,7 @@ async function scrape() {
 // ── 5. Load into Supabase ────────────────────────────────────
 async function load() {
   if (!existsSync(OUT)) throw new Error(`Run scrape first — ${OUT} missing`)
-  const firms = JSON.parse(readFileSync(OUT, 'utf8')).filter((f) => f.client_count >= 2 && (f.types.ir || f.types.pr))
+  const firms = JSON.parse(readFileSync(OUT, 'utf8')).filter((f) => f.types.ir)
 
   const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
   const { data: cat } = await db.from('service_categories').select('id').eq('slug', CATEGORY_SLUG).single()
