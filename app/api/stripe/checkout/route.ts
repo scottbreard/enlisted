@@ -54,6 +54,9 @@ export async function POST(req: NextRequest) {
         ...(billingAnchor && interval === 'year' ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' } : {}),
       },
       metadata: { provider_id: profile.id, tier },
+      automatic_tax: { enabled: true },
+      billing_address_collection: 'required',
+      customer_update: { address: 'auto', name: 'auto' },
     })
 
     return NextResponse.json({ url: session.url })

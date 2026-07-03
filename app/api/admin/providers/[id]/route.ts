@@ -131,6 +131,9 @@ export async function PATCH(
         ...(billingAnchor ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' as const } : {}),
       },
       metadata: { provider_id: provider.id, tier },
+      automatic_tax: { enabled: true },
+      billing_address_collection: 'required',
+      customer_update: { address: 'auto', name: 'auto' },
       expires_at: Math.floor(Date.now() / 1000) + 23 * 60 * 60, // ~24h link validity
     })
     return NextResponse.json({ url: session.url })
