@@ -244,11 +244,13 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
               )}
             </div>
             <div className="mt-5 space-y-2">
+              {provider.tier === 'featured' && (
               <Link href="/register/executive"
                 className="block text-center text-sm font-bold py-2.5 rounded-xl text-white w-full"
                 style={{ backgroundColor: 'var(--color-navy)' }}>
                 Send RFQ
               </Link>
+              )}
               {provider.website_url && (
                 <a href={provider.website_url} target="_blank" rel="noopener noreferrer"
                   className="block text-center text-sm font-semibold py-2.5 rounded-xl border w-full"

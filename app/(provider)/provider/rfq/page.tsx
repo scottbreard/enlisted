@@ -32,20 +32,14 @@ export default function ProviderRFQPage() {
 
       if (!p) return
       setProfile(p)
-      if (p.tier === 'free') { setLoading(false); return }
+      // RFQs are a Featured-only benefit
+      if (p.tier !== 'featured') { setLoading(false); return }
 
-      let query = supabase
+      const { data } = await supabase
         .from('rfq_requests')
         .select('*, executive_profiles(first_name, last_name, company_name, company_ticker)')
         .eq('provider_id', p.id)
         .order('created_at', { ascending: false })
-
-      if (p.tier === 'listed') {
-        const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-        query = (query as any).lt('created_at', cutoff)
-      }
-
-      const { data } = await query
       setRfqs(data ?? [])
       setLoading(false)
     }
@@ -68,15 +62,15 @@ export default function ProviderRFQPage() {
     </div>
   )
 
-  if (profile.tier === 'free') return (
+  if (profile.tier !== 'featured') return (
     <div className="p-8 max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-6" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>
         <Lock className="w-10 h-10 mx-auto mb-3" style={{ color: 'var(--color-gold)' }} />
-        <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>RFQs require a paid plan</p>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($100/mo) to receive quote requests from executives.</p>
+        <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>RFQs are a Featured benefit</p>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Only Featured providers ($10,000/yr, max 5 per category) receive quote requests from executives.</p>
         <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
-          Upgrade Plan
+          Get Featured
         </a>
       </div>
     </div>
@@ -90,9 +84,7 @@ export default function ProviderRFQPage() {
         <div>
           <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
-            {profile.tier === 'listed'
-              ? 'You see RFQs 24 hours after they arrive. Upgrade to Featured for instant access.'
-              : 'Featured Partner — you see all RFQs instantly.'}
+            Featured Partner — quote requests from verified executives arrive here.
           </p>
         </div>
         {newCount > 0 && (
@@ -101,16 +93,6 @@ export default function ProviderRFQPage() {
           </span>
         )}
       </div>
-
-      {profile.tier === 'listed' && (
-        <div className="mb-5 p-4 rounded-2xl text-sm flex items-center gap-3" style={{ backgroundColor: 'var(--color-blue-light)' }}>
-          <Clock className="w-4 h-4 shrink-0" style={{ color: 'var(--color-blue)' }} />
-          <p style={{ color: 'var(--color-navy)' }}>
-            <strong>24-hour delay active.</strong> Featured Partners see RFQs as soon as they arrive.{' '}
-            <a href="/provider/billing" className="underline font-semibold">Upgrade to Featured</a> for instant access.
-          </p>
-        </div>
-      )}
 
       {loading ? (
         <div className="space-y-3">

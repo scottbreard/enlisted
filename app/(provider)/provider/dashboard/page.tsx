@@ -18,8 +18,8 @@ const TIER_NEXT: Record<string, { next: string; price: string }> = {
 
 const TIER_FEATURES: Record<string, string[]> = {
   free:     ['Name + category in directory', 'No contact details shown', 'No RFQ access'],
-  listed:   ['Full contact details + logo', '300-word description, up to 3 categories', 'RFQ access (24h after Featured)', 'Basic analytics'],
-  featured: ['Top placement (rotated)', 'Unlimited categories + all exchanges', 'Priority RFQ window + direct messaging', 'Video, team page, case studies', 'Quarterly blog post + verified badge'],
+  listed:   ['Full contact details + logo', '300-word description, up to 3 categories', 'Basic analytics'],
+  featured: ['Top placement (rotated)', 'Exclusive RFQ access', 'Unlimited categories + all exchanges', 'Video, team page, case studies', 'Monthly newsletter logo + link'],
 }
 
 export default function ProviderDashboardPage() {

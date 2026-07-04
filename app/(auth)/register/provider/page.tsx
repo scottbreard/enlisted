@@ -122,7 +122,7 @@ function ProviderRegisterContent() {
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>
             {plan
               ? 'Create your account — payment is the next step.'
-              : 'Free to list — upgrade anytime to unlock your full profile and receive RFQs.'}
+              : 'Free to list — upgrade anytime to unlock your full profile.'}
           </p>
         </div>
 
@@ -309,7 +309,7 @@ function ProviderRegisterContent() {
               'Your firm listed by name and category',
               'Searchable by verified public company executives',
               'Access to browse the full directory',
-              'Upgrade anytime to unlock your full profile and RFQs',
+              'Upgrade anytime to unlock your full profile',
             ].map(f => (
               <li key={f} className="flex items-start gap-2 text-sm" style={{ color: 'var(--color-gray)' }}>
                 <span className="mt-0.5 text-emerald-500 font-bold">✓</span> {f}

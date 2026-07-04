@@ -31,7 +31,7 @@ const TIERS = [
     badge: 'Most Popular',
     monthly: 100,
     annual: 1000,
-    description: 'Full profile, direct contact details, logo, and inbound RFQs from verified public company executives.',
+    description: 'Full profile, direct contact details, logo, and full visibility to verified public company executives.',
     cta: 'Get Started',
     ctaHref: '/register/provider?plan=listed',
     highlight: true,
@@ -41,7 +41,7 @@ const TIERS = [
       'Full contact details',
       '300-word company description',
       'Exchange badges (TSX, TSXV, etc.)',
-      'Receive RFQ requests',
+      'Full profile visibility to executives',
       'Basic analytics dashboard',
     ],
     featureStatus: [true, true, true, true, true, true, true],
@@ -70,7 +70,7 @@ const TIERS = [
 
 const EXEC_FEATURES = [
   'Full access to all 92 service categories',
-  'Send RFQs to any Connected or Featured provider',
+  'Send RFQs to Featured providers',
   'AI Assistant trained on public markets',
   'Compliance calendar — auto-generated from your exchange',
   'Stock dashboard with live price + chart',
@@ -285,7 +285,7 @@ export default function PricingPage() {
                 },
                 {
                   q: 'What is an RFQ?',
-                  a: 'A Request for Quote. Executives send structured requests describing a service need, budget, and timeline. Connected providers see RFQs after a 24-hour window; Featured providers see them instantly.',
+                  a: 'A Request for Quote. Executives send structured requests describing a service need, budget, and timeline. RFQs are delivered exclusively to Featured providers.',
                 },
                 {
                   q: 'Is pricing in CAD?',

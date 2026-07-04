@@ -24,7 +24,7 @@ const TIERS = [
       'Up to 3 service categories',
       'Exchange badges (TSX, TSXV, etc.)',
       'Standard placement (alphabetical within category)',
-      'RFQ access from verified executives',
+
       'Basic analytics — view count & search appearances',
     ],
   },
@@ -48,7 +48,7 @@ const TIERS = [
       'Team page (up to 10 members)',
       'Up to 5 published case studies',
       'Video embed',
-      'Instant RFQ access (priority window)',
+      'Exclusive RFQ access from verified executives',
       'Full analytics dashboard',
       'Logo + website link in the monthly executive newsletter',
       'AI Assistant trained on public markets',
@@ -355,7 +355,7 @@ function BillingContent() {
       <div className="text-center p-5 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>
         <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Free plan — always free</p>
         <p className="text-xs" style={{ color: 'var(--color-gray)' }}>
-          Your company name and category stay in the directory at no cost. Upgrade to Listed or Featured to show contact details, receive RFQs, and get full profile visibility.
+          Your company name and category stay in the directory at no cost. Upgrade to Listed for full profile visibility, or Featured for RFQs and top placement.
         </p>
       </div>
     </div>

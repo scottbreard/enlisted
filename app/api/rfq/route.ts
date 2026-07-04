@@ -20,15 +20,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'provider_id, title, and description are required' }, { status: 400 })
   }
 
-  // Check provider is connected or featured (can receive RFQs)
+  // RFQs are a Featured-tier benefit
   const { data: provider } = await supabase
     .from('provider_profiles')
     .select('tier, company_name')
     .eq('id', provider_id)
     .single()
 
-  if (!provider || provider.tier === 'free') {
-    return NextResponse.json({ error: 'This provider cannot receive RFQs' }, { status: 400 })
+  if (!provider || provider.tier !== 'featured') {
+    return NextResponse.json({ error: 'RFQs can only be sent to Featured providers' }, { status: 400 })
   }
 
   const { data, error } = await supabase

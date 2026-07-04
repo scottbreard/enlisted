@@ -72,7 +72,7 @@ export default function ProviderTermsPage() {
           </Section>
 
           <Section title="6. RFQs and Executive Contact">
-            <p>Paid Listings may receive requests for quotation ("<strong>RFQs</strong>") and contact from executive users. You agree to use executive contact information solely to respond to the enquiry through which it was provided, and not to add executives to marketing lists or share their information with third parties without their consent. Featured-tier newsletter inclusion (your logo and website link in Enlisted's monthly executive newsletter) is managed by Enlisted, subject to our content standards and Canada's Anti-Spam Legislation (CASL).</p>
+            <p>Featured listings may receive requests for quotation ("<strong>RFQs</strong>"), and paid listings may receive contact from executive users. You agree to use executive contact information solely to respond to the enquiry through which it was provided, and not to add executives to marketing lists or share their information with third parties without their consent. Featured-tier newsletter inclusion (your logo and website link in Enlisted's monthly executive newsletter) is managed by Enlisted, subject to our content standards and Canada's Anti-Spam Legislation (CASL).</p>
           </Section>
 
           <Section title="7. No Endorsement; No Guarantee of Results">

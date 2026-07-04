@@ -20,9 +20,9 @@ const TIERS = [
     annual: '$1,000/yr',
     badge: 'Most Popular',
     highlight: true,
-    description: 'Full profile, direct contact details, logo, and inbound RFQs from verified public company executives.',
+    description: 'Full profile, direct contact details, logo, and full visibility to verified public company executives.',
     cta: 'Get Listed',
-    features: ['Logo + website link', 'Full contact details', '300-word description', 'Exchange badges', 'Receive RFQ requests', 'Analytics dashboard'],
+    features: ['Logo + website link', 'Full contact details', '300-word description', 'Exchange badges', 'Analytics dashboard'],
     missing: [],
   },
   {
@@ -307,7 +307,7 @@ export default function ProvidersPage() {
               Ready to list your firm?
             </h2>
             <p className="text-lg mb-10 leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
-              Create a free listing in minutes. Upgrade to Listed or Featured when you're ready to receive RFQs and grow your presence across Canada's public markets.
+              Create a free listing in minutes. Upgrade to Listed for full visibility, or Featured to receive RFQs and own your category.
             </p>
             <Link href="/register/provider"
               className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-lg"
