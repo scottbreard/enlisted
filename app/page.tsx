@@ -233,8 +233,8 @@ export default async function Home() {
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
               <Image
-                src="https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=800&q=80"
-                alt="Toronto financial district skyline"
+                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
+                alt="Bay Street financial district towers, Toronto"
                 fill
                 className="object-cover"
               />
