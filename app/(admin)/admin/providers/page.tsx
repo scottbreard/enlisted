@@ -17,15 +17,19 @@ export default async function AdminProvidersPage({
     { count: pendingCount },
     { count: approvedCount },
     { count: rejectedCount },
+    { data: allCategories },
+    { data: allExchanges },
   ] = await Promise.all([
     supabase
       .from('provider_profiles')
-      .select('*, provider_categories(service_categories(name, slug))')
+      .select('*, provider_categories(category_id, is_primary, service_categories(name, slug)), provider_exchanges(exchange_id, exchanges(code))')
       .eq('approval_status', status)
       .order('created_at', { ascending: false }),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('approval_status', 'pending'),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('approval_status', 'approved'),
     supabase.from('provider_profiles').select('*', { count: 'exact', head: true }).eq('approval_status', 'rejected'),
+    supabase.from('service_categories').select('id, name, group_name').eq('active', true).order('sort_order'),
+    supabase.from('exchanges').select('id, code').order('code'),
   ])
 
   const tabs = [
@@ -71,7 +75,8 @@ export default async function AdminProvidersPage({
         ))}
       </div>
 
-      <ProviderReviewList providers={providers ?? []} status={status} />
+      <ProviderReviewList providers={providers ?? []} status={status}
+        allCategories={allCategories ?? []} allExchanges={allExchanges ?? []} />
     </div>
   )
 }

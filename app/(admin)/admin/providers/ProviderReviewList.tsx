@@ -13,9 +13,13 @@ const TIER_STYLE: Record<string, { color: string; bg: string }> = {
 export default function ProviderReviewList({
   providers,
   status,
+  allCategories = [],
+  allExchanges = [],
 }: {
   providers: any[]
   status: string
+  allCategories?: any[]
+  allExchanges?: any[]
 }) {
   const router = useRouter()
   const [expanded, setExpanded] = useState<string | null>(null)
@@ -23,8 +27,22 @@ export default function ProviderReviewList({
   const [rejectReason, setRejectReason] = useState('')
   const [editTarget, setEditTarget] = useState<string | null>(null)
   const [editFields, setEditFields] = useState<Record<string, string>>({})
+  const [editCats, setEditCats] = useState<string[]>([])
+  const [editPrimary, setEditPrimary] = useState<string>('')
+  const [editExch, setEditExch] = useState<string[]>([])
+  const [catSearch, setCatSearch] = useState('')
   const [loading, setLoading] = useState<string | null>(null)
   const [linkState, setLinkState] = useState<Record<string, 'loading' | 'copied' | null>>({})
+
+  function startEdit(p: any) {
+    setEditTarget(p.id)
+    setEditFields({})
+    setCatSearch('')
+    const cats = (p.provider_categories ?? []).map((c: any) => c.category_id).filter(Boolean)
+    setEditCats(cats)
+    setEditPrimary((p.provider_categories ?? []).find((c: any) => c.is_primary)?.category_id ?? cats[0] ?? '')
+    setEditExch((p.provider_exchanges ?? []).map((e: any) => e.exchange_id).filter(Boolean))
+  }
 
   async function copyPaymentLink(id: string, tier: 'listed' | 'featured') {
     const key = `${id}:${tier}`
@@ -154,7 +172,11 @@ export default function ProviderReviewList({
                       { key: 'company_name', label: 'Company Name', value: editFields.company_name ?? p.company_name },
                       { key: 'tagline',      label: 'Tagline',      value: editFields.tagline ?? p.tagline ?? '' },
                       { key: 'email',        label: 'Email',        value: editFields.email ?? p.email ?? '' },
+                      { key: 'phone',        label: 'Phone',        value: editFields.phone ?? p.phone ?? '' },
                       { key: 'website_url',  label: 'Website',      value: editFields.website_url ?? p.website_url ?? '' },
+                      { key: 'linkedin_url', label: 'LinkedIn URL', value: editFields.linkedin_url ?? p.linkedin_url ?? '' },
+                      { key: 'logo_url',     label: 'Logo URL',     value: editFields.logo_url ?? p.logo_url ?? '' },
+                      { key: 'city',         label: 'City',         value: editFields.city ?? p.city ?? '' },
                     ].map(f => (
                       <div key={f.key}>
                         <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>{f.label}</label>
@@ -189,11 +211,85 @@ export default function ProviderReviewList({
                         <option value="featured">Featured</option>
                       </select>
                     </div>
+                    <div>
+                      <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>
+                        Service Categories <span className="font-normal" style={{ color: 'var(--color-gray)' }}>({editCats.length} selected)</span>
+                      </label>
+                      <input
+                        value={catSearch}
+                        onChange={e => setCatSearch(e.target.value)}
+                        placeholder="Search categories…"
+                        className="w-full px-3 py-2 mb-2 rounded-xl border text-sm outline-none"
+                        style={{ borderColor: 'var(--color-border)' }}
+                      />
+                      <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto border rounded-xl p-2" style={{ borderColor: 'var(--color-border)' }}>
+                        {allCategories
+                          .filter(c => !catSearch || c.name.toLowerCase().includes(catSearch.toLowerCase()) || (c.group_name ?? '').toLowerCase().includes(catSearch.toLowerCase()))
+                          .map(c => {
+                            const selected = editCats.includes(c.id)
+                            return (
+                              <button key={c.id} type="button"
+                                onClick={() => {
+                                  setEditCats(prev => selected ? prev.filter(id => id !== c.id) : [...prev, c.id])
+                                  if (selected && editPrimary === c.id) setEditPrimary('')
+                                  if (!selected && editCats.length === 0) setEditPrimary(c.id)
+                                }}
+                                className="text-xs font-semibold px-2.5 py-1 rounded-full border transition-colors"
+                                style={{
+                                  backgroundColor: selected ? 'var(--color-navy)' : 'white',
+                                  color: selected ? 'white' : 'var(--color-gray)',
+                                  borderColor: selected ? 'var(--color-navy)' : 'var(--color-border)',
+                                }}>
+                                {c.name}
+                              </button>
+                            )
+                          })}
+                      </div>
+                      {editCats.length > 0 && (
+                        <div className="mt-2 flex items-center gap-2">
+                          <span className="text-xs font-semibold" style={{ color: 'var(--color-gray-dark)' }}>Primary:</span>
+                          <select
+                            value={editCats.includes(editPrimary) ? editPrimary : editCats[0]}
+                            onChange={e => setEditPrimary(e.target.value)}
+                            className="px-3 py-1.5 rounded-xl border text-xs outline-none"
+                            style={{ borderColor: 'var(--color-border)' }}>
+                            {editCats.map(id => (
+                              <option key={id} value={id}>{allCategories.find(c => c.id === id)?.name ?? id}</option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>Exchanges</label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {allExchanges.map(ex => {
+                          const selected = editExch.includes(ex.id)
+                          return (
+                            <button key={ex.id} type="button"
+                              onClick={() => setEditExch(prev => selected ? prev.filter(id => id !== ex.id) : [...prev, ex.id])}
+                              className="text-xs font-bold px-3 py-1.5 rounded-full border transition-colors"
+                              style={{
+                                backgroundColor: selected ? 'var(--color-gold)' : 'white',
+                                color: selected ? 'white' : 'var(--color-gray)',
+                                borderColor: selected ? 'var(--color-gold)' : 'var(--color-border)',
+                              }}>
+                              {ex.code}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
                     <div className="flex gap-2 pt-1">
                       <button
                         disabled={loading === p.id}
                         onClick={async () => {
-                          await callApi(p.id, editFields)
+                          await callApi(p.id, {
+                            ...editFields,
+                            category_ids: editCats,
+                            primary_category_id: editCats.includes(editPrimary) ? editPrimary : editCats[0] ?? null,
+                            exchange_ids: editExch,
+                          })
                           setEditTarget(null)
                           setEditFields({})
                         }}
@@ -299,7 +395,7 @@ export default function ProviderReviewList({
                       </button>
                     )}
                     <button
-                      onClick={() => { setEditTarget(p.id); setEditFields({}) }}
+                      onClick={() => startEdit(p)}
                       className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border"
                       style={{ borderColor: 'var(--color-border)', color: 'var(--color-navy)' }}>
                       <Edit2 className="w-4 h-4" /> Edit Profile

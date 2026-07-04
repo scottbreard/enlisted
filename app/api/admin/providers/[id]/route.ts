@@ -26,7 +26,7 @@ export async function PATCH(
 
   const { id } = await params
   const body = await req.json()
-  const { action, reason, ...fields } = body
+  const { action, reason, category_ids, primary_category_id, exchange_ids, ...fields } = body
 
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -183,15 +183,41 @@ export async function PATCH(
     return NextResponse.json({ url: session.url })
   }
 
-  // Edit fields (company_name, tagline, description, tier)
-  if (Object.keys(fields).length > 0) {
-    const allowed = ['company_name', 'tagline', 'description', 'tier', 'email', 'website_url', 'phone']
+  // Edit profile fields and relations
+  const hasCats = Array.isArray(category_ids)
+  const hasExch = Array.isArray(exchange_ids)
+  if (Object.keys(fields).length > 0 || hasCats || hasExch) {
+    const allowed = ['company_name', 'tagline', 'description', 'tier', 'email', 'website_url', 'phone', 'logo_url', 'city', 'linkedin_url']
     const safe = Object.fromEntries(Object.entries(fields).filter(([k]) => allowed.includes(k)))
-    const { error } = await db
-      .from('provider_profiles')
-      .update(safe)
-      .eq('id', id)
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (Object.keys(safe).length > 0) {
+      const { error } = await db
+        .from('provider_profiles')
+        .update(safe)
+        .eq('id', id)
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    if (hasCats) {
+      const primary = category_ids.includes(primary_category_id) ? primary_category_id : category_ids[0] ?? null
+      await db.from('provider_categories').delete().eq('provider_id', id)
+      if (category_ids.length > 0) {
+        const { error } = await db.from('provider_categories').insert(
+          category_ids.map((category_id: string) => ({ provider_id: id, category_id, is_primary: category_id === primary }))
+        )
+        if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+      }
+    }
+
+    if (hasExch) {
+      await db.from('provider_exchanges').delete().eq('provider_id', id)
+      if (exchange_ids.length > 0) {
+        const { error } = await db.from('provider_exchanges').insert(
+          exchange_ids.map((exchange_id: string) => ({ provider_id: id, exchange_id }))
+        )
+        if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+      }
+    }
+
     return NextResponse.json({ ok: true })
   }
 
