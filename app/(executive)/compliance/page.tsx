@@ -43,7 +43,7 @@ export default async function CompliancePage() {
   let events = existingEvents ?? []
 
   // Auto-generate if empty and we have exchange info
-  if (events.length === 0 && profile.sector) {
+  if (events.length === 0 && profile.company_ticker) {
     const { data: execExchanges } = await supabase
       .from('executive_exchanges')
       .select('exchange_id, fiscal_year_end, exchanges(code)')

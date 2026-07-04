@@ -130,7 +130,7 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
           { label: 'Service Providers', value: providerCount ?? 0, icon: TrendingUp, href: '/directory' },
-          { label: 'Vault Providers',   value: vaultProviders?.length ?? 0, icon: Briefcase, href: '/vault' },
+          { label: 'Vault Providers',   value: vaultCount ?? 0,             icon: Briefcase, href: '/vault' },
           { label: 'Open RFQs',         value: openRfqs?.length ?? 0, icon: Send, href: '/rfq' },
         ].map(stat => (
           <Link key={stat.label} href={stat.href}

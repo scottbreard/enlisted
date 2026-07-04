@@ -89,7 +89,7 @@ export default function ContactPage() {
               <div className="mt-10 p-6 rounded-2xl" style={{ backgroundColor: 'var(--color-blue-light)' }}>
                 <p className="font-bold text-sm mb-2" style={{ color: 'var(--color-navy)' }}>A division of Stock Marketing Inc.</p>
                 <p className="text-xs leading-relaxed" style={{ color: 'var(--color-gray)' }}>
-                  Enlisted is built and operated by Stock Marketing Inc., a Canadian company focused on capital markets infrastructure. We are independent — not affiliated with any exchange, brokerage, or advisory firm.
+                  Enlisted is built and operated by Stock Marketing Inc., a Canadian company focused on capital markets infrastructure. We are not affiliated with any exchange, brokerage, or regulatory body.
                 </p>
               </div>
             </div>
