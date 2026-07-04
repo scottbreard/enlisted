@@ -22,6 +22,39 @@ export async function POST(req: NextRequest) {
     const priceConfig = PRICES[tier]
     if (!priceConfig) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
 
+    // Featured is capped at 3 firms per category
+    if (tier === 'featured') {
+      const { data: primaryCat } = await supabase
+        .from('provider_categories')
+        .select('category_id, service_categories(name)')
+        .eq('provider_id', profile.id)
+        .order('is_primary', { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      if (primaryCat) {
+        const { data: peers } = await supabase
+          .from('provider_categories')
+          .select('provider_id')
+          .eq('category_id', primaryCat.category_id)
+        const peerIds = (peers ?? []).map(p => p.provider_id).filter(id => id !== profile.id)
+        if (peerIds.length) {
+          const { count } = await supabase
+            .from('provider_profiles')
+            .select('*', { count: 'exact', head: true })
+            .in('id', peerIds)
+            .eq('tier', 'featured')
+            .eq('is_active', true)
+          if ((count ?? 0) >= 3) {
+            const catName = (primaryCat as any).service_categories?.name ?? 'your category'
+            return NextResponse.json(
+              { error: `All 3 Featured spots in ${catName} are taken. Email hello@enlisted.ca to join the waitlist.` },
+              { status: 409 }
+            )
+          }
+        }
+      }
+    }
+
     const priceId = interval === 'year' ? priceConfig.annual : priceConfig.monthly
     if (!priceId) return NextResponse.json({ error: 'Price not configured yet' }, { status: 400 })
 

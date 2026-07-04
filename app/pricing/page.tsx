@@ -48,10 +48,10 @@ const TIERS = [
   },
   {
     name: 'Featured',
-    badge: 'Maximum Visibility',
+    badge: 'Only 3 per category',
     monthly: 1000,
     annual: 10000,
-    description: 'Top placement, video, monthly newsletter feature, AI Assistant trained on public markets, and homepage feature.',
+    description: 'Top placement, video, monthly newsletter feature, AI Assistant trained on public markets, and homepage feature. Limited to 3 firms per category.',
     cta: 'Get Featured',
     ctaHref: '/register/provider?plan=featured',
     highlight: false,

@@ -71,6 +71,7 @@ function BillingContent() {
   const [loading, setLoading] = useState<string | null>(null)
   const [portalLoading, setPortalLoading] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
+  const [featuredSpots, setFeaturedSpots] = useState<{ taken: number; category: string } | null>(null)
 
   useEffect(() => {
     async function load() {
@@ -82,6 +83,35 @@ function BillingContent() {
         .eq('user_id', user.id)
         .single()
       setProfile(p)
+
+      // Featured availability in this provider's primary category (3 max)
+      if (p) {
+        const { data: primaryCat } = await supabase
+          .from('provider_categories')
+          .select('category_id, service_categories(name)')
+          .eq('provider_id', p.id)
+          .order('is_primary', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+        if (primaryCat) {
+          const { data: peers } = await supabase
+            .from('provider_categories')
+            .select('provider_id')
+            .eq('category_id', primaryCat.category_id)
+          const peerIds = (peers ?? []).map(x => x.provider_id).filter(id => id !== p.id)
+          let taken = 0
+          if (peerIds.length) {
+            const { count } = await supabase
+              .from('provider_profiles')
+              .select('*', { count: 'exact', head: true })
+              .in('id', peerIds)
+              .eq('tier', 'featured')
+              .eq('is_active', true)
+            taken = count ?? 0
+          }
+          setFeaturedSpots({ taken, category: (primaryCat as any).service_categories?.name ?? 'your category' })
+        }
+      }
     }
     load()
   }, [])
@@ -204,6 +234,8 @@ function BillingContent() {
           const tierIndex = TIER_ORDER.indexOf(tier.key)
           const isDowngrade = tierIndex < currentTierIndex
           const monthlyEquiv = billingInterval === 'year' ? Math.round(tier.annual / 12) : tier.monthly
+          const isFeatured = tier.key === 'featured'
+          const featuredFull = isFeatured && (featuredSpots?.taken ?? 0) >= 3 && currentTier !== 'featured'
 
           return (
             <div key={tier.key}
@@ -249,6 +281,13 @@ function BillingContent() {
                     Billed monthly · cancel anytime
                   </p>
                 )}
+                {isFeatured && featuredSpots && (
+                  <p className="text-xs font-bold mt-1.5" style={{ color: featuredFull ? '#ef4444' : 'var(--color-gold)' }}>
+                    {featuredFull
+                      ? `All 3 Featured spots taken in ${featuredSpots.category}`
+                      : `${featuredSpots.taken} of 3 Featured spots taken in ${featuredSpots.category}`}
+                  </p>
+                )}
               </div>
 
               <ul className="space-y-2 flex-1 mb-6">
@@ -261,8 +300,8 @@ function BillingContent() {
               </ul>
 
               <button
-                onClick={() => !isCurrent && !isDowngrade && handleCheckout(tier.key)}
-                disabled={isCurrent || loading === tier.key || isDowngrade || !termsAccepted}
+                onClick={() => !isCurrent && !isDowngrade && !featuredFull && handleCheckout(tier.key)}
+                disabled={isCurrent || loading === tier.key || isDowngrade || !termsAccepted || featuredFull}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
                 style={{
                   backgroundColor: isCurrent ? tier.bg : 'var(--color-navy)',
@@ -271,8 +310,14 @@ function BillingContent() {
                 {loading === tier.key ? 'Redirecting to Stripe…' :
                  isCurrent ? 'Current Plan' :
                  isDowngrade ? 'Downgrade via Portal' :
+                 featuredFull ? 'Category Full — Join Waitlist' :
                  <><span>Subscribe</span><ArrowRight className="w-3.5 h-3.5" /></>}
               </button>
+              {featuredFull && (
+                <p className="text-xs text-center mt-2" style={{ color: 'var(--color-gray-light)' }}>
+                  Email <a href="mailto:hello@enlisted.ca" className="underline">hello@enlisted.ca</a> to join the Featured waitlist.
+                </p>
+              )}
               {isDowngrade && !isCurrent && (
                 <p className="text-xs text-center mt-2" style={{ color: 'var(--color-gray-light)' }}>
                   Use &quot;Manage Subscription&quot; above to downgrade.

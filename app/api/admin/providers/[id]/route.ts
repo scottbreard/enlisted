@@ -105,6 +105,36 @@ export async function PATCH(
       .single()
     if (!provider) return NextResponse.json({ error: 'Provider not found' }, { status: 404 })
 
+    // Featured is capped at 3 firms per category
+    if (tier === 'featured') {
+      const { data: primaryCat } = await supabase
+        .from('provider_categories')
+        .select('category_id, service_categories(name)')
+        .eq('provider_id', provider.id)
+        .order('is_primary', { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      if (primaryCat) {
+        const { data: peers } = await supabase
+          .from('provider_categories')
+          .select('provider_id')
+          .eq('category_id', primaryCat.category_id)
+        const peerIds = (peers ?? []).map(p => p.provider_id).filter(pid => pid !== provider.id)
+        if (peerIds.length) {
+          const { count } = await supabase
+            .from('provider_profiles')
+            .select('*', { count: 'exact', head: true })
+            .in('id', peerIds)
+            .eq('tier', 'featured')
+            .eq('is_active', true)
+          if ((count ?? 0) >= 3) {
+            const catName = (primaryCat as any).service_categories?.name ?? 'this category'
+            return NextResponse.json({ error: `All 3 Featured spots in ${catName} are taken.` }, { status: 409 })
+          }
+        }
+      }
+    }
+
     let customerId = provider.stripe_customer_id
     if (!customerId) {
       const customer = await stripe.customers.create({
