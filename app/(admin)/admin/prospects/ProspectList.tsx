@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Search, Phone, Mail, Globe, CheckCircle } from 'lucide-react'
+import { Search, Phone, Mail, Globe, CheckCircle, Download } from 'lucide-react'
 
 const EXCHANGES = ['TSX', 'TSXV', 'CSE', 'NEO']
 const TITLES = ['CEO', 'CFO', 'IR', 'Director']
@@ -68,6 +68,13 @@ export default function ProspectList({
           <option value="no">Not contacted</option>
           <option value="yes">Contacted</option>
         </select>
+
+        <a
+          href={`/api/admin/prospects/export?${new URLSearchParams(Object.fromEntries(Object.entries(filters).filter(([, v]) => v)))}`}
+          className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl text-white"
+          style={{ backgroundColor: 'var(--color-navy)' }}>
+          <Download className="w-4 h-4" /> Export CSV
+        </a>
       </div>
 
       {/* Table */}

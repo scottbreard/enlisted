@@ -2,6 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { NextRequest, NextResponse } from 'next/server'
 
+// PATCH /api/admin/prospects/[id] — update contact tracking
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
