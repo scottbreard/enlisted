@@ -11,8 +11,13 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
-const RANKING_URL = 'https://www.lexpert.ca/rankings/best-law-firm/dir/corporate-finance-securities'
-const CATEGORY_SLUG = 'securities-law'
+// Practice-area ranking pages → Enlisted category slugs
+const SOURCES = [
+  { url: 'https://www.lexpert.ca/rankings/best-law-firm/dir/corporate-finance-securities', category: 'securities-law',   area: 'corporate finance and securities law' },
+  { url: 'https://www.lexpert.ca/rankings/best-law-firm/dir/mergers-acquisitions',          category: 'corporate-ma-law', area: 'mergers & acquisitions law' },
+  { url: 'https://www.lexpert.ca/rankings/best-law-firm/dir/employment-law',                category: 'employment-law',  area: 'employment law' },
+  { url: 'https://www.lexpert.ca/rankings/best-law-firm/dir/intellectual-property',         category: 'ip-law',          area: 'intellectual property law' },
+]
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' }
 const DRY = process.argv.includes('--dry')
 
@@ -74,56 +79,63 @@ function parseProfile(html) {
 }
 
 async function main() {
-  console.log('Fetching Lexpert rankings…')
-  const firms = parseRanking(await fetchText(RANKING_URL))
-  console.log(`Found ${firms.length} ranked firms`)
+  const db = DRY ? null : createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 
-  for (const [i, f] of firms.entries()) {
-    try {
-      Object.assign(f, parseProfile(await fetchText(f.url)))
-      console.log(`  [${i + 1}/${firms.length}] ${f.name} — ${f.city ?? '?'}, ${f.province ?? '?'} · ${f.badge ?? 'listed'} · ${f.website ?? 'no site'}`)
-    } catch (e) { console.warn(`  [${i + 1}/${firms.length}] ${f.name} — profile failed: ${e.message}`) }
-    await sleep(500)
+  for (const src of SOURCES) {
+    console.log(`\n── ${src.category} ← ${src.url}`)
+    const firms = parseRanking(await fetchText(src.url))
+    console.log(`Found ${firms.length} ranked firms`)
+
+    for (const [i, f] of firms.entries()) {
+      try {
+        Object.assign(f, parseProfile(await fetchText(f.url)))
+        console.log(`  [${i + 1}/${firms.length}] ${f.name} — ${f.city ?? '?'}, ${f.province ?? '?'} · ${f.badge ?? 'listed'}`)
+      } catch (e) { console.warn(`  [${i + 1}/${firms.length}] ${f.name} — profile failed: ${e.message}`) }
+      await sleep(400)
+    }
+
+    if (DRY || !db) continue
+
+    const { data: cat } = await db.from('service_categories').select('id').eq('slug', src.category).single()
+    if (!cat) { console.warn(`Category '${src.category}' not found — skipping`); continue }
+
+    let inserted = 0, crossLinked = 0
+    for (const f of firms) {
+      const { data: existing } = await db.from('provider_profiles')
+        .select('id').eq('source', 'lexpert').eq('source_ref', f.ref).maybeSingle()
+
+      if (existing) {
+        // Firm already seeded from another practice area — add this category too
+        const { error: linkErr } = await db.from('provider_categories')
+          .upsert({ provider_id: existing.id, category_id: cat.id, is_primary: false })
+        if (!linkErr) crossLinked++
+        continue
+      }
+
+      const { data: profile, error } = await db.from('provider_profiles').insert({
+        user_id: null,
+        company_name: f.name,
+        slug: `${slugify(f.name)}-lx`,
+        description: `${f.name} is a Lexpert-ranked Canadian law firm in ${src.area}.`,
+        website_url: f.website,
+        tier: 'free',
+        is_active: true,
+        approval_status: 'approved',
+        approved_at: new Date().toISOString(),
+        approved_by: 'seed:lexpert',
+        primary_market_code: 'CA',
+        source: 'lexpert',
+        source_ref: f.ref,
+        seed_data: { badge: f.badge, ranking_page: src.url, profile_url: f.url },
+      }).select('id').single()
+      if (error) { console.warn(`  insert failed for ${f.name}: ${error.message}`); continue }
+
+      await db.from('provider_categories').insert({ provider_id: profile.id, category_id: cat.id, is_primary: true })
+      if (f.city) await db.from('provider_locations').insert({ provider_id: profile.id, region: f.province, city: f.city })
+      inserted++
+    }
+    console.log(`${src.category}: inserted ${inserted}, cross-linked ${crossLinked}`)
   }
-
-  const outDir = join(ROOT, 'scripts', 'seed', 'data')
-  mkdirSync(outDir, { recursive: true })
-  writeFileSync(join(outDir, 'lexpert.json'), JSON.stringify(firms, null, 2))
-  if (DRY) { console.log('Dry run — no DB writes.'); return }
-
-  const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
-  const { data: cat } = await db.from('service_categories').select('id').eq('slug', CATEGORY_SLUG).single()
-  if (!cat) throw new Error(`Category '${CATEGORY_SLUG}' not found`)
-
-  let inserted = 0, skipped = 0
-  for (const f of firms) {
-    const { data: existing } = await db.from('provider_profiles')
-      .select('id').eq('source', 'lexpert').eq('source_ref', f.ref).maybeSingle()
-    if (existing) { skipped++; continue }
-
-    const { data: profile, error } = await db.from('provider_profiles').insert({
-      user_id: null,
-      company_name: f.name,
-      slug: `${slugify(f.name)}-lx`,
-      description: `${f.name} is a Lexpert-ranked Canadian law firm in corporate finance and securities law.`,
-      website_url: f.website,
-      tier: 'free',
-      is_active: true,
-      approval_status: 'approved',
-      approved_at: new Date().toISOString(),
-      approved_by: 'seed:lexpert',
-      primary_market_code: 'CA',
-      source: 'lexpert',
-      source_ref: f.ref,
-      seed_data: { badge: f.badge, ranking_page: RANKING_URL, profile_url: f.url },
-    }).select('id').single()
-    if (error) { console.warn(`  insert failed for ${f.name}: ${error.message}`); continue }
-
-    await db.from('provider_categories').insert({ provider_id: profile.id, category_id: cat.id, is_primary: true })
-    if (f.city) await db.from('provider_locations').insert({ provider_id: profile.id, region: f.province, city: f.city })
-    inserted++
-  }
-  console.log(`Done. Inserted ${inserted}, skipped ${skipped}.`)
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })

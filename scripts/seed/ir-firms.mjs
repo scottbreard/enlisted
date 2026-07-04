@@ -183,11 +183,15 @@ async function scrape() {
 // ── 5. Load into Supabase ────────────────────────────────────
 async function load() {
   if (!existsSync(OUT)) throw new Error(`Run scrape first — ${OUT} missing`)
-  const firms = JSON.parse(readFileSync(OUT, 'utf8')).filter((f) => f.types.ir)
+  // ir-typed firms → ir-firms; pr-only firms → financial-pr
+  const all = JSON.parse(readFileSync(OUT, 'utf8'))
+  const firms = all.filter((f) => f.types.ir || f.types.pr)
+    .map((f) => ({ ...f, targetCategory: f.types.ir ? 'ir-firms' : 'financial-pr' }))
 
   const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
-  const { data: cat } = await db.from('service_categories').select('id').eq('slug', CATEGORY_SLUG).single()
-  if (!cat) throw new Error(`Category '${CATEGORY_SLUG}' not found`)
+  const { data: cats } = await db.from('service_categories').select('id, slug').in('slug', ['ir-firms', 'financial-pr'])
+  const catBySlug = new Map((cats ?? []).map((c) => [c.slug, c.id]))
+  if (!catBySlug.has('ir-firms') || !catBySlug.has('financial-pr')) throw new Error('Category missing')
 
   const slugify = (t) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
   let inserted = 0, skipped = 0
@@ -201,7 +205,9 @@ async function load() {
       user_id: null,
       company_name: f.name,
       slug: `${slugify(f.name)}-nf`,
-      description: `${f.name} provides investor relations and communications services to Canadian public companies.`,
+      description: f.targetCategory === 'ir-firms'
+        ? `${f.name} provides investor relations and communications services to Canadian public companies.`
+        : `${f.name} provides financial PR and communications services to public companies.`,
       website_url: f.domains[0] ? `https://${f.domains[0]}` : null,
       tier: 'free',
       is_active: true,
@@ -214,7 +220,7 @@ async function load() {
       seed_data: { client_count: f.client_count, issuers: f.issuers, emails: f.emails, types: f.types },
     }).select('id').single()
     if (error) { console.warn(`  insert failed for ${f.name}: ${error.message}`); continue }
-    await db.from('provider_categories').insert({ provider_id: profile.id, category_id: cat.id, is_primary: true })
+    await db.from('provider_categories').insert({ provider_id: profile.id, category_id: catBySlug.get(f.targetCategory), is_primary: true })
     inserted++
     console.log(`  + ${f.name} (${f.client_count} clients)`)
   }
