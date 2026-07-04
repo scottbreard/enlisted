@@ -1,0 +1,892 @@
+[
+ {
+  "ref": "davidson-company-llp",
+  "name": "Davidson & Company LLP",
+  "website": "https://www.davidson-co.com",
+  "country": "Canada",
+  "category": "audit-firms",
+  "note": "ALREADY SEEDED via cpab",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "346",
+    "businesstype": "Financial Company"
+   }
+  ]
+ },
+ {
+  "ref": "rxn-llc",
+  "name": "RXN, LLC",
+  "website": "https://www.therxngroup.com/",
+  "country": "United States",
+  "category": "broker-dealers",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "7922N",
+    "businesstype": "Broker"
+   }
+  ]
+ },
+ {
+  "ref": "templar-corporate",
+  "name": "Templar Corporate",
+  "website": "https://templar.au/",
+  "country": "Australia",
+  "category": "broker-dealers",
+  "note": "Australian corporate advisory — AU phase",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2613",
+    "businesstype": "Broker"
+   }
+  ]
+ },
+ {
+  "ref": "paisley-partners-navacord",
+  "name": "Paisley Partners / Navacord",
+  "website": "https://www.pdac.ca/members/insurance",
+  "country": "Canada",
+  "category": "corporate-insurance",
+  "note": "Runs the PDAC member insurance program",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "947",
+    "businesstype": "Financial Company"
+   }
+  ]
+ },
+ {
+  "ref": "amc-consultants",
+  "name": "AMC Consultants",
+  "website": "https://www.amcconsultants.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "124",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "apex-geoscience-ltd",
+  "name": "APEX Geoscience Ltd.",
+  "website": "https://www.apexgeoscience.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6204N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "arethuse-geology",
+  "name": "Arethuse Geology",
+  "website": "https://www.arethusegeology.com",
+  "country": "France",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "605",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "aurum-exploration-services",
+  "name": "Aurum Exploration Services",
+  "website": "https://www.aurumexploration.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "716",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "bba-inc",
+  "name": "BBA Inc.",
+  "website": "https://www.bbaconsultants.com/",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "724",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "beak-consultants-gmbh",
+  "name": "Beak Consultants GmbH",
+  "website": "https://www.beak.de",
+  "country": "Germany",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "915",
+    "businesstype": "Consulting Services"
+   },
+   {
+    "event": "mining-indaba-2026",
+    "stand": "1J12",
+    "businesstype": "Mining Services Provider"
+   }
+  ]
+ },
+ {
+  "ref": "bgc-engineering-inc",
+  "name": "BGC Engineering Inc.",
+  "website": "https://www.bgcengineering.ca",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6217N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "burgex-inc",
+  "name": "Burgex Inc.",
+  "website": "https://www.burgex.com",
+  "country": "United States",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6922N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "clark-exploration-consulting-inc",
+  "name": "Clark Exploration Consulting Inc.",
+  "website": "https://www.clarkexploration.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6501N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "dahrouge-geological-consulting-ltd",
+  "name": "Dahrouge Geological Consulting Ltd.",
+  "website": "https://www.dahrouge.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "949",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "dra-americas-inc",
+  "name": "DRA Americas Inc.",
+  "website": "https://www.draglobal.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "423",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "equity-exploration-consultants-ltd",
+  "name": "Equity Exploration Consultants Ltd.",
+  "website": "https://www.equityexploration.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "122",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "erm",
+  "name": "ERM",
+  "website": "https://www.erm.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "326",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "explore-geosolutions-inc",
+  "name": "Explore Geosolutions Inc.",
+  "website": "https://exploregeosolutions.com/",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "7312N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "fladgate-exploration-consulting-corporation",
+  "name": "Fladgate Exploration Consulting Corporation",
+  "website": "https://www.fladgateexploration.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "703",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "g-mining-services",
+  "name": "G Mining Services",
+  "website": "https://www.gmining.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "626",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "geovector",
+  "name": "Geovector",
+  "website": "https://www.geovector.ca/",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6823N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "independent-mining-consultants-inc",
+  "name": "Independent Mining Consultants, Inc.",
+  "website": "https://www.imctucson.com",
+  "country": "United States",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "719",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "kappes-cassiday-associates",
+  "name": "Kappes, Cassiday & Associates",
+  "website": "https://www.kcareno.com",
+  "country": "United States",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1131",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "knight-piesold-ltd",
+  "name": "Knight Piésold Ltd.",
+  "website": "https://www.knightpiesold.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1041",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "matrix-geotechnologies-ltd",
+  "name": "Matrix GeoTechnologies Ltd.",
+  "website": "https://www.matrixgt.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "314",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "mec-mining-group",
+  "name": "MEC Mining Group",
+  "website": "https://www.mecmining.com.au/",
+  "country": "Australia",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "7927N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "mercator-geological-services-limited",
+  "name": "Mercator Geological Services Limited",
+  "website": "https://www.mercatorgeo.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "440",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "nordmin-engineering-ltd",
+  "name": "Nordmin Engineering Ltd.",
+  "website": "https://www.nordmin.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1053",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "orix-geoscience-inc",
+  "name": "Orix Geoscience Inc.",
+  "website": "https://www.orixgeo.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "353",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "paterson-grant-watson-limited",
+  "name": "Paterson, Grant & Watson Limited",
+  "website": "https://www.pgw.ca",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "522",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "resourceful-geoscience-solutions",
+  "name": "Resourceful Geoscience Solutions",
+  "website": "https://www.resourcefulgeoscience.ca",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "908",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "respec-consulting-inc",
+  "name": "RESPEC Consulting Inc.",
+  "website": "https://www.respec.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6408N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "ronacher-mckenzie-geoscience",
+  "name": "Ronacher McKenzie Geoscience",
+  "website": "https://www.rmgeoscience.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1142",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "slr-consulting-canada-ltd",
+  "name": "SLR Consulting Canada Ltd.",
+  "website": "https://www.slrconsulting.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "316",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "srk-consulting",
+  "name": "SRK Consulting",
+  "website": "https://www.srk.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "113",
+    "businesstype": "Consulting Services"
+   },
+   {
+    "event": "mining-indaba-2026",
+    "stand": "1B18",
+    "businesstype": "Professional Services"
+   }
+  ]
+ },
+ {
+  "ref": "stantec",
+  "name": "Stantec",
+  "website": "https://www.stantec.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "609",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "steyn-reddy-associates-sra",
+  "name": "Steyn Reddy Associates (SRA)",
+  "website": "https://www.steynreddy.com",
+  "country": "Mauritius",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1140",
+    "businesstype": "Consulting Services"
+   },
+   {
+    "event": "mining-indaba-2026",
+    "stand": "1P21",
+    "businesstype": "Professional Services"
+   }
+  ]
+ },
+ {
+  "ref": "terrane-geoscience-inc",
+  "name": "Terrane Geoscience Inc.",
+  "website": "https://www.terranegeoscience.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1136",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "tetra-tech",
+  "name": "Tetra Tech",
+  "website": "https://www.tetratech.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "523",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "vbkom-mining-consultants-canada-ltd",
+  "name": "VBKOM Mining Consultants Canada Ltd.",
+  "website": "https://vbkom.ca/",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6311N",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "vektore-exploration-consulting-corporation",
+  "name": "Vektore Exploration Consulting Corporation",
+  "website": "https://www.vektore.com",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "452",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "watts-griffis-and-mcouat-limited",
+  "name": "Watts, Griffis and McOuat Limited",
+  "website": "https://www.wgm.ca",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "901",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "wsp",
+  "name": "WSP",
+  "website": "https://www.wsp.com/mining",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "340",
+    "businesstype": "Consulting Services"
+   }
+  ]
+ },
+ {
+  "ref": "ocean-wall",
+  "name": "Ocean Wall Ltd",
+  "website": "https://oceanwall.com",
+  "country": "United Kingdom",
+  "category": "investment-banks",
+  "note": "London natural-resources capital markets boutique — UK phase",
+  "events": [
+   {
+    "event": "mining-indaba-2026",
+    "stand": "1J24",
+    "businesstype": "Professional Services"
+   }
+  ]
+ },
+ {
+  "ref": "s-p-global-market-intelligence",
+  "name": "S&P Global Market Intelligence",
+  "website": "https://www.spglobal.com/market-intelligence/en",
+  "country": "United States",
+  "category": "market-intelligence",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "115",
+    "businesstype": "Financial Company"
+   },
+   {
+    "event": "mining-indaba-2026",
+    "stand": "1C19",
+    "businesstype": "Professional Services"
+   }
+  ]
+ },
+ {
+  "ref": "independent-trading-group-itg",
+  "name": "Independent Trading Group (ITG)",
+  "website": "https://www.itg84.com",
+  "country": "Canada",
+  "category": "market-makers",
+  "note": "Canada's largest independent market maker",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2550",
+    "businesstype": "Broker"
+   }
+  ]
+ },
+ {
+  "ref": "access-newswire",
+  "name": "Access Newswire",
+  "website": "https://www.issuerdirect.com",
+  "country": "United States",
+  "category": "news-wire",
+  "note": "ALREADY SEEDED via manual (ACCESS Newswire)",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "7308N",
+    "businesstype": "Media"
+   }
+  ]
+ },
+ {
+  "ref": "miningcomm-inc",
+  "name": "MiningComm Inc.",
+  "website": "https://www.miningcomm.com",
+  "country": "Canada",
+  "category": "pr-corporate-comms",
+  "note": "Mining-focused communications",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "1015",
+    "businesstype": "Business Development"
+   }
+  ]
+ },
+ {
+  "ref": "elemental-royalty-corporation",
+  "name": "Elemental Royalty Corporation",
+  "website": "https://elementalroyalty.com/",
+  "country": "Canada",
+  "category": "royalty-streaming",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2430",
+    "businesstype": "Royalty/Streaming Company"
+   }
+  ]
+ },
+ {
+  "ref": "nations-royalty",
+  "name": "Nations Royalty",
+  "website": "https://www.nationsroyalty.ca",
+  "country": "Canada",
+  "category": "royalty-streaming",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "3130",
+    "businesstype": "Royalty/Streaming Company"
+   }
+  ]
+ },
+ {
+  "ref": "orogen-royalties-inc",
+  "name": "Orogen Royalties Inc.",
+  "website": "https://www.orogenroyalties.com",
+  "country": "Canada",
+  "category": "royalty-streaming",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "3040",
+    "businesstype": "Royalty/Streaming Company"
+   }
+  ]
+ },
+ {
+  "ref": "prospex-group",
+  "name": "ProspEx Group",
+  "website": "https://prospexgroup.com.au/",
+  "country": "Australia",
+  "category": "royalty-streaming",
+  "note": "Australia — AU phase",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2408",
+    "businesstype": "Royalty/Streaming Company"
+   }
+  ]
+ },
+ {
+  "ref": "licata-law-professional-corporation",
+  "name": "Licata Law Professional Corporation",
+  "website": "https://Licatalawoffice.ca",
+  "country": "Canada",
+  "category": "securities-law",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6728N",
+    "businesstype": "Law Firm"
+   }
+  ]
+ },
+ {
+  "ref": "white-case-llp",
+  "name": "White & Case LLP",
+  "website": "https://www.whitecase.com",
+  "country": "United States",
+  "category": "securities-law",
+  "note": null,
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "6306N",
+    "businesstype": "Law Firm"
+   }
+  ]
+ },
+ {
+  "ref": "canadian-securities-exchange",
+  "name": "Canadian Securities Exchange",
+  "website": "https://www.thecse.com",
+  "country": "Canada",
+  "category": null,
+  "note": "Exchange — partnership prospect, not a directory listing",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2542",
+    "businesstype": "Stock Exchanges"
+   }
+  ]
+ },
+ {
+  "ref": "otc-markets-group",
+  "name": "OTC Markets Group",
+  "website": "https://www.otcmarkets.com",
+  "country": "United States",
+  "category": null,
+  "note": "Exchange — partnership prospect, not a directory listing",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2546",
+    "businesstype": "Stock Exchanges"
+   }
+  ]
+ },
+ {
+  "ref": "the-northern-miner-group",
+  "name": "The Northern Miner Group",
+  "website": "https://www.northernminer.com",
+  "country": "Canada",
+  "category": null,
+  "note": "Mining trade media — advertising channel prospect",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "808",
+    "businesstype": "Media"
+   }
+  ]
+ },
+ {
+  "ref": "tmx-group",
+  "name": "TMX Group",
+  "website": "https://www.tmx.com",
+  "country": "Canada",
+  "category": null,
+  "note": "Exchange — partnership prospect, not a directory listing",
+  "events": [
+   {
+    "event": "pdac-2026",
+    "booth": "2917",
+    "businesstype": "Stock Exchanges"
+   }
+  ]
+ }
+]
