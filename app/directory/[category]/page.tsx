@@ -183,9 +183,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                               </Link>
                             )}
                           </h3>
-                          <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: tier.bg, color: tier.color }}>
-                            {tier.label}
-                          </span>
+                          {!isFree && (
+                            <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: tier.bg, color: tier.color }}>
+                              {tier.label}
+                            </span>
+                          )}
                           {provider.is_verified && (
                             <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
                               ✓ Verified
