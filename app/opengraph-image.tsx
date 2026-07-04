@@ -8,6 +8,14 @@ export const contentType = 'image/png'
 export default function Image() {
   const market = getMarket()
 
+  // Satori (next/og) lays out flex items, not inline text, so the headline is
+  // split into words to let it wrap while the middle phrase stays gold.
+  const headlineWords = [
+    ...market.copy.heroHeadlinePre.split(' ').map(word => ({ word, gold: false })),
+    ...market.copy.heroHeadlineGold.split(' ').map(word => ({ word, gold: true })),
+    ...market.copy.heroHeadlinePost.split(' ').map(word => ({ word, gold: false })),
+  ]
+
   return new ImageResponse(
     (
       <div
@@ -42,14 +50,16 @@ export default function Image() {
         </div>
 
         {/* Headline */}
-        <div style={{ color: 'white', fontSize: 60, fontWeight: 900, lineHeight: 1.1, marginBottom: 24, maxWidth: 820 }}>
-          {market.copy.heroHeadlinePre}{' '}
-          <span style={{ color: '#B8860B' }}>{market.copy.heroHeadlineGold}</span>{' '}
-          {market.copy.heroHeadlinePost}
+        <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: 58, fontWeight: 900, lineHeight: 1.25, marginBottom: 24, maxWidth: 1000 }}>
+          {headlineWords.map(({ word, gold }, i) => (
+            <span key={i} style={{ color: gold ? '#B8860B' : 'white', marginRight: 15 }}>
+              {word}
+            </span>
+          ))}
         </div>
 
         {/* Subtext */}
-        <div style={{ color: 'rgba(255,255,255,0.60)', fontSize: 26, maxWidth: 700, lineHeight: 1.5, marginBottom: 48 }}>
+        <div style={{ color: 'rgba(255,255,255,0.60)', fontSize: 26, maxWidth: 800, lineHeight: 1.5, marginBottom: 48 }}>
           {market.seo.ogDescription}
         </div>
 
