@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -35,10 +35,15 @@ const fiscalYearEnds = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December']
 const titles = ['CEO', 'CFO', 'COO', 'IRO', 'Corporate Secretary', 'President', 'Executive Chairman', 'Other']
 
-export default function ExecutiveRegisterPage() {
+function ExecutiveRegisterContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  // Return path after signup (internal paths only — no open redirects)
+  const rawNext = searchParams.get('next') ?? ''
+  const nextUrl = rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/dashboard'
   const supabase = createClient()
   const [serverError, setServerError] = useState('')
+  const [confirmSent, setConfirmSent] = useState(false)
   const [foundingCount, setFoundingCount] = useState<number | null>(null)
   const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -102,44 +107,38 @@ export default function ExecutiveRegisterPage() {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
-      options: { data: { role: 'executive' } },
+      options: {
+        data: { role: 'executive' },
+        emailRedirectTo: `${window.location.origin}${nextUrl}`,
+      },
     })
     if (authError || !authData.user) {
       setServerError(authError?.message ?? 'Registration failed. Try again.')
       return
     }
 
-    // 2. Check founding member count (per market — each market has its own 500 spots)
-    const { count } = await supabase
-      .from('executive_profiles')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_founding_member', true)
-      .eq('market_code', getMarketCode())
-    const isFoundingMember = (count ?? 0) < 500
-    const foundingNumber = isFoundingMember ? (count ?? 0) + 1 : null
-
-    // 3. Generate referral code
-    const referralCode = Math.random().toString(36).substring(2, 10).toUpperCase()
-
-    // 4. Create executive profile
-    const { error: profileError } = await supabase.from('executive_profiles').insert({
-      user_id: authData.user.id,
-      first_name: data.first_name,
-      last_name: data.last_name,
-      title: data.title,
-      company_name: data.company_name,
-      company_ticker: data.company_ticker || null,
-      sector: data.sector,
-      is_founding_member: isFoundingMember,
-      founding_member_number: foundingNumber,
-      referral_code: referralCode,
-      market_code: getMarketCode(),
+    // 2. Create profile server-side (works even before email confirmation);
+    //    founding status is assigned there atomically
+    const res = await fetch('/api/register/executive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: authData.user.id,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        title: data.title,
+        company_name: data.company_name,
+        company_ticker: data.company_ticker,
+        sector: data.sector,
+        market_code: getMarketCode(),
+      }),
     })
-
-    if (profileError) {
-      setServerError('Account created but profile setup failed. Please contact support.')
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      setServerError(err.error ?? 'Account created but profile setup failed. Please contact support.')
       return
     }
+    const { founding_number: foundingNumber } = await res.json()
 
     // Send welcome email (fire and forget — never block redirect)
     fetch('/api/email/welcome', {
@@ -153,7 +152,12 @@ export default function ExecutiveRegisterPage() {
       }),
     }).catch(() => {})
 
-    router.push('/dashboard')
+    // Email confirmation pending — the confirm link continues to the return path
+    if (!authData.session) {
+      setConfirmSent(true)
+      return
+    }
+    router.push(nextUrl)
   }
 
   return (
@@ -218,6 +222,15 @@ export default function ExecutiveRegisterPage() {
               </div>
             )}
 
+            {confirmSent ? (
+              <div className="text-center py-10">
+                <p className="text-3xl mb-3">📬</p>
+                <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--color-navy)' }}>Check your email</h2>
+                <p className="text-sm" style={{ color: 'var(--color-gray)' }}>
+                  We sent you a confirmation link. Click it to verify your email and access your account.
+                </p>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -357,6 +370,7 @@ export default function ExecutiveRegisterPage() {
                 By registering you agree to our Terms of Service and Privacy Policy.
               </p>
             </form>
+            )}
           </div>
 
           <p className="text-center text-sm mt-4" style={{ color: 'var(--color-gray)' }}>
@@ -372,5 +386,17 @@ export default function ExecutiveRegisterPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ExecutiveRegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--color-blue-light)' }}>
+        <div className="w-6 h-6 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: 'var(--color-navy)' }} />
+      </div>
+    }>
+      <ExecutiveRegisterContent />
+    </Suspense>
   )
 }
