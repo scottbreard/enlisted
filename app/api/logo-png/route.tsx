@@ -9,29 +9,15 @@ const NAVY = '#1B3A6B'
 const GOLD = '#B8860B'
 const GOLD_ON_NAVY = '#D9A421'
 
-// Checklist badge as inline SVG — satori supports basic SVG
-function BadgeSVG({ size, onNavy }: { size: number; onNavy: boolean }) {
-  const bg = onNavy ? '#ffffff' : NAVY
-  const accent = onNavy ? GOLD : GOLD_ON_NAVY
-  const dim = onNavy ? NAVY : GOLD_ON_NAVY
-  const dimOpacity = onNavy ? 0.45 : 0.55
+// Seal monogram as inline SVG rings — the "E" is layered on top with satori text
+function SealRings({ size, color }: { size: number; color: string }) {
   return (
     // @ts-ignore — satori accepts svg elements
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* @ts-ignore */}
-      <rect width="40" height="40" rx="9" fill={bg} />
+      <circle cx="20" cy="20" r="18.5" stroke={color} strokeWidth="1.8" fill="none" />
       {/* @ts-ignore */}
-      <path d="M8 12.5l3 3 5-5.5" stroke={accent} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-      {/* @ts-ignore */}
-      <rect x="20" y="10.5" width="12" height="3.4" rx="1.7" fill={accent} />
-      {/* @ts-ignore */}
-      <rect x="8" y="20.5" width="7" height="3.4" rx="1.7" fill={dim} opacity={dimOpacity} />
-      {/* @ts-ignore */}
-      <rect x="20" y="20.5" width="12" height="3.4" rx="1.7" fill={dim} opacity={dimOpacity} />
-      {/* @ts-ignore */}
-      <rect x="8" y="30.5" width="7" height="3.4" rx="1.7" fill={dim} opacity={dimOpacity} />
-      {/* @ts-ignore */}
-      <rect x="20" y="30.5" width="12" height="3.4" rx="1.7" fill={dim} opacity={dimOpacity} />
+      <circle cx="20" cy="20" r="14.8" stroke={color} strokeWidth="0.7" opacity="0.75" fill="none" />
     </svg>
   )
 }
@@ -40,39 +26,38 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const variant = searchParams.get('v') ?? 'white' // white | navy | transparent
 
-  const fontPath = path.join('/System/Library/Fonts/Supplemental', 'Arial Black.ttf')
-  const fontData = readFileSync(fontPath)
+  const fontData = readFileSync(path.join(process.cwd(), 'assets/fonts/PlayfairDisplay-Bold.ttf'))
 
   const onNavy = variant === 'navy'
   const bg = onNavy ? NAVY : variant === 'transparent' ? 'transparent' : '#ffffff'
   const base = onNavy ? '#ffffff' : NAVY
-  const listed = onNavy ? GOLD_ON_NAVY : GOLD
+  const accent = onNavy ? GOLD_ON_NAVY : GOLD
+  const sealSize = 96
 
   return new ImageResponse(
     <div style={{
       display: 'flex',
       alignItems: 'center',
       background: bg,
-      padding: '24px 32px',
-      gap: 24,
+      padding: '28px 36px',
+      gap: 28,
+      fontFamily: 'Playfair',
     }}>
-      <BadgeSVG size={68} onNavy={onNavy} />
-      <div style={{
-        display: 'flex',
-        fontSize: 68,
-        fontFamily: 'ArialBlack',
-        letterSpacing: '-1.5px',
-        lineHeight: 1,
-      }}>
-        <span style={{ color: base }}>En</span>
-        <span style={{ color: listed }}>listed</span>
-        <span style={{ color: base, opacity: 0.45 }}>.ca</span>
+      <div style={{ display: 'flex', width: sealSize, height: sealSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <div style={{ display: 'flex', position: 'absolute', top: 0, left: 0 }}>
+          <SealRings size={sealSize} color={accent} />
+        </div>
+        <div style={{ display: 'flex', fontSize: 50, color: base, marginTop: -4 }}>E</div>
+      </div>
+      <div style={{ display: 'flex', fontSize: 62, letterSpacing: '9px', lineHeight: 1 }}>
+        <span style={{ color: base }}>ENLISTED</span>
+        <span style={{ color: accent }}>.CA</span>
       </div>
     </div>,
     {
-      width: 620,
-      height: 116,
-      fonts: [{ name: 'ArialBlack', data: fontData, weight: 900 }],
+      width: 860,
+      height: 152,
+      fonts: [{ name: 'Playfair', data: fontData, weight: 700 }],
     }
   )
 }

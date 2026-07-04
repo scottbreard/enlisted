@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og'
+import { readFileSync } from 'fs'
+import path from 'path'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 export const size = { width: 64, height: 64 }
 export const contentType = 'image/png'
 
@@ -8,20 +10,31 @@ const NAVY = '#1B3A6B'
 const GOLD = '#D9A421'
 
 export default function Icon() {
+  const fontData = readFileSync(path.join(process.cwd(), 'assets/fonts/PlayfairDisplay-Bold.ttf'))
+
   return new ImageResponse(
     (
-      <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-        <svg width="64" height="64" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="9" fill={NAVY} />
-          <path d="M8 12.5l3 3 5-5.5" stroke={GOLD} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
-          <rect x="20" y="10.5" width="12" height="3.6" rx="1.8" fill={GOLD} />
-          <rect x="8" y="20.5" width="7" height="3.6" rx="1.8" fill={GOLD} opacity="0.55" />
-          <rect x="20" y="20.5" width="12" height="3.6" rx="1.8" fill={GOLD} opacity="0.55" />
-          <rect x="8" y="30.5" width="7" height="3.6" rx="1.8" fill={GOLD} opacity="0.55" />
-          <rect x="20" y="30.5" width="12" height="3.6" rx="1.8" fill={GOLD} opacity="0.55" />
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '100%',
+          background: NAVY,
+          borderRadius: 14,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <svg width="64" height="64" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', top: 0, left: 0 }}>
+          <circle cx="20" cy="20" r="13.5" stroke={GOLD} strokeWidth="2" fill="none" />
+          <circle cx="20" cy="20" r="10.8" stroke={GOLD} strokeWidth="0.7" opacity="0.75" fill="none" />
         </svg>
+        <div style={{ display: 'flex', fontFamily: 'Playfair', fontSize: 27, color: GOLD, marginTop: -2 }}>E</div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: 'Playfair', data: fontData, weight: 700 }],
+    }
   )
 }

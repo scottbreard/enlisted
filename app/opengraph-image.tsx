@@ -32,20 +32,17 @@ export default function Image() {
         }}
       >
         {/* Logo row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
-          <svg width="52" height="52" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="40" height="40" rx="9" fill="#ffffff" />
-            <path d="M8 12.5l3 3 5-5.5" stroke="#B8860B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <rect x="20" y="10.5" width="12" height="3.4" rx="1.7" fill="#B8860B" />
-            <rect x="8" y="20.5" width="7" height="3.4" rx="1.7" fill="#1B3A6B" opacity="0.45" />
-            <rect x="20" y="20.5" width="12" height="3.4" rx="1.7" fill="#1B3A6B" opacity="0.45" />
-            <rect x="8" y="30.5" width="7" height="3.4" rx="1.7" fill="#1B3A6B" opacity="0.45" />
-            <rect x="20" y="30.5" width="12" height="3.4" rx="1.7" fill="#1B3A6B" opacity="0.45" />
-          </svg>
-          <div style={{ display: 'flex', fontSize: 38, fontWeight: 900 }}>
-            <span style={{ color: '#ffffff' }}>En</span>
-            <span style={{ color: '#D9A421' }}>listed</span>
-            <span style={{ color: '#ffffff', opacity: 0.5 }}>{market.seo.titleSuffix.replace('Enlisted', '')}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 40 }}>
+          <div style={{ display: 'flex', width: 56, height: 56, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <svg width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', top: 0, left: 0 }}>
+              <circle cx="20" cy="20" r="18.5" stroke="#D9A421" strokeWidth="1.8" fill="none" />
+              <circle cx="20" cy="20" r="14.8" stroke="#D9A421" strokeWidth="0.7" opacity="0.75" fill="none" />
+            </svg>
+            <div style={{ display: 'flex', fontSize: 30, fontWeight: 700, color: '#ffffff' }}>E</div>
+          </div>
+          <div style={{ display: 'flex', fontSize: 34, fontWeight: 700, letterSpacing: 5 }}>
+            <span style={{ color: '#ffffff' }}>ENLISTED</span>
+            <span style={{ color: '#D9A421' }}>{market.seo.titleSuffix.replace('Enlisted', '').toUpperCase()}</span>
           </div>
         </div>
 

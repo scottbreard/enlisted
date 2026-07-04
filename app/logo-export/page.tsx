@@ -32,6 +32,13 @@ export default function LogoExport() {
         <EnlistedBadge size={32} variant="dark" />
         <EnlistedBadge size={16} variant="dark" />
       </div>
+      <div style={{ height: 1, background: '#ccc' }} />
+      <div id="badge-tile" style={{ background: '#ffffff', display: 'inline-flex', gap: 24, alignItems: 'center', padding: '24px 32px' }}>
+        <EnlistedBadge size={128} tile />
+        <EnlistedBadge size={64} tile />
+        <EnlistedBadge size={32} tile />
+        <EnlistedBadge size={16} tile />
+      </div>
     </div>
   )
 }
