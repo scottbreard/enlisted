@@ -1,0 +1,272 @@
+[
+ {
+  "ref": "mineit-consulting",
+  "name": "Mineit Consulting Inc.",
+  "website": "https://mineit.ca",
+  "country": "Canada",
+  "category": "geological-consultants",
+  "note": "NI 43-101 resource estimates, PEA/PFS/feasibility studies",
+  "events": [{"event": "cse-partner-services", "section": "Business Intelligence"}]
+ },
+ {
+  "ref": "fundamental-research-corp",
+  "name": "Fundamental Research Corp.",
+  "website": "https://researchfrc.com",
+  "country": "Canada",
+  "category": "equity-research",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Research"}]
+ },
+ {
+  "ref": "integral-transfer-agency",
+  "name": "Integral Transfer Agency Inc.",
+  "website": "https://integraltransfer.com",
+  "country": "Canada",
+  "category": "transfer-agents",
+  "note": "Gap in the manual transfer-agent seed",
+  "events": [{"event": "cse-partner-services", "section": "Trust and Transfer"}]
+ },
+ {
+  "ref": "greenhill-equity-solutions",
+  "name": "Greenhill Equity Solutions Ltd.",
+  "website": null,
+  "country": "Canada",
+  "category": "transfer-agents",
+  "note": "Share administration and transfers for SMBs",
+  "events": [{"event": "cse-partner-services", "section": "Trust and Transfer"}]
+ },
+ {
+  "ref": "abn-newswire",
+  "name": "ABN Newswire",
+  "website": "https://www.abnnewswire.com",
+  "country": "Australia",
+  "category": "news-wire",
+  "note": "Also relevant for AU phase",
+  "events": [{"event": "cse-partner-services", "section": "News Dissemination"}]
+ },
+ {
+  "ref": "wiklow-corporate-services",
+  "name": "Wiklow Corporate Services Inc.",
+  "website": null,
+  "country": "Canada",
+  "category": "corporate-secretaries",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Governance and Compliance"}]
+ },
+ {
+  "ref": "take-it-public-services",
+  "name": "Take It Public Services Inc.",
+  "website": "https://takeitpublicservices.com",
+  "country": "Canada",
+  "category": "regulatory-compliance",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Governance and Compliance"}]
+ },
+ {
+  "ref": "purves-redmond",
+  "name": "Purves Redmond Limited",
+  "website": "https://www.purvesredmond.com",
+  "country": "Canada",
+  "category": "corporate-insurance",
+  "note": "Insurance for mining exploration companies",
+  "events": [{"event": "cse-partner-services", "section": "Insurance"}]
+ },
+ {
+  "ref": "people-corporation",
+  "name": "People Corporation",
+  "website": "https://www.peoplecorporation.com",
+  "country": "Canada",
+  "category": "corporate-insurance",
+  "note": "Group benefits and retirement — weaker fit than D&O",
+  "events": [{"event": "cse-partner-services", "section": "Insurance"}]
+ },
+ {
+  "ref": "meadowbank-strategic-partners",
+  "name": "Meadowbank Strategic Partners Inc.",
+  "website": null,
+  "country": "Canada",
+  "category": "boutique-ir",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Investor Relations"}]
+ },
+ {
+  "ref": "torrey-hills-capital",
+  "name": "Torrey Hills Capital",
+  "website": "https://www.torreyhillscapital.com",
+  "country": "United States",
+  "category": "boutique-ir",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Investor Relations"}]
+ },
+ {
+  "ref": "jampact-business-solutions",
+  "name": "Jampact Business Solutions Inc.",
+  "website": null,
+  "country": "Canada",
+  "category": "boutique-ir",
+  "note": "Freelance IR writing and materials",
+  "events": [{"event": "cse-partner-services", "section": "Investor Relations"}]
+ },
+ {
+  "ref": "quotemedia",
+  "name": "QuoteMedia Inc.",
+  "website": "https://www.quotemedia.com",
+  "country": "United States",
+  "category": "ir-website",
+  "note": "IR web content and market data solutions",
+  "events": [{"event": "cse-partner-services", "section": "Investor Relations"}]
+ },
+ {
+  "ref": "outlier-marketing",
+  "name": "Outlier Marketing Inc.",
+  "website": "https://outliermarketing.ca",
+  "country": "Canada",
+  "category": "ir-website",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "market-one-media",
+  "name": "Market One Media Group",
+  "website": "https://marketone.ca",
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "global-one-media",
+  "name": "Global One Media",
+  "website": "https://globalonemedia.com",
+  "country": null,
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "rbl-communications",
+  "name": "RBL Communications Inc.",
+  "website": "https://rblcommunications.com",
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "sparx-publishing-group",
+  "name": "Sparx Publishing Group",
+  "website": "https://sparxpg.com",
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "stanford-turner-marketing",
+  "name": "Stanford & Turner Marketing Group",
+  "website": null,
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "stock-marketing",
+  "name": "Stock Marketing Inc.",
+  "website": null,
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": "Online marketing and IR apps",
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "tdm-financial",
+  "name": "TDM Financial",
+  "website": "https://tdmfinancial.com",
+  "country": "United States",
+  "category": "digital-marketing",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "investing-news-network",
+  "name": "Investing News Network",
+  "website": "https://investingnews.com",
+  "country": "Canada",
+  "category": "digital-marketing",
+  "note": "Display ads and investor content",
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "proactive-investors",
+  "name": "Proactive Investors",
+  "website": "https://www.proactiveinvestors.com",
+  "country": "United Kingdom",
+  "category": "financial-pr",
+  "note": "Paid news coverage for small-caps — also UK/AU phases",
+  "events": [{"event": "cse-partner-services", "section": "Investor Relations"}]
+ },
+ {
+  "ref": "tetra-trust",
+  "name": "Tetra Trust",
+  "website": "https://tetratrust.com",
+  "country": "Canada",
+  "category": "crypto-blockchain",
+  "note": "Digital asset custodian (Tetra Digital Group)",
+  "events": [{"event": "cse-partner-services", "section": "Trust and Transfer"}]
+ },
+ {
+  "ref": "nerds-on-site",
+  "name": "Nerds On Site",
+  "website": "https://www.nerdsonsite.com",
+  "country": "Canada",
+  "category": "cybersecurity",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Consulting"}]
+ },
+ {
+  "ref": "plexus-solutions",
+  "name": "Plexus Solutions Inc.",
+  "website": null,
+  "country": "Canada",
+  "category": "cybersecurity",
+  "note": "IT support and technical assistance",
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ },
+ {
+  "ref": "strategic-directions",
+  "name": "Strategic Directions",
+  "website": null,
+  "country": "Canada",
+  "category": "mgmt-consulting",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Consulting"}]
+ },
+ {
+  "ref": "touchstone-international",
+  "name": "Touchstone International Business Services",
+  "website": null,
+  "country": "Canada",
+  "category": "accounting-non-audit",
+  "note": null,
+  "events": [{"event": "cse-partner-services", "section": "Accounting"}]
+ },
+ {
+  "ref": "phase-2-consulting",
+  "name": "Phase 2 Consulting",
+  "website": null,
+  "country": "Canada",
+  "category": "mgmt-consulting",
+  "note": "Fractional technology support — CSE sponsor",
+  "events": [{"event": "cse-partner-services", "section": "Consulting"}]
+ },
+ {
+  "ref": "dealmaker",
+  "name": "DealMaker",
+  "website": "https://www.dealmaker.tech",
+  "country": "Canada",
+  "category": "retail-ir",
+  "note": "Equity crowdfunding / retail capital-raising platform — closest available category",
+  "events": [{"event": "cse-partner-services", "section": "Media and Communications"}]
+ }
+]
