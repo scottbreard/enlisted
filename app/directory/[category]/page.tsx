@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { ChevronRight, Globe, Mail, Phone, Star } from 'lucide-react'
+import { ChevronRight, Globe, Mail, Phone, Star, Lock } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
 
@@ -47,6 +47,8 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isLoggedIn = !!user
   const marketCode = getMarketCode()
 
   const { data: cat } = await supabase
@@ -198,7 +200,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                           <p className="text-sm mb-3 line-clamp-2" style={{ color: 'var(--color-gray)' }}>{provider.description}</p>
                         )}
 
-                        {!isFree && (
+                        {!isFree && isLoggedIn && (
                           <div className="flex items-center gap-4 flex-wrap">
                             {provider.website_url && (
                               <a href={provider.website_url} target="_blank" rel="noopener noreferrer"
@@ -218,6 +220,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                               </span>
                             )}
                           </div>
+                        )}
+                        {!isFree && !isLoggedIn && (
+                          <Link href={`/register/executive?next=/directory/${category}`}
+                            className="inline-flex items-center gap-1 text-xs font-semibold hover:underline" style={{ color: 'var(--color-blue)' }}>
+                            <Lock className="w-3 h-3" /> Register free to view contact details
+                          </Link>
                         )}
 
                         {isFree && (
