@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 const FROM = 'Enlisted.ca <hello@enlisted.ca>'
 
@@ -13,7 +13,7 @@ export async function sendProviderWelcomeEmail({
   companyName: string
   tier: string
 }) {
-  if (!process.env.RESEND_API_KEY) return
+  if (!resend) return
 
   const tierLabel = tier === 'listed' ? 'Listed (Free)' : tier === 'connected' ? 'Connected' : 'Featured'
 
@@ -97,7 +97,7 @@ export async function sendProviderApprovedEmail({
   companyName: string
   slug: string
 }) {
-  if (!process.env.RESEND_API_KEY) return
+  if (!resend) return
 
   await resend.emails.send({
     from: FROM,
@@ -173,7 +173,7 @@ export async function sendProviderRejectedEmail({
   companyName: string
   reason: string
 }) {
-  if (!process.env.RESEND_API_KEY) return
+  if (!resend) return
 
   await resend.emails.send({
     from: FROM,
