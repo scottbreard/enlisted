@@ -32,8 +32,8 @@ export async function sendProviderWelcomeEmail({
 
         <!-- Header -->
         <tr><td style="background:#1B3A6B;padding:32px 40px;">
-          <p style="margin:0;font-size:24px;font-weight:900;color:#D52B1E;">
-            Enlisted<span style="color:#D52B1E;">.ca</span>
+          <p style="margin:0;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;">
+            En<span style="color:#D9A421;">listed</span><span style="color:rgba(255,255,255,0.45);">.ca</span>
           </p>
           <p style="margin:8px 0 0;color:rgba(255,255,255,0.7);font-size:14px;">
             The marketplace for Canadian public company services
@@ -92,12 +92,20 @@ export async function sendProviderApprovedEmail({
   to,
   companyName,
   slug,
+  categorySlug,
 }: {
   to: string
   companyName: string
   slug: string
+  categorySlug: string | null
 }) {
   if (!resend) return
+
+  // Listing pages live at /directory/[category]/[slug]; without a category
+  // the best we can send is the directory root
+  const listingUrl = categorySlug
+    ? `https://enlisted.ca/directory/${categorySlug}/${slug}`
+    : 'https://enlisted.ca/directory'
 
   await resend.emails.send({
     from: FROM,
@@ -113,7 +121,7 @@ export async function sendProviderApprovedEmail({
       <table width="600" cellpadding="0" cellspacing="0" style="background:white;border-radius:16px;overflow:hidden;border:1px solid #dddddd;">
 
         <tr><td style="background:#1B3A6B;padding:32px 40px;">
-          <p style="margin:0;font-size:24px;font-weight:900;color:#D52B1E;">Enlisted<span style="color:#D52B1E;">.ca</span></p>
+          <p style="margin:0;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;">En<span style="color:#D9A421;">listed</span><span style="color:rgba(255,255,255,0.45);">.ca</span></p>
         </td></tr>
 
         <tr><td style="padding:40px;">
@@ -129,7 +137,7 @@ export async function sendProviderApprovedEmail({
           </p>
 
           <div style="display:flex;gap:12px;margin-bottom:24px;">
-            <a href="https://enlisted.ca/directory/${slug}"
+            <a href="${listingUrl}"
               style="display:inline-block;background:#1B3A6B;color:white;text-decoration:none;padding:14px 24px;border-radius:12px;font-weight:700;font-size:14px;margin-right:12px;">
               View Your Listing →
             </a>
@@ -189,7 +197,7 @@ export async function sendProviderRejectedEmail({
       <table width="600" cellpadding="0" cellspacing="0" style="background:white;border-radius:16px;overflow:hidden;border:1px solid #dddddd;">
 
         <tr><td style="background:#1B3A6B;padding:32px 40px;">
-          <p style="margin:0;font-size:24px;font-weight:900;color:#D52B1E;">Enlisted<span style="color:#D52B1E;">.ca</span></p>
+          <p style="margin:0;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;">En<span style="color:#D9A421;">listed</span><span style="color:rgba(255,255,255,0.45);">.ca</span></p>
         </td></tr>
 
         <tr><td style="padding:40px;">

@@ -40,10 +40,19 @@ export async function PATCH(
       .single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     if (provider?.email) {
+      // Listing URLs are /directory/[category]/[slug] — resolve the primary category
+      const { data: primaryCat } = await supabase
+        .from('provider_categories')
+        .select('service_categories(slug)')
+        .eq('provider_id', id)
+        .order('is_primary', { ascending: false })
+        .limit(1)
+        .maybeSingle()
       sendProviderApprovedEmail({
         to: provider.email,
         companyName: provider.company_name,
         slug: provider.slug,
+        categorySlug: (primaryCat as any)?.service_categories?.slug ?? null,
       }).catch(() => {})
     }
     return NextResponse.json({ ok: true })
