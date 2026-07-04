@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { MAX_FEATURED_PER_CATEGORY } from '@/lib/stripe'
 import { Check, Zap, Star, ArrowRight, ExternalLink, AlertCircle, CheckCircle } from 'lucide-react'
 
 const TIERS = [
@@ -84,7 +85,7 @@ function BillingContent() {
         .single()
       setProfile(p)
 
-      // Featured availability in this provider's primary category (3 max)
+      // Featured availability in this provider's primary category
       if (p) {
         const { data: primaryCat } = await supabase
           .from('provider_categories')
@@ -235,7 +236,7 @@ function BillingContent() {
           const isDowngrade = tierIndex < currentTierIndex
           const monthlyEquiv = billingInterval === 'year' ? Math.round(tier.annual / 12) : tier.monthly
           const isFeatured = tier.key === 'featured'
-          const featuredFull = isFeatured && (featuredSpots?.taken ?? 0) >= 3 && currentTier !== 'featured'
+          const featuredFull = isFeatured && (featuredSpots?.taken ?? 0) >= MAX_FEATURED_PER_CATEGORY && currentTier !== 'featured'
 
           return (
             <div key={tier.key}
@@ -284,8 +285,8 @@ function BillingContent() {
                 {isFeatured && featuredSpots && (
                   <p className="text-xs font-bold mt-1.5" style={{ color: featuredFull ? '#ef4444' : 'var(--color-gold)' }}>
                     {featuredFull
-                      ? `All 3 Featured spots taken in ${featuredSpots.category}`
-                      : `${featuredSpots.taken} of 3 Featured spots taken in ${featuredSpots.category}`}
+                      ? `All ${MAX_FEATURED_PER_CATEGORY} Featured spots taken in ${featuredSpots.category}`
+                      : `${featuredSpots.taken} of ${MAX_FEATURED_PER_CATEGORY} Featured spots taken in ${featuredSpots.category}`}
                   </p>
                 )}
               </div>

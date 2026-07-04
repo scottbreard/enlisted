@@ -42,3 +42,6 @@ export const TIER_NAMES: Record<string, string> = {
   listed:   'Listed',
   featured: 'Featured',
 }
+
+// Featured tier is capped per category — scarcity is the product
+export const MAX_FEATURED_PER_CATEGORY = 5

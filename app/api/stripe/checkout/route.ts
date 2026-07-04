@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { stripe, PRICES, TIER_NAMES } from '@/lib/stripe'
+import { stripe, PRICES, TIER_NAMES, MAX_FEATURED_PER_CATEGORY } from '@/lib/stripe'
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const priceConfig = PRICES[tier]
     if (!priceConfig) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
 
-    // Featured is capped at 3 firms per category
+    // Featured is capped per category (see MAX_FEATURED_PER_CATEGORY)
     if (tier === 'featured') {
       const { data: primaryCat } = await supabase
         .from('provider_categories')
@@ -44,10 +44,10 @@ export async function POST(req: NextRequest) {
             .in('id', peerIds)
             .eq('tier', 'featured')
             .eq('is_active', true)
-          if ((count ?? 0) >= 3) {
+          if ((count ?? 0) >= MAX_FEATURED_PER_CATEGORY) {
             const catName = (primaryCat as any).service_categories?.name ?? 'your category'
             return NextResponse.json(
-              { error: `All 3 Featured spots in ${catName} are taken. Email hello@enlisted.ca to join the waitlist.` },
+              { error: `All ${MAX_FEATURED_PER_CATEGORY} Featured spots in ${catName} are taken. Email hello@enlisted.ca to join the waitlist.` },
               { status: 409 }
             )
           }

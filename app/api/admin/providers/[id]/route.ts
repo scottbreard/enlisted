@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { sendProviderApprovedEmail, sendProviderRejectedEmail } from '@/lib/email'
-import { stripe, PRICES } from '@/lib/stripe'
+import { stripe, PRICES, MAX_FEATURED_PER_CATEGORY } from '@/lib/stripe'
 
 async function assertAdmin(supabase: Awaited<ReturnType<typeof createClient>>) {
   const { data: { user } } = await supabase.auth.getUser()
@@ -105,7 +105,7 @@ export async function PATCH(
       .single()
     if (!provider) return NextResponse.json({ error: 'Provider not found' }, { status: 404 })
 
-    // Featured is capped at 3 firms per category
+    // Featured is capped per category (see MAX_FEATURED_PER_CATEGORY)
     if (tier === 'featured') {
       const { data: primaryCat } = await supabase
         .from('provider_categories')
@@ -127,9 +127,9 @@ export async function PATCH(
             .in('id', peerIds)
             .eq('tier', 'featured')
             .eq('is_active', true)
-          if ((count ?? 0) >= 3) {
+          if ((count ?? 0) >= MAX_FEATURED_PER_CATEGORY) {
             const catName = (primaryCat as any).service_categories?.name ?? 'this category'
-            return NextResponse.json({ error: `All 3 Featured spots in ${catName} are taken.` }, { status: 409 })
+            return NextResponse.json({ error: `All ${MAX_FEATURED_PER_CATEGORY} Featured spots in ${catName} are taken.` }, { status: 409 })
           }
         }
       }
