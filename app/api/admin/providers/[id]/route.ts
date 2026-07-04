@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { NextRequest, NextResponse } from 'next/server'
 import { sendProviderApprovedEmail, sendProviderRejectedEmail } from '@/lib/email'
 import { stripe, PRICES, MAX_FEATURED_PER_CATEGORY } from '@/lib/stripe'
@@ -19,6 +20,10 @@ export async function PATCH(
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // RLS has no admin-write policy, so admin mutations go through the
+  // service-role client once the ADMIN_EMAILS check above has passed
+  const db = createAdminClient()
+
   const { id } = await params
   const body = await req.json()
   const { action, reason, ...fields } = body
@@ -27,7 +32,7 @@ export async function PATCH(
 
   // Approve
   if (action === 'approve') {
-    const { data: provider, error } = await supabase
+    const { data: provider, error } = await db
       .from('provider_profiles')
       .update({
         approval_status: 'approved',
@@ -60,7 +65,7 @@ export async function PATCH(
 
   // Reject
   if (action === 'reject') {
-    const { data: provider, error } = await supabase
+    const { data: provider, error } = await db
       .from('provider_profiles')
       .update({
         approval_status: 'rejected',
@@ -84,12 +89,12 @@ export async function PATCH(
 
   // Toggle active
   if (action === 'toggle_active') {
-    const { data: current } = await supabase
+    const { data: current } = await db
       .from('provider_profiles')
       .select('is_active')
       .eq('id', id)
       .single()
-    const { error } = await supabase
+    const { error } = await db
       .from('provider_profiles')
       .update({ is_active: !current?.is_active })
       .eq('id', id)
@@ -107,7 +112,7 @@ export async function PATCH(
     const priceId = PRICES[tier]?.annual
     if (!priceId) return NextResponse.json({ error: 'Annual price not configured yet' }, { status: 400 })
 
-    const { data: provider } = await supabase
+    const { data: provider } = await db
       .from('provider_profiles')
       .select('id, company_name, email, stripe_customer_id')
       .eq('id', id)
@@ -116,7 +121,7 @@ export async function PATCH(
 
     // Featured is capped per category (see MAX_FEATURED_PER_CATEGORY)
     if (tier === 'featured') {
-      const { data: primaryCat } = await supabase
+      const { data: primaryCat } = await db
         .from('provider_categories')
         .select('category_id, service_categories(name)')
         .eq('provider_id', provider.id)
@@ -124,13 +129,13 @@ export async function PATCH(
         .limit(1)
         .maybeSingle()
       if (primaryCat) {
-        const { data: peers } = await supabase
+        const { data: peers } = await db
           .from('provider_categories')
           .select('provider_id')
           .eq('category_id', primaryCat.category_id)
         const peerIds = (peers ?? []).map(p => p.provider_id).filter(pid => pid !== provider.id)
         if (peerIds.length) {
-          const { count } = await supabase
+          const { count } = await db
             .from('provider_profiles')
             .select('*', { count: 'exact', head: true })
             .in('id', peerIds)
@@ -152,7 +157,7 @@ export async function PATCH(
         metadata: { provider_id: provider.id },
       })
       customerId = customer.id
-      await supabase.from('provider_profiles').update({ stripe_customer_id: customerId }).eq('id', provider.id)
+      await db.from('provider_profiles').update({ stripe_customer_id: customerId }).eq('id', provider.id)
     }
 
     const sept1 = Math.floor(new Date('2026-09-01T00:00:00Z').getTime() / 1000)
@@ -182,7 +187,7 @@ export async function PATCH(
   if (Object.keys(fields).length > 0) {
     const allowed = ['company_name', 'tagline', 'description', 'tier', 'email', 'website_url', 'phone']
     const safe = Object.fromEntries(Object.entries(fields).filter(([k]) => allowed.includes(k)))
-    const { error } = await supabase
+    const { error } = await db
       .from('provider_profiles')
       .update(safe)
       .eq('id', id)

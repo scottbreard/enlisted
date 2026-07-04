@@ -25,15 +25,28 @@ export default function LoginPage() {
 
   async function onSubmit(data: FormData) {
     setServerError('')
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data: authData, error } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
     })
-    if (error) {
+    if (error || !authData.user) {
       setServerError('Invalid email or password.')
       return
     }
-    router.push('/dashboard')
+    // Honor ?next= from gated pages (internal paths only), otherwise route
+    // providers to the provider portal and everyone else to the dashboard
+    const next = new URLSearchParams(window.location.search).get('next')
+    if (next && next.startsWith('/') && !next.startsWith('//')) {
+      router.push(next)
+      router.refresh()
+      return
+    }
+    const { data: providerProfile } = await supabase
+      .from('provider_profiles')
+      .select('id')
+      .eq('user_id', authData.user.id)
+      .maybeSingle()
+    router.push(providerProfile ? '/provider/dashboard' : '/dashboard')
     router.refresh()
   }
 

@@ -19,6 +19,7 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
   featured:  { label: 'Featured',  color: '#92400e', bg: '#fef3c7' },
   connected: { label: 'Connected', color: '#1e40af', bg: '#dbeafe' },
   listed:    { label: 'Listed',    color: '#6b7280', bg: '#f3f4f6' },
+  free:      { label: 'Free',      color: '#6b7280', bg: '#f3f4f6' },
 }
 
 export default async function ProviderProfilePage({ params }: { params: Promise<{ category: string; slug: string }> }) {

@@ -11,6 +11,8 @@ export default function ProviderProfilePage() {
   const [profile, setProfile] = useState<any>(null)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState('')
+  const [primaryCategoryId, setPrimaryCategoryId] = useState<string | null>(null)
   const [form, setForm] = useState({
     company_name: '', tagline: '', description: '', website_url: '',
     email: '', phone: '', founded_year: '', team_size: '',
@@ -69,9 +71,10 @@ export default function ProviderProfilePage() {
       // Load provider categories
       const { data: pc } = await supabase
         .from('provider_categories')
-        .select('category_id')
+        .select('category_id, is_primary')
         .eq('provider_id', p.id)
       setSelectedCategories(pc?.map((r: any) => r.category_id) ?? [])
+      setPrimaryCategoryId(pc?.find((r: any) => r.is_primary)?.category_id ?? null)
     }
     load()
   }, [])
@@ -90,13 +93,29 @@ export default function ProviderProfilePage() {
 
   async function handleSave() {
     setSaving(true)
+    setSaveError('')
     if (!profile) return
 
-    await supabase.from('provider_profiles').update({
+    const payload: Record<string, any> = {
       ...form,
       founded_year: form.founded_year ? parseInt(form.founded_year) : null,
       updated_at: new Date().toISOString(),
-    }).eq('id', profile.id)
+    }
+    // Columns added in migration 014 — skip them until it has been applied
+    // so one missing column doesn't reject the whole save
+    for (const col of ['city', 'linkedin_url']) {
+      if (!(col in profile)) delete payload[col]
+    }
+
+    const { error: profileError } = await supabase
+      .from('provider_profiles')
+      .update(payload)
+      .eq('id', profile.id)
+    if (profileError) {
+      setSaving(false)
+      setSaveError(`Save failed: ${profileError.message}`)
+      return
+    }
 
     // Sync exchanges
     if (allExchanges.length > 0) {
@@ -107,12 +126,24 @@ export default function ProviderProfilePage() {
       if (toInsert.length > 0) await supabase.from('provider_exchanges').insert(toInsert)
     }
 
-    // Sync categories
+    // Sync categories, keeping the original primary (or first selected as fallback)
+    const primaryId = selectedCategories.includes(primaryCategoryId ?? '')
+      ? primaryCategoryId
+      : selectedCategories[0] ?? null
     await supabase.from('provider_categories').delete().eq('provider_id', profile.id)
     if (selectedCategories.length > 0) {
-      await supabase.from('provider_categories').insert(
-        selectedCategories.map(category_id => ({ provider_id: profile.id, category_id }))
+      const { error: catError } = await supabase.from('provider_categories').insert(
+        selectedCategories.map(category_id => ({
+          provider_id: profile.id,
+          category_id,
+          is_primary: category_id === primaryId,
+        }))
       )
+      if (catError) {
+        setSaving(false)
+        setSaveError(`Categories failed to save: ${catError.message}`)
+        return
+      }
     }
 
     setSaving(false)
@@ -145,6 +176,12 @@ export default function ProviderProfilePage() {
           {saved ? <><CheckCircle className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> {saving ? 'Saving…' : 'Save Changes'}</>}
         </button>
       </div>
+
+      {saveError && (
+        <div className="mb-6 p-4 rounded-2xl border-2 text-sm" style={{ borderColor: '#dc2626', backgroundColor: '#fef2f2', color: '#991b1b' }}>
+          {saveError}
+        </div>
+      )}
 
       {isFree && (
         <div className="mb-6 p-4 rounded-2xl border-2 text-sm" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)', color: 'var(--color-navy)' }}>

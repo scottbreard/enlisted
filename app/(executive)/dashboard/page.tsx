@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import {
   Search, Calendar, Briefcase, Send,
@@ -16,6 +17,18 @@ export default async function DashboardPage() {
     .select('*')
     .eq('user_id', user!.id)
     .single()
+
+  // Signed-in users without an executive profile belong elsewhere
+  if (!profile) {
+    const { data: providerProfile } = await supabase
+      .from('provider_profiles')
+      .select('id')
+      .eq('user_id', user!.id)
+      .maybeSingle()
+    if (providerProfile) redirect('/provider/dashboard')
+    const adminEmails = (process.env.ADMIN_EMAILS ?? '').split(',').map(e => e.trim())
+    redirect(adminEmails.includes(user!.email ?? '') ? '/admin' : '/')
+  }
 
   const { data: upcomingEvents } = await supabase
     .from('compliance_events')

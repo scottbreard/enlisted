@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendProviderWelcomeEmail } from '@/lib/email'
 
 function slugify(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -35,6 +36,12 @@ export async function POST(req: NextRequest) {
 
     if (category_id) {
       await admin.from('provider_categories').insert({ provider_id: profile.id, category_id, is_primary: true })
+    }
+
+    // Sent here rather than from the client: registrants have no session yet
+    // while email confirmation is pending, so session-gated routes reject them
+    if (userData.user.email) {
+      sendProviderWelcomeEmail({ to: userData.user.email, companyName: company_name, tier: 'free' }).catch(() => {})
     }
     return NextResponse.json({ ok: true, provider_id: profile.id })
   } catch (err: any) {

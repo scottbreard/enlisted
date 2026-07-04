@@ -15,7 +15,20 @@ export default async function ExecutiveLayout({ children }: { children: React.Re
     .eq('user_id', user.id)
     .single()
 
-  if (!profile) redirect('/register/executive')
+  // No executive profile: send providers and admins to their own portals
+  // instead of bouncing through /register/executive (the proxy redirects
+  // logged-in users off /register/*, which used to create an infinite loop)
+  if (!profile) {
+    const { data: providerProfile } = await supabase
+      .from('provider_profiles')
+      .select('id')
+      .eq('user_id', user.id)
+      .maybeSingle()
+    if (providerProfile) redirect('/provider/dashboard')
+    const adminEmails = (process.env.ADMIN_EMAILS ?? '').split(',').map(e => e.trim())
+    if (adminEmails.includes(user.email ?? '')) redirect('/admin')
+    redirect('/register/executive')
+  }
   if (profile.is_active === false) redirect('/suspended')
 
   return (

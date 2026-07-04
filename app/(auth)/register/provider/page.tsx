@@ -96,12 +96,6 @@ function ProviderRegisterContent() {
       return
     }
 
-    fetch('/api/email/welcome-provider', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ to: data.email, companyName: data.company_name, tier: 'free' }),
-    }).catch(() => {})
-
     // Email confirmation pending — the confirm link continues to billing/dashboard
     if (!authData.session) {
       setConfirmSent(true)

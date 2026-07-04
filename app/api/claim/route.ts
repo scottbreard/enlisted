@@ -42,7 +42,14 @@ export async function POST(req: NextRequest) {
     if (profile.website_url) {
       try { knownDomains.add(new URL(profile.website_url).hostname.replace(/^www\./, '')) } catch {}
     }
-    const domainMatch = !!userDomain && knownDomains.has(userDomain)
+    // Free email domains prove nothing about firm ownership, even when the
+    // seeded contact happens to use one — those claims stay unverified
+    const FREE_EMAIL_DOMAINS = new Set([
+      'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com', 'live.com',
+      'yahoo.com', 'yahoo.ca', 'icloud.com', 'me.com', 'aol.com',
+      'protonmail.com', 'proton.me', 'mail.com', 'gmx.com',
+    ])
+    const domainMatch = !!userDomain && !FREE_EMAIL_DOMAINS.has(userDomain) && knownDomains.has(userDomain)
 
     const { error } = await admin
       .from('provider_profiles')

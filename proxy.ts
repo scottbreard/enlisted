@@ -33,8 +33,10 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  // Redirect logged-in users away from auth pages
-  if ((path === '/login' || path.startsWith('/register')) && user) {
+  // Redirect logged-in users away from the login page. /register/* stays
+  // reachable: app layouts send profile-less users back there, which must
+  // not bounce through here or it becomes an infinite redirect loop
+  if (path === '/login' && user) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 

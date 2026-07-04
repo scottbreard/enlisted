@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 export async function PATCH(
   req: NextRequest,
@@ -14,12 +15,16 @@ export async function PATCH(
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
+  // RLS has no admin-write policy, so admin mutations go through the
+  // service-role client once the ADMIN_EMAILS check above has passed
+  const db = createAdminClient()
+
   const { id } = await params
   const body = await req.json()
   const { action } = body
 
   if (action === 'deactivate') {
-    const { error } = await supabase
+    const { error } = await db
       .from('executive_profiles')
       .update({ is_active: false })
       .eq('id', id)
@@ -28,7 +33,7 @@ export async function PATCH(
   }
 
   if (action === 'reactivate') {
-    const { error } = await supabase
+    const { error } = await db
       .from('executive_profiles')
       .update({ is_active: true })
       .eq('id', id)
@@ -37,7 +42,7 @@ export async function PATCH(
   }
 
   if (action === 'remove') {
-    const { error } = await supabase
+    const { error } = await db
       .from('executive_profiles')
       .delete()
       .eq('id', id)
