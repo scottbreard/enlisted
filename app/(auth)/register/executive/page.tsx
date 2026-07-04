@@ -164,7 +164,7 @@ function ExecutiveRegisterContent() {
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left panel */}
       <div className="hidden lg:flex lg:w-2/5 flex-col justify-between p-12 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
-        <EnlistedLogo size={28} />
+        <EnlistedLogo size={28} variant="dark" />
         <div>
           <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
             Free for executives. Always.
