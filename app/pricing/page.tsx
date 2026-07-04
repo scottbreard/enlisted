@@ -33,7 +33,7 @@ const TIERS = [
     annual: 1000,
     description: 'Full profile, direct contact details, logo, and inbound RFQs from verified public company executives.',
     cta: 'Get Started',
-    ctaHref: '/register/provider',
+    ctaHref: '/register/provider?plan=listed',
     highlight: true,
     features: [
       'Everything in Free',
@@ -53,7 +53,7 @@ const TIERS = [
     annual: 10000,
     description: 'Top placement, video, email blasts to executives, AI Assistant trained on public markets, and homepage feature.',
     cta: 'Get Featured',
-    ctaHref: '/register/provider',
+    ctaHref: '/register/provider?plan=featured',
     highlight: false,
     features: [
       'Everything in Listed',

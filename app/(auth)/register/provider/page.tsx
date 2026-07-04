@@ -1,15 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
-import { ChevronDown, Search } from 'lucide-react'
+import { ChevronDown, Search, Star, Zap } from 'lucide-react'
 
 const schema = z.object({
   company_name: z.string().min(2, 'Required'),
@@ -18,16 +18,20 @@ const schema = z.object({
 })
 type FormData = z.infer<typeof schema>
 
-function slugify(text: string) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
-
 type Category = { id: string; slug: string; name: string; group_name: string }
 
-export default function ProviderRegisterPage() {
+const PLANS: Record<string, { name: string; price: string; icon: typeof Zap; color: string; bg: string }> = {
+  listed:   { name: 'Listed',   price: '$1,000/yr', icon: Zap,  color: '#1e40af', bg: '#dbeafe' },
+  featured: { name: 'Featured', price: '$10,000/yr', icon: Star, color: '#92400e', bg: '#fef3c7' },
+}
+
+function ProviderRegisterContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const plan = PLANS[searchParams.get('plan') ?? ''] ? (searchParams.get('plan') as string) : null
   const supabase = createClient()
   const [serverError, setServerError] = useState('')
+  const [confirmSent, setConfirmSent] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [categoryError, setCategoryError] = useState('')
@@ -53,6 +57,8 @@ export default function ProviderRegisterPage() {
     ? categories.filter(c => c.name.toLowerCase().includes(search.toLowerCase()))
     : null
 
+  const nextUrl = plan ? `/provider/billing?plan=${plan}` : '/provider/dashboard'
+
   async function onSubmit(data: FormData) {
     setServerError('')
     if (!selectedCategory) {
@@ -63,40 +69,32 @@ export default function ProviderRegisterPage() {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
-      options: { data: { role: 'provider' } },
+      options: {
+        data: { role: 'provider' },
+        emailRedirectTo: `${window.location.origin}${nextUrl}`,
+      },
     })
     if (authError || !authData.user) {
       setServerError(authError?.message ?? 'Registration failed. Try again.')
       return
     }
 
-    const slug = `${slugify(data.company_name)}-${Math.random().toString(36).substring(2, 6)}`
-
-    const { data: profile, error: profileError } = await supabase
-      .from('provider_profiles')
-      .insert({
+    // Profile is created server-side so it works even before email confirmation
+    const res = await fetch('/api/register/provider', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         user_id: authData.user.id,
         company_name: data.company_name,
-        slug,
-        email: data.email,
-        tier: 'free',
-        is_active: true,
-        primary_market_code: getMarketCode(),
-      })
-      .select('id')
-      .single()
-
-    if (profileError || !profile) {
-      setServerError('Account created but profile setup failed. Please contact support.')
+        category_id: selectedCategory.id,
+        market_code: getMarketCode(),
+      }),
+    })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      setServerError(err.error ?? 'Account created but profile setup failed. Please contact support.')
       return
     }
-
-    // Save primary category
-    await supabase.from('provider_categories').insert({
-      provider_id: profile.id,
-      category_id: selectedCategory.id,
-      is_primary: true,
-    })
 
     fetch('/api/email/welcome-provider', {
       method: 'POST',
@@ -104,7 +102,12 @@ export default function ProviderRegisterPage() {
       body: JSON.stringify({ to: data.email, companyName: data.company_name, tier: 'free' }),
     }).catch(() => {})
 
-    router.push('/provider/dashboard')
+    // Email confirmation pending — the confirm link continues to billing/dashboard
+    if (!authData.session) {
+      setConfirmSent(true)
+      return
+    }
+    router.push(nextUrl)
   }
 
   return (
@@ -117,10 +120,38 @@ export default function ProviderRegisterPage() {
             List your firm on Enlisted
           </h1>
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>
-            Free to list — upgrade anytime to unlock your full profile and receive RFQs.
+            {plan
+              ? 'Create your account — payment is the next step.'
+              : 'Free to list — upgrade anytime to unlock your full profile and receive RFQs.'}
           </p>
         </div>
 
+        {plan && (() => { const P = PLANS[plan]; const Icon = P.icon; return (
+          <div className="mb-5 flex items-center gap-3 p-4 rounded-2xl border-2 bg-white" style={{ borderColor: P.color }}>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: P.bg }}>
+              <Icon className="w-5 h-5" style={{ color: P.color }} />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-extrabold" style={{ color: 'var(--color-navy)' }}>{P.name} plan — {P.price} CAD</p>
+              <p className="text-xs" style={{ color: 'var(--color-gray)' }}>
+                After creating your account you&apos;ll continue to secure checkout. Annual term begins September 1, 2026.
+              </p>
+            </div>
+          </div>
+        )})()}
+
+        {confirmSent ? (
+          <div className="bg-white rounded-2xl shadow-sm border p-8 text-center" style={{ borderColor: 'var(--color-border)' }}>
+            <p className="text-3xl mb-3">📬</p>
+            <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--color-navy)' }}>Check your email</h2>
+            <p className="text-sm" style={{ color: 'var(--color-gray)' }}>
+              We sent you a confirmation link.
+              {plan
+                ? ' Click it to verify your email and you’ll be taken straight to secure checkout.'
+                : ' Click it to verify your email and access your dashboard.'}
+            </p>
+          </div>
+        ) : (
         <div className="bg-white rounded-2xl shadow-sm border p-8" style={{ borderColor: 'var(--color-border)' }}>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -256,7 +287,7 @@ export default function ProviderRegisterPage() {
               className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60"
               style={{ backgroundColor: 'var(--color-navy)' }}
             >
-              {isSubmitting ? 'Creating account…' : 'Create Free Listing'}
+              {isSubmitting ? 'Creating account…' : plan ? 'Create Account & Continue to Payment' : 'Create Free Listing'}
             </button>
 
             <p className="text-xs text-center" style={{ color: 'var(--color-gray-light)' }}>
@@ -267,6 +298,7 @@ export default function ProviderRegisterPage() {
             </p>
           </form>
         </div>
+        )}
 
         {/* What you get free */}
         <div className="mt-5 bg-white rounded-2xl border p-5" style={{ borderColor: 'var(--color-border)' }}>
@@ -294,5 +326,17 @@ export default function ProviderRegisterPage() {
 
       </div>
     </div>
+  )
+}
+
+export default function ProviderRegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--color-blue-light)' }}>
+        <div className="w-6 h-6 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: 'var(--color-navy)' }} />
+      </div>
+    }>
+      <ProviderRegisterContent />
+    </Suspense>
   )
 }

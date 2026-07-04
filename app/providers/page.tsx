@@ -244,7 +244,7 @@ export default function ProvidersPage() {
                         <p className="text-xs mt-1" style={{ color: 'var(--color-gold)' }}>or {tier.annual} — save 2 months</p>
                       )}
                     </div>
-                    <Link href="/register/provider"
+                    <Link href={tier.name === 'Free' ? '/register/provider' : `/register/provider?plan=${tier.name.toLowerCase()}`}
                       className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mt-5 mb-7"
                       style={{
                         backgroundColor: tier.highlight ? 'var(--color-gold)' : 'var(--color-navy)',

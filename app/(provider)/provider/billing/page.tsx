@@ -63,6 +63,7 @@ function BillingContent() {
   const searchParams = useSearchParams()
   const success = searchParams.get('success')
   const cancelled = searchParams.get('cancelled')
+  const planParam = ['listed', 'featured'].includes(searchParams.get('plan') ?? '') ? searchParams.get('plan') : null
 
   const [profile, setProfile] = useState<any>(null)
   // Annual-only for the first year — monthly plans return post-launch
@@ -127,6 +128,16 @@ function BillingContent() {
             <p className="font-bold text-sm text-green-800">Subscription activated!</p>
             <p className="text-xs text-green-700">Your listing is now live with your new tier benefits.</p>
           </div>
+        </div>
+      )}
+      {planParam && !hasPaidPlan && !success && (
+        <div className="mb-6 p-4 rounded-2xl border-2" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
+          <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>
+            One step left — complete your {planParam === 'listed' ? 'Listed' : 'Featured'} subscription below.
+          </p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+            Agree to the terms, then hit Subscribe on the {planParam === 'listed' ? 'Listed' : 'Featured'} plan to continue to secure checkout.
+          </p>
         </div>
       )}
       {cancelled && (
@@ -197,7 +208,10 @@ function BillingContent() {
           return (
             <div key={tier.key}
               className="bg-white border-2 rounded-2xl p-6 flex flex-col relative"
-              style={{ borderColor: isCurrent ? tier.borderColor : tier.popular ? tier.borderColor : 'var(--color-border)' }}>
+              style={{
+                borderColor: isCurrent ? tier.borderColor : (planParam === tier.key || tier.popular) ? tier.borderColor : 'var(--color-border)',
+                boxShadow: planParam === tier.key && !isCurrent ? `0 0 0 3px ${tier.borderColor}33` : undefined,
+              }}>
 
               {tier.popular && !isCurrent && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
