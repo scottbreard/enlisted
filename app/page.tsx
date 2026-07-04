@@ -39,6 +39,21 @@ export default async function Home() {
     .eq('is_active', true)
     .eq('approval_status', 'approved')
   const providerStat = providerCount && providerCount >= 50 ? `${Math.floor(providerCount / 10) * 10}+` : '92'
+
+  // Live provider counts for the category tiles
+  const tileSlugs = categories.map(c => c.slug)
+  const { data: tileCats } = await supabase
+    .from('service_categories')
+    .select('id, slug')
+    .in('slug', tileSlugs)
+  const catIdBySlug = new Map((tileCats ?? []).map(c => [c.slug, c.id]))
+  const { data: tileLinks } = await supabase
+    .from('provider_categories')
+    .select('category_id')
+    .in('category_id', [...catIdBySlug.values()])
+  const countByCatId = new Map<string, number>()
+  for (const l of tileLinks ?? []) countByCatId.set(l.category_id, (countByCatId.get(l.category_id) ?? 0) + 1)
+  const countBySlug = (slug: string) => countByCatId.get(catIdBySlug.get(slug) ?? '') ?? 0
   return (
     <div className="flex flex-col min-h-screen">
 
@@ -204,18 +219,24 @@ export default async function Home() {
                   <Link
                     key={cat.slug}
                     href={`/directory/${cat.slug}`}
-                    className="group border rounded-2xl p-5 transition-all hover:shadow-lg flex flex-col gap-3"
+                    className="group border rounded-2xl p-5 transition-all hover:shadow-lg hover:border-[var(--color-navy)] flex items-center gap-4"
                     style={{ borderColor: 'var(--color-border)' }}
                   >
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors"
+                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors group-hover:bg-[var(--color-navy)] group-hover:text-white"
                       style={{ backgroundColor: 'var(--color-blue-light)', color: 'var(--color-navy)' }}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-sm font-semibold leading-tight transition-colors group-hover:text-[var(--color-navy)]" style={{ color: 'var(--color-gray-dark)' }}>
-                      {cat.label}
-                    </span>
+                    <div className="flex-1 min-w-0">
+                      <span className="block text-sm font-bold leading-tight transition-colors group-hover:text-[var(--color-navy)]" style={{ color: 'var(--color-gray-dark)' }}>
+                        {cat.label}
+                      </span>
+                      <span className="block text-xs mt-0.5" style={{ color: 'var(--color-gray-light)' }}>
+                        {countBySlug(cat.slug) > 0 ? `${countBySlug(cat.slug)} firms` : 'Be the first'}
+                      </span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 shrink-0 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" style={{ color: 'var(--color-navy)' }} />
                   </Link>
                 )
               })}
