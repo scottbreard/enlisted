@@ -106,7 +106,7 @@ export default function TermsPage() {
                   <tr>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Featured</td>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>$499/mo or $4,990/yr</td>
-                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Top placement, video, AI assistant, homepage feature, email blasts</td>
+                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Top placement, video, AI assistant, homepage feature, monthly newsletter inclusion</td>
                   </tr>
                 </tbody>
               </table>

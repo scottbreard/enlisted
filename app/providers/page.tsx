@@ -31,9 +31,9 @@ const TIERS = [
     annual: '$10,000/yr',
     badge: 'Maximum Visibility',
     highlight: false,
-    description: 'Top placement in your category, email blasts to executives, video profile, and AI Assistant trained on public markets.',
+    description: 'Top placement in your category, monthly newsletter feature, video profile, and AI Assistant trained on public markets.',
     cta: 'Get Featured',
-    features: ['Top of category placement', '750-word profile + case studies', 'Team profiles + video embed', 'Monthly email blast to executives', 'AI Assistant trained on public markets', 'Homepage feature rotation'],
+    features: ['Top of category placement', '750-word profile + case studies', 'Team profiles + video embed', 'Logo + website link in the monthly executive newsletter', 'AI Assistant trained on public markets', 'Homepage feature rotation'],
     missing: [],
   },
 ]

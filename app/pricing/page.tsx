@@ -51,7 +51,7 @@ const TIERS = [
     badge: 'Maximum Visibility',
     monthly: 1000,
     annual: 10000,
-    description: 'Top placement, video, email blasts to executives, AI Assistant trained on public markets, and homepage feature.',
+    description: 'Top placement, video, monthly newsletter feature, AI Assistant trained on public markets, and homepage feature.',
     cta: 'Get Featured',
     ctaHref: '/register/provider?plan=featured',
     highlight: false,
@@ -60,7 +60,7 @@ const TIERS = [
       'Top of category placement',
       '750-word profile + case studies',
       'Team profiles + video embed',
-      'Email blasts to executives',
+      'Logo + website link in the monthly executive newsletter',
       'AI Assistant trained on public markets',
       'Homepage feature rotation',
     ],
@@ -280,8 +280,8 @@ export default function PricingPage() {
                   a: 'Yes. Monthly plans cancel at end of the current billing period. Annual plans cancel at end of the year — no prorated refunds, but you keep access through the paid period.',
                 },
                 {
-                  q: 'What counts as an "email blast" on the Featured plan?',
-                  a: 'Once per month, you can send a curated email to executives in your target categories and exchanges — filtered by sector, market cap, and exchange. We handle delivery through our verified executive list.',
+                  q: 'How does the newsletter feature work on the Featured plan?',
+                  a: 'Enlisted sends a monthly newsletter to our verified executive list. Every Featured provider is included with their logo and a link to their website — recurring visibility in front of executives without separate promotional emails.',
                 },
                 {
                   q: 'What is an RFQ?',

@@ -39,7 +39,7 @@ const TIERS = [
     borderColor: '#f59e0b',
     popular: true,
     features: [
-      'Everything in Popular',
+      'Everything in Listed',
       'Top placement in category',
       '"Featured" badge on profile + listings',
       'Homepage rotation module',
@@ -49,7 +49,7 @@ const TIERS = [
       'Video embed',
       'Instant RFQ access (priority window)',
       'Full analytics dashboard',
-      'Email blasts to verified executives',
+      'Logo + website link in the monthly executive newsletter',
       'AI Assistant trained on public markets',
       'Priority support — 24h SLA',
     ],
