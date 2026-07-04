@@ -127,7 +127,7 @@ export default function ProvidersPage() {
             {[
               { num: '92', label: 'Service categories' },
               { num: '4', label: 'Canadian exchanges at launch' },
-              { num: '2,000+', label: 'Listed companies in Canada' },
+              { num: '7,000+', label: 'Listed companies in Canada' },
               { num: '$0', label: 'Commission on any deal' },
             ].map(({ num, label }) => (
               <div key={label}>

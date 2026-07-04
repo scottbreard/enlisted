@@ -27,7 +27,9 @@ export async function proxy(request: NextRequest) {
 
   // Protect authenticated routes
   const protectedPrefixes = ['/dashboard', '/provider', '/admin', '/compliance', '/vault', '/stock', '/news', '/rfq', '/rolodex', '/profile']
-  if (protectedPrefixes.some(p => path.startsWith(p)) && !user) {
+  // Match exact or path-segment boundary so public pages like /providers
+  // aren't caught by the /provider prefix
+  if (protectedPrefixes.some(p => path === p || path.startsWith(p + '/')) && !user) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
