@@ -300,7 +300,8 @@ function ProviderRegisterContent() {
         </div>
         )}
 
-        {/* What you get free */}
+        {/* What you get free — hidden when signing up for a paid plan */}
+        {!plan && (
         <div className="mt-5 bg-white rounded-2xl border p-5" style={{ borderColor: 'var(--color-border)' }}>
           <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--color-gray-light)' }}>What you get free</p>
           <ul className="space-y-2">
@@ -316,6 +317,7 @@ function ProviderRegisterContent() {
             ))}
           </ul>
         </div>
+        )}
 
         <p className="text-center text-sm mt-4" style={{ color: 'var(--color-gray)' }}>
           Already have an account?{' '}
