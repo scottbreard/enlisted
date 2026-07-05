@@ -68,7 +68,7 @@ export default function ProviderRFQPage() {
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>
         <Lock className="w-10 h-10 mx-auto mb-3" style={{ color: 'var(--color-gold)' }} />
         <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>RFQs are a Featured benefit</p>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Only Featured providers ($5,000/yr, max 5 per category) receive quote requests from executives.</p>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Only Featured providers ($6,000/yr, max 5 per category) receive quote requests from executives.</p>
         <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
           Get Featured
         </a>

@@ -18,8 +18,9 @@ export default async function AdminRevenuePage() {
       .limit(20),
   ])
 
+  // Monthly-equivalent of annual-only pricing: Listed $1,200/yr, Featured $6,000/yr
   const mrrConnected = (connected ?? 0) * 100
-  const mrrFeatured  = (featured ?? 0) * 1000
+  const mrrFeatured  = (featured ?? 0) * 500
   const mrr = mrrConnected + mrrFeatured
   const arr = mrr * 12
 
@@ -49,8 +50,8 @@ export default async function AdminRevenuePage() {
       <div className="bg-white border rounded-2xl p-5 mb-6" style={{ borderColor: 'var(--color-border)' }}>
         <h2 className="font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Revenue Breakdown</h2>
         {[
-          { label: 'Featured Partners', count: featured ?? 0, rate: 499, color: '#92400e', bg: '#fef3c7' },
-          { label: 'Connected Partners', count: connected ?? 0, rate: 100, color: '#1e40af', bg: '#dbeafe' },
+          { label: 'Featured Partners', count: featured ?? 0, rate: 500, color: '#92400e', bg: '#fef3c7' },
+          { label: 'Listed Partners', count: connected ?? 0, rate: 100, color: '#1e40af', bg: '#dbeafe' },
         ].map(row => (
           <div key={row.label} className="flex items-center gap-4 py-3 border-b last:border-0" style={{ borderColor: 'var(--color-border)' }}>
             <span className="text-xs font-bold px-2.5 py-1 rounded-full w-36 text-center" style={{ backgroundColor: row.bg, color: row.color }}>{row.label}</span>
@@ -81,7 +82,7 @@ export default async function AdminRevenuePage() {
                   <td className="px-5 py-3">
                     <span className="text-xs font-bold px-2 py-0.5 rounded-full capitalize" style={{ backgroundColor: t.bg, color: t.color }}>{p.tier}</span>
                   </td>
-                  <td className="px-5 py-3 text-xs capitalize" style={{ color: 'var(--color-gray)' }}>{p.subscription_interval ?? 'monthly'}</td>
+                  <td className="px-5 py-3 text-xs capitalize" style={{ color: 'var(--color-gray)' }}>{p.subscription_interval ?? 'annual'}</td>
                   <td className="px-5 py-3 text-xs" style={{ color: p.subscription_status === 'active' ? '#10b981' : '#ef4444' }}>
                     {p.subscription_status ?? 'active'}
                   </td>

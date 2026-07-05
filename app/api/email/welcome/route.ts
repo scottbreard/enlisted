@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
                 <li>Add your tagline and description</li>
                 <li>Upload your logo</li>
                 <li>Add your website and contact email</li>
-                <li>Upgrade to Connected ($100/mo) to receive RFQs and show full contact details</li>
+                <li>Upgrade to Listed ($1,200/yr) to receive RFQs and show full contact details</li>
               </ol>
               <div style="text-align:center;margin:32px 0">
                 <a href="${process.env.NEXT_PUBLIC_APP_URL}/provider/dashboard"

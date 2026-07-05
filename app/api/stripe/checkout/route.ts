@@ -4,7 +4,8 @@ import { stripe, PRICES, TIER_NAMES, MAX_FEATURED_PER_CATEGORY } from '@/lib/str
 
 export async function POST(req: NextRequest) {
   try {
-    const { tier, interval } = await req.json() as { tier: string; interval: 'month' | 'year' }
+    // Annual-only billing — no monthly plans
+    const { tier } = await req.json() as { tier: string }
 
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const priceId = interval === 'year' ? priceConfig.annual : priceConfig.monthly
+    const priceId = priceConfig.annual
     if (!priceId) return NextResponse.json({ error: 'Price not configured yet' }, { status: 400 })
 
     // Create or retrieve Stripe customer
@@ -84,7 +85,7 @@ export async function POST(req: NextRequest) {
       cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/provider/billing?cancelled=1`,
       subscription_data: {
         metadata: { provider_id: profile.id, tier },
-        ...(billingAnchor && interval === 'year' ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' } : {}),
+        ...(billingAnchor ? { billing_cycle_anchor: billingAnchor, proration_behavior: 'none' } : {}),
       },
       metadata: { provider_id: profile.id, tier },
       automatic_tax: { enabled: true },

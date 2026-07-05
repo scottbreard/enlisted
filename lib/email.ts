@@ -15,7 +15,7 @@ export async function sendProviderWelcomeEmail({
 }) {
   if (!resend) return
 
-  const tierLabel = tier === 'listed' ? 'Listed (Free)' : tier === 'connected' ? 'Connected' : 'Featured'
+  const tierLabel = tier === 'featured' ? 'Featured' : tier === 'listed' ? 'Listed' : 'Free'
 
   await resend.emails.send({
     from: FROM,
@@ -62,8 +62,23 @@ export async function sendProviderWelcomeEmail({
             </ol>
           </div>
 
+          <div style="background:#FDF3DC;border-radius:12px;padding:20px;margin-bottom:24px;">
+            <p style="margin:0 0 8px;font-weight:700;color:#B8860B;font-size:14px;">Executives arrive September 1</p>
+            <p style="margin:0 0 12px;color:#555555;font-size:14px;line-height:1.6;">
+              We onboard providers first — on purpose — so the directory is complete the day the first
+              executive logs in. Our launch outreach covers 13,000+ executives and directors across every
+              TSX, TSXV, CSE, and NEO issuer, and every registration is verified against exchange listings.
+            </p>
+            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">
+              And they don't visit once: their free dashboard includes a compliance calendar with their
+              exchange's filing deadlines, a live stock dashboard and news feed, and a contract vault with
+              renewal reminders. Every visit puts them in front of the directory — and your listing.
+            </p>
+          </div>
+
           <p style="margin:0 0 24px;color:#555555;font-size:14px;line-height:1.6;">
-            While you wait, log in to complete your profile — a fuller profile means better visibility once approved.
+            While you wait, log in to complete your profile — a fuller profile means better visibility once
+            approved. A complete profile before September 1 means you're there on day one.
           </p>
 
           <a href="https://enlisted.ca/provider/profile"

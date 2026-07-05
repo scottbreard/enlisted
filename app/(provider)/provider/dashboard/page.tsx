@@ -12,8 +12,8 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 }
 
 const TIER_NEXT: Record<string, { next: string; price: string }> = {
-  free:   { next: 'Listed',   price: '$1,000/yr' },
-  listed: { next: 'Featured', price: '$5,000/yr' },
+  free:   { next: 'Listed',   price: '$1,200/yr' },
+  listed: { next: 'Featured', price: '$6,000/yr' },
 }
 
 const TIER_FEATURES: Record<string, string[]> = {
@@ -128,7 +128,7 @@ export default function ProviderDashboardPage() {
     },
     {
       label: 'Choose your plan',
-      description: 'Upgrade to Listed ($1,000/yr) to show contact details and receive RFQs.',
+      description: 'Upgrade to Listed ($1,200/yr) to show contact details and receive RFQs.',
       done: profile.tier !== 'free',
       href: '/provider/billing',
     },
@@ -182,12 +182,12 @@ export default function ProviderDashboardPage() {
               <Link href="/provider/billing"
                 className="flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-xl text-sm whitespace-nowrap"
                 style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>
-                Upgrade to Listed · $1,000/yr <ArrowRight className="w-4 h-4" />
+                Upgrade to Listed · $1,200/yr <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/provider/billing"
                 className="flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-xl text-sm whitespace-nowrap border"
                 style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
-                Get Featured · $5,000/yr
+                Get Featured · $6,000/yr
               </Link>
             </div>
           </div>
@@ -281,7 +281,7 @@ export default function ProviderDashboardPage() {
               <div className="text-center py-8">
                 <p className="text-3xl mb-2">📬</p>
                 <p className="font-bold text-sm mb-1" style={{ color: 'var(--color-navy)' }}>RFQs require a paid plan</p>
-                <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($1,000/yr) to receive quote requests from executives.</p>
+                <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($1,200/yr) to receive quote requests from executives.</p>
                 <Link href="/provider/billing" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
                   Upgrade Plan
                 </Link>

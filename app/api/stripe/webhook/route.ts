@@ -14,10 +14,8 @@ function getSupabaseAdmin() {
 // Map Stripe price IDs back to tier names
 function tierFromPriceId(priceId: string): string | null {
   const map: Record<string, string> = {
-    [process.env.STRIPE_PRICE_CONNECTED_MONTHLY ?? '__']: 'listed',
-    [process.env.STRIPE_PRICE_CONNECTED_ANNUAL  ?? '__']: 'listed',
-    [process.env.STRIPE_PRICE_FEATURED_MONTHLY  ?? '__']: 'featured',
-    [process.env.STRIPE_PRICE_FEATURED_ANNUAL   ?? '__']: 'featured',
+    [process.env.STRIPE_PRICE_CONNECTED_ANNUAL ?? '__']: 'listed',
+    [process.env.STRIPE_PRICE_FEATURED_ANNUAL  ?? '__']: 'featured',
   }
   return map[priceId] ?? null
 }

@@ -1,15 +1,11 @@
-'use client'
-
 import Link from 'next/link'
-import { useState } from 'react'
-import { Check, ArrowRight, Zap, Star } from 'lucide-react'
+import { Check, ArrowRight, Star } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 
 const TIERS = [
   {
     name: 'Free',
     badge: null,
-    monthly: 0,
     annual: 0,
     description: 'Your company name and service category appear in the directory. No contact details, no website — free forever.',
     cta: 'Create Free Listing',
@@ -29,8 +25,7 @@ const TIERS = [
   {
     name: 'Listed',
     badge: 'Most Popular',
-    monthly: 100,
-    annual: 1000,
+    annual: 1200,
     description: 'Full profile, direct contact details, logo, and full visibility to verified public company executives.',
     cta: 'Get Started',
     ctaHref: '/register/provider?plan=listed',
@@ -49,8 +44,7 @@ const TIERS = [
   {
     name: 'Featured',
     badge: 'Only 5 per category',
-    monthly: 500,
-    annual: 5000,
+    annual: 6000,
     description: 'Top placement, video, monthly newsletter feature, AI Assistant trained on public markets, and homepage feature. Limited to 5 firms per category.',
     cta: 'Get Featured',
     ctaHref: '/register/provider?plan=featured',
@@ -69,8 +63,6 @@ const TIERS = [
 ]
 
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(false)
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
 
@@ -105,35 +97,8 @@ export default function PricingPage() {
             </h1>
             <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.7)' }}>
               Reach verified public company executives across TSX, TSXV, CSE, and NEO.
-              No commissions. No lead fees. Flat monthly rate.
+              No commissions. No lead fees. One flat annual rate.
             </p>
-
-            {/* Toggle */}
-            <div className="inline-flex items-center gap-3 bg-white/10 rounded-full px-2 py-2">
-              <button
-                onClick={() => setAnnual(false)}
-                className="px-5 py-2 rounded-full text-sm font-bold transition-all"
-                style={{
-                  backgroundColor: !annual ? 'white' : 'transparent',
-                  color: !annual ? 'var(--color-navy)' : 'rgba(255,255,255,0.7)',
-                }}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setAnnual(true)}
-                className="px-5 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2"
-                style={{
-                  backgroundColor: annual ? 'white' : 'transparent',
-                  color: annual ? 'var(--color-navy)' : 'rgba(255,255,255,0.7)',
-                }}
-              >
-                Annual
-                <span className="text-xs font-extrabold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>
-                  2 months free
-                </span>
-              </button>
-            </div>
           </div>
         </section>
 
@@ -166,22 +131,15 @@ export default function PricingPage() {
 
                   {/* Price */}
                   <div className="mb-6">
-                    {tier.monthly === 0 ? (
+                    {tier.annual === 0 ? (
                       <div className="text-5xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Free</div>
                     ) : (
-                      <>
-                        <div className="flex items-end gap-1">
-                          <span className="text-5xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
-                            ${annual ? Math.round(tier.annual / 12) : tier.monthly}
-                          </span>
-                          <span className="text-sm mb-2" style={{ color: 'var(--color-gray)' }}>/mo CAD</span>
-                        </div>
-                        {annual && (
-                          <p className="text-xs mt-1" style={{ color: 'var(--color-gold)' }}>
-                            Billed ${tier.annual.toLocaleString()}/yr — save ${(tier.monthly * 12 - tier.annual).toLocaleString()}
-                          </p>
-                        )}
-                      </>
+                      <div className="flex items-end gap-1">
+                        <span className="text-5xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
+                          ${tier.annual.toLocaleString()}
+                        </span>
+                        <span className="text-sm mb-2" style={{ color: 'var(--color-gray)' }}>/yr CAD</span>
+                      </div>
                     )}
                   </div>
 
@@ -226,12 +184,20 @@ export default function PricingPage() {
             <div className="space-y-6">
               {[
                 {
+                  q: 'How many executives are registered right now?',
+                  a: 'Executives onboard from September 1, 2026 — providers launch first, deliberately, so the directory is complete on the day the first executive logs in. Our launch outreach covers 13,000+ executives and directors across every TSX, TSXV, CSE, and NEO issuer, and every registration is verified against exchange listings. We share real registration numbers with any provider who asks — email hello@enlisted.ca.',
+                },
+                {
+                  q: 'What will keep executives logging in?',
+                  a: 'Enlisted is a free working dashboard for the public-company side of their job, not a directory they visit once: a compliance calendar auto-generated from their exchange’s filing deadlines, a live stock dashboard and news feed for their ticker, a vault that tracks contracts and renewal dates, and RFQs when they need to hire. Each of those is a recurring reason to return — and every visit puts them in front of the directory. Featured providers also appear in the monthly newsletter sent to every verified executive.',
+                },
+                {
                   q: 'How does Enlisted verify executives?',
                   a: 'Executives register with their company ticker. We cross-reference SEDAR+ filings and exchange data to confirm they are officers or directors of a listed company. Verification is ongoing — if a company delists, access is reviewed.',
                 },
                 {
                   q: 'Can I cancel my provider subscription anytime?',
-                  a: 'Yes. Monthly plans cancel at end of the current billing period. Annual plans cancel at end of the year — no prorated refunds, but you keep access through the paid period.',
+                  a: 'Yes. Subscriptions are annual and cancel at end of the year — no prorated refunds, but you keep access through the paid period.',
                 },
                 {
                   q: 'How does the newsletter feature work on the Featured plan?',

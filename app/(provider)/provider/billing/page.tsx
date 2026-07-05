@@ -10,9 +10,7 @@ const TIERS = [
   {
     key: 'listed',
     name: 'Listed',
-    monthly: 100,
-    annual: 1000,
-    annualSaving: 200,
+    annual: 1200,
     icon: Zap,
     color: '#1e40af',
     bg: '#dbeafe',
@@ -31,9 +29,7 @@ const TIERS = [
   {
     key: 'featured',
     name: 'Featured',
-    monthly: 500,
-    annual: 5000,
-    annualSaving: 1000,
+    annual: 6000,
     icon: Star,
     color: '#92400e',
     bg: '#fef3c7',
@@ -67,8 +63,6 @@ function BillingContent() {
   const planParam = ['listed', 'featured'].includes(searchParams.get('plan') ?? '') ? searchParams.get('plan') : null
 
   const [profile, setProfile] = useState<any>(null)
-  // Annual-only for the first year — monthly plans return post-launch
-  const billingInterval = 'year' as const
   const [loading, setLoading] = useState<string | null>(null)
   const [portalLoading, setPortalLoading] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -123,7 +117,7 @@ function BillingContent() {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier: tierKey, interval: billingInterval }),
+        body: JSON.stringify({ tier: tierKey }),
       })
       const data = await res.json()
       if (data.url) window.location.href = data.url
@@ -221,9 +215,6 @@ function BillingContent() {
       <div className="flex justify-center mb-8">
         <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold" style={{ backgroundColor: '#f1f3f5', color: 'var(--color-navy)' }}>
           Annual subscription · renews automatically each September 1
-          <span className="text-xs font-bold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
-            2 months free vs monthly
-          </span>
         </div>
       </div>
 
@@ -234,7 +225,6 @@ function BillingContent() {
           const isCurrent = currentTier === tier.key
           const tierIndex = TIER_ORDER.indexOf(tier.key)
           const isDowngrade = tierIndex < currentTierIndex
-          const monthlyEquiv = billingInterval === 'year' ? Math.round(tier.annual / 12) : tier.monthly
           const isFeatured = tier.key === 'featured'
           const featuredFull = isFeatured && (featuredSpots?.taken ?? 0) >= MAX_FEATURED_PER_CATEGORY && currentTier !== 'featured'
 
@@ -270,18 +260,12 @@ function BillingContent() {
 
               <div className="mb-5">
                 <div className="flex items-end gap-1">
-                  <span className="text-4xl font-extrabold" style={{ color: 'var(--color-navy)' }}>${monthlyEquiv}</span>
-                  <span className="text-sm pb-1.5" style={{ color: 'var(--color-gray)' }}>/mo</span>
+                  <span className="text-4xl font-extrabold" style={{ color: 'var(--color-navy)' }}>${tier.annual.toLocaleString()}</span>
+                  <span className="text-sm pb-1.5" style={{ color: 'var(--color-gray)' }}>/yr</span>
                 </div>
-                {billingInterval === 'year' ? (
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
-                    ${tier.annual.toLocaleString()}/yr · save ${tier.annualSaving.toLocaleString()}
-                  </p>
-                ) : (
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
-                    Billed monthly · cancel anytime
-                  </p>
-                )}
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                  Billed annually in CAD
+                </p>
                 {isFeatured && featuredSpots && (
                   <p className="text-xs font-bold mt-1.5" style={{ color: featuredFull ? '#ef4444' : 'var(--color-gold)' }}>
                     {featuredFull

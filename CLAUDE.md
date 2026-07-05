@@ -18,11 +18,13 @@ Enlisted Inc. is the global marketplace for public company services — an indep
 
 ## Revenue Model — Provider Tiers (CAD)
 
-| Tier | Annual | Monthly | Key Features |
-|------|--------|---------|--------------|
-| Free | $0 | $0 | Name, category, city only — no logo, website, or contact shown |
-| Listed | $1,000/yr | $100/mo | Full contact, logo, 300-word description, exchange badges |
-| Featured | $5,000/yr | $500/mo | + Top placement, video, monthly newsletter logo+link, AI Assistant, homepage feature |
+Annual billing only — no monthly plans.
+
+| Tier | Annual | Key Features |
+|------|--------|--------------|
+| Free | $0 | Name, category, city only — no logo, website, or contact shown |
+| Listed | $1,200/yr | Full contact, logo, 300-word description, exchange badges |
+| Featured | $6,000/yr | + Top placement, video, monthly newsletter logo+link, AI Assistant, homepage feature |
 
 Executives are always FREE.
 

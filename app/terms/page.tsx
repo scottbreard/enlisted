@@ -94,24 +94,24 @@ export default function TermsPage() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Listed</td>
+                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Free</td>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Free</td>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Name and category listed; no contact details or logo displayed</td>
                   </tr>
                   <tr style={{ backgroundColor: '#fafafa' }}>
-                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Connected</td>
-                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>$100/mo or $1,000/yr</td>
+                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Listed</td>
+                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>$1,200/yr</td>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Full contact, logo, description, RFQ access</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Featured</td>
-                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>$499/mo or $4,990/yr</td>
+                    <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>$6,000/yr</td>
                     <td className="px-4 py-2" style={{ border: '1px solid var(--color-border)' }}>Top placement, video, AI assistant, homepage feature, monthly newsletter inclusion</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-4"><strong>5.2 Billing.</strong> Subscriptions are billed in advance on a monthly or annual basis. Payment is processed by our third-party payment processor, Stripe, Inc., pursuant to Stripe's own terms of service. By providing payment information, you authorise us to charge the applicable subscription fee on a recurring basis until your subscription is cancelled.</p>
+            <p className="mt-4"><strong>5.2 Billing.</strong> Subscriptions are billed in advance on an annual basis. Payment is processed by our third-party payment processor, Stripe, Inc., pursuant to Stripe's own terms of service. By providing payment information, you authorise us to charge the applicable subscription fee on a recurring basis until your subscription is cancelled.</p>
             <p className="mt-3"><strong>5.3 Cancellation.</strong> You may cancel a subscription at any time through your billing dashboard. Cancellation takes effect at the end of the current billing period. We do not provide prorated refunds for partial periods, except where required by applicable law.</p>
             <p className="mt-3"><strong>5.4 Price Changes.</strong> We may change subscription fees upon not less than 30 days' written notice to the email address on your account. Continued use of a paid plan after the effective date of a price change constitutes acceptance of the new fee.</p>
             <p className="mt-3"><strong>5.5 Taxes.</strong> All fees are exclusive of applicable taxes including Goods and Services Tax / Harmonized Sales Tax ("<strong>GST/HST</strong>"). You are responsible for all applicable taxes arising from your subscription.</p>

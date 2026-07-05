@@ -124,7 +124,7 @@ export default function AnalyticsPage() {
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>
         <Lock className="w-10 h-10 mx-auto mb-3" style={{ color: 'var(--color-gold)' }} />
         <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>Analytics require a paid plan</p>
-        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Connected ($100/mo) to see profile views, search appearances, and RFQ stats.</p>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($1,200/yr) to see profile views, search appearances, and RFQ stats.</p>
         <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
           Upgrade Plan
         </a>

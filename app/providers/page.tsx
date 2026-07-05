@@ -1,12 +1,11 @@
 import Link from 'next/link'
-import { Check, ArrowRight, Users, Inbox, BarChart2, Mail, Star, Zap } from 'lucide-react'
+import { Check, ArrowRight, Users, Inbox, BarChart2, Mail, Star, Zap, CalendarClock, LineChart, FolderLock } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 
 const TIERS = [
   {
     name: 'Free',
-    monthly: '$0',
-    annual: null,
+    price: '$0',
     badge: null,
     highlight: false,
     description: 'Your firm appears in the directory by name and category. No contact details or website shown.',
@@ -16,8 +15,7 @@ const TIERS = [
   },
   {
     name: 'Listed',
-    monthly: '$100/mo',
-    annual: '$1,000/yr',
+    price: '$1,200/yr',
     badge: 'Most Popular',
     highlight: true,
     description: 'Full profile, direct contact details, logo, and full visibility to verified public company executives.',
@@ -27,8 +25,7 @@ const TIERS = [
   },
   {
     name: 'Featured',
-    monthly: '$500/mo',
-    annual: '$5,000/yr',
+    price: '$6,000/yr',
     badge: 'Only 5 per category',
     highlight: false,
     description: 'Top placement in your category, monthly newsletter feature, video profile, and AI Assistant. Limited to 5 firms per category.',
@@ -127,7 +124,7 @@ export default function ProvidersPage() {
             {[
               { num: '92', label: 'Service categories' },
               { num: '4', label: 'Canadian exchanges at launch' },
-              { num: '7,000+', label: 'Listed companies in Canada' },
+              { num: '13,000+', label: 'Executives & directors in our launch outreach' },
               { num: '$0', label: 'Commission on any deal' },
             ].map(({ num, label }) => (
               <div key={label}>
@@ -207,6 +204,81 @@ export default function ProvidersPage() {
           </div>
         </section>
 
+        {/* The two questions every provider asks */}
+        <section className="py-20 px-6" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>Straight answers</p>
+              <h2 className="text-4xl font-extrabold tracking-tight text-white mb-4">
+                The two questions every provider asks us.
+              </h2>
+              <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                You're evaluating an advertising spend, so you deserve real answers — not marketplace hand-waving.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Q1 — how many executives */}
+              <div className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)' }}>
+                <h3 className="text-xl font-bold text-white mb-3">&ldquo;How many executives are on Enlisted?&rdquo;</h3>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                  Executives onboard from <strong className="text-white">September 1, 2026</strong> — and that's deliberate.
+                  We fill the directory first, because the first CFO who logs in needs to find
+                  every service she'll ever need already here. That's you.
+                </p>
+                <ul className="space-y-3 mb-5">
+                  {[
+                    <>Our launch outreach covers <strong className="text-white">13,000+ executives and directors</strong> across TSX, TSXV, CSE, and NEO issuers. Every public company is on the public record — we know exactly who the audience is, and we contact them directly.</>,
+                    <>Every registration is <strong className="text-white">verified against exchange listings</strong>. Officers and directors of listed companies only — no students, no consultants, no tire-kickers.</>,
+                    <><strong className="text-white">700+ firms</strong> are already in the directory ahead of the executive launch.</>,
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                      <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'var(--color-gold)' }} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  We publish real numbers, not vanity metrics. Email{' '}
+                  <a href="mailto:hello@enlisted.ca" className="underline" style={{ color: 'var(--color-gold)' }}>hello@enlisted.ca</a>{' '}
+                  any time and we'll tell you exactly how executive registration is tracking.
+                </p>
+              </div>
+
+              {/* Q2 — what keeps them coming back */}
+              <div className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)' }}>
+                <h3 className="text-xl font-bold text-white mb-3">&ldquo;What keeps executives coming back?&rdquo;</h3>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                  Enlisted isn't a phone book executives visit once. It's a free working dashboard
+                  for the public-company side of their job — and every visit puts them in front of your listing.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    { icon: CalendarClock, title: 'Compliance calendar', body: 'Filing deadlines auto-generated from their exchange. Missing one means a press release — they check it monthly at minimum.' },
+                    { icon: LineChart, title: 'Stock dashboard + news feed', body: 'Their ticker, live price, and market news — a reason to log in every trading day.' },
+                    { icon: FolderLock, title: 'Provider vault', body: 'Every contract and renewal date in one place. When a renewal comes up, they\'re shopping — in your category.' },
+                    { icon: Mail, title: 'Monthly executive newsletter', body: 'Sent to every verified executive, with every Featured provider\'s logo and link in every issue.' },
+                  ].map(({ icon: Icon, title, body }) => (
+                    <li key={title} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: 'rgba(212,160,23,0.15)' }}>
+                        <Icon className="w-4 h-4" style={{ color: 'var(--color-gold)' }} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-white">{title}</p>
+                        <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p className="text-center text-base font-semibold mt-10" style={{ color: 'rgba(255,255,255,0.85)' }}>
+              Providers who list before September 1 are in the directory the day the first executive logs in.
+            </p>
+          </div>
+        </section>
+
         {/* Pricing */}
         <section className="py-20 px-6">
           <div className="max-w-5xl mx-auto">
@@ -216,7 +288,7 @@ export default function ProvidersPage() {
                 Start free. Upgrade when you're ready.
               </h2>
               <p className="text-lg" style={{ color: 'var(--color-gray)' }}>
-                No commissions. No lead fees. One flat rate — cancel anytime.
+                No commissions. No lead fees. One flat annual rate.
               </p>
             </div>
 
@@ -239,10 +311,7 @@ export default function ProvidersPage() {
                     <h3 className="text-xl font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>{tier.name}</h3>
                     <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--color-gray)' }}>{tier.description}</p>
                     <div className="mb-2">
-                      <span className="text-4xl font-extrabold" style={{ color: 'var(--color-navy)' }}>{tier.monthly}</span>
-                      {tier.annual && (
-                        <p className="text-xs mt-1" style={{ color: 'var(--color-gold)' }}>or {tier.annual} — save 2 months</p>
-                      )}
+                      <span className="text-4xl font-extrabold" style={{ color: 'var(--color-navy)' }}>{tier.price}</span>
                     </div>
                     <Link href={tier.name === 'Free' ? '/register/provider' : `/register/provider?plan=${tier.name.toLowerCase()}`}
                       className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mt-5 mb-7"
@@ -271,7 +340,7 @@ export default function ProvidersPage() {
               ))}
             </div>
             <p className="text-center text-sm" style={{ color: 'var(--color-gray-light)' }}>
-              All prices in CAD. Monthly plans cancel at end of billing period. Annual plans cancel at year end.
+              All prices in CAD. Annual subscription — cancels at year end.
             </p>
           </div>
         </section>
@@ -307,7 +376,9 @@ export default function ProvidersPage() {
               Ready to list your firm?
             </h2>
             <p className="text-lg mb-10 leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
-              Create a free listing in minutes. Upgrade to Listed for full visibility, or Featured to receive RFQs and own your category.
+              Executives arrive September 1 — and the directory they see that day is being built now.
+              Create a free listing in minutes, upgrade to Listed for full visibility, or claim one of
+              five Featured spots in your category before they're gone.
             </p>
             <Link href="/register/provider"
               className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-lg"

@@ -185,7 +185,7 @@ export default function ProviderProfilePage() {
 
       {isFree && (
         <div className="mb-6 p-4 rounded-2xl border-2 text-sm" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)', color: 'var(--color-navy)' }}>
-          <strong>Free plan:</strong> Only your company name appears in search results. Upgrade to Listed ($100/mo) to show your full profile, logo, contact details, and description.
+          <strong>Free plan:</strong> Only your company name appears in search results. Upgrade to Listed ($1,200/yr) to show your full profile, logo, contact details, and description.
         </div>
       )}
 
