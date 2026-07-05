@@ -13,7 +13,7 @@ const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> 
 
 const TIER_NEXT: Record<string, { next: string; price: string }> = {
   free:   { next: 'Listed',   price: '$1,000/yr' },
-  listed: { next: 'Featured', price: '$10,000/yr' },
+  listed: { next: 'Featured', price: '$5,000/yr' },
 }
 
 const TIER_FEATURES: Record<string, string[]> = {
@@ -187,7 +187,7 @@ export default function ProviderDashboardPage() {
               <Link href="/provider/billing"
                 className="flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-xl text-sm whitespace-nowrap border"
                 style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
-                Get Featured · $10,000/yr
+                Get Featured · $5,000/yr
               </Link>
             </div>
           </div>

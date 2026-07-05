@@ -22,7 +22,7 @@ type Category = { id: string; slug: string; name: string; group_name: string }
 
 const PLANS: Record<string, { name: string; price: string; icon: typeof Zap; color: string; bg: string }> = {
   listed:   { name: 'Listed',   price: '$1,000/yr', icon: Zap,  color: '#1e40af', bg: '#dbeafe' },
-  featured: { name: 'Featured', price: '$10,000/yr', icon: Star, color: '#92400e', bg: '#fef3c7' },
+  featured: { name: 'Featured', price: '$5,000/yr', icon: Star, color: '#92400e', bg: '#fef3c7' },
 }
 
 function ProviderRegisterContent() {
