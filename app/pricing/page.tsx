@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Check, ArrowRight, Zap, Star, Shield } from 'lucide-react'
+import { Check, ArrowRight, Zap, Star } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 
 const TIERS = [
@@ -66,18 +66,6 @@ const TIERS = [
     ],
     featureStatus: [true, true, true, true, true, true, true],
   },
-]
-
-const EXEC_FEATURES = [
-  'Full access to all 92 service categories',
-  'Send RFQs to Featured providers',
-  'AI Assistant trained on public markets',
-  'Compliance calendar — auto-generated from your exchange',
-  'Stock dashboard with live price + chart',
-  'Company news feed (ticker + Canadian markets)',
-  'Rolodex — personal contact manager',
-  'Provider vault — track contracts & renewals',
-  'Founding Executive badge (first 500)',
 ]
 
 export default function PricingPage() {
@@ -229,40 +217,6 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Executive section */}
-        <section className="px-6 py-20" style={{ backgroundColor: 'var(--color-blue-light)' }}>
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-bold" style={{ backgroundColor: 'var(--color-navy)', color: 'white' }}>
-              <Shield className="w-4 h-4" /> For Executives
-            </div>
-            <h2 className="text-4xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>
-              Always free for public company executives
-            </h2>
-            <p className="text-lg mb-10" style={{ color: 'var(--color-gray)' }}>
-              Every feature, every category, every tool — no credit card, no trial, no expiry.
-              Enlisted exists to serve the people running public companies.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-3 text-left max-w-2xl mx-auto mb-10">
-              {EXEC_FEATURES.map(f => (
-                <div key={f} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--color-gray-dark)' }}>
-                  <Check className="w-4 h-4 mt-0.5 shrink-0 text-emerald-500" />
-                  {f}
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/register/executive"
-              className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-white text-lg"
-              style={{ backgroundColor: 'var(--color-navy)' }}
-            >
-              Register as an Executive <ArrowRight className="w-5 h-5" />
-            </Link>
-            <p className="text-xs mt-3" style={{ color: 'var(--color-gray-light)' }}>
-              First 500 executives receive a permanent Founding Executive badge.
-            </p>
-          </div>
-        </section>
-
         {/* FAQ */}
         <section className="px-6 py-20">
           <div className="max-w-3xl mx-auto">
@@ -312,9 +266,6 @@ export default function PricingPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/register/provider" className="font-bold px-8 py-4 rounded-xl text-[var(--color-navy)] text-lg" style={{ backgroundColor: 'var(--color-gold)' }}>
                 List Your Firm
-              </Link>
-              <Link href="/register/executive" className="font-bold px-8 py-4 rounded-xl text-white text-lg border" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
-                Register as Executive
               </Link>
             </div>
           </div>
