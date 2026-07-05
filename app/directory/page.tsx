@@ -98,8 +98,8 @@ export default async function DirectoryPage() {
                   <Link
                     key={p.id}
                     href={primaryCat?.slug ? `/directory/${primaryCat.slug}/${p.slug}` : `/directory/${p.slug}`}
-                    className="flex items-start gap-4 p-4 rounded-2xl border hover:shadow-md transition-all group"
-                    style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}
+                    className="flex items-start gap-4 p-4 rounded-2xl border bg-white hover:shadow-md transition-all group"
+                    style={{ borderColor: 'var(--color-border)', borderLeft: '3px solid var(--color-gold)' }}
                   >
                     {/* Logo or initials */}
                     <div

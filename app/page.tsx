@@ -304,8 +304,8 @@ export default async function Home() {
         </section>
 
         {/* ── Founding Executive banner ── */}
-        <section className="py-10 px-6" style={{ backgroundColor: 'var(--color-gold-light)', borderTop: '1px solid #e8d5a0', borderBottom: '1px solid #e8d5a0' }}>
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <section className="py-10 px-6 bg-white" style={{ borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 border rounded-2xl px-8 py-6" style={{ borderColor: 'var(--color-border)', borderLeft: '3px solid var(--color-gold)' }}>
             <div>
               <p className="text-sm font-bold tracking-widest uppercase mb-1" style={{ color: 'var(--color-gold)' }}>Limited Offer</p>
               <h3 className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>

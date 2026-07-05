@@ -135,7 +135,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
                     </span>
                   )}
                   {discounts && discounts.length > 0 && (
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gold)' }}>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full border bg-white" style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold)' }}>
                       🏷️ Member Discount
                     </span>
                   )}
@@ -205,7 +205,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
 
           {/* Member Discount */}
           {discounts && discounts.length > 0 && (
-            <div className="border-2 rounded-2xl p-6" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
+            <div className="bg-white border rounded-2xl p-6" style={{ borderColor: 'var(--color-border)', borderLeft: '3px solid var(--color-gold)' }}>
               <h2 className="text-lg font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>🏷️ Member Discount Available</h2>
               <p className="text-sm mb-3" style={{ color: 'var(--color-gray)' }}>
                 {discounts[0].title} — {discounts[0].discount_type === 'percentage'
