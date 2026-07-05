@@ -373,7 +373,6 @@ export default async function Home() {
             </div>
             <span className="flex flex-wrap gap-4">
               <Link href="/directory" className="hover:text-white/80 transition-colors">Directory</Link>
-              <Link href="/pricing" className="hover:text-white/80 transition-colors">Pricing</Link>
               <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
               <Link href="/terms/providers" className="hover:text-white/80 transition-colors">Provider Terms</Link>
               <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>

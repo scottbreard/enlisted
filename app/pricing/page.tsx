@@ -72,7 +72,6 @@ export default function PricingPage() {
           <EnlistedLogo size={28} />
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
             <Link href="/directory" className="hover:text-[var(--color-navy)] transition-colors">Directory</Link>
-            <Link href="/pricing" className="font-bold" style={{ color: 'var(--color-navy)' }}>Pricing</Link>
             <Link href="/about" className="hover:text-[var(--color-navy)] transition-colors">About</Link>
           </nav>
           <div className="flex items-center gap-3">
