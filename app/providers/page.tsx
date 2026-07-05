@@ -27,8 +27,8 @@ const TIERS = [
   },
   {
     name: 'Featured',
-    monthly: '$1,000/mo',
-    annual: '$10,000/yr',
+    monthly: '$500/mo',
+    annual: '$5,000/yr',
     badge: 'Only 5 per category',
     highlight: false,
     description: 'Top placement in your category, monthly newsletter feature, video profile, and AI Assistant. Limited to 5 firms per category.',

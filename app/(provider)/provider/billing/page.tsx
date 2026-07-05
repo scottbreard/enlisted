@@ -31,9 +31,9 @@ const TIERS = [
   {
     key: 'featured',
     name: 'Featured',
-    monthly: 1000,
-    annual: 10000,
-    annualSaving: 2000,
+    monthly: 500,
+    annual: 5000,
+    annualSaving: 1000,
     icon: Star,
     color: '#92400e',
     bg: '#fef3c7',

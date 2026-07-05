@@ -225,7 +225,7 @@ export default function AdminGuidePage() {
               <h3>Pricing rates (CAD)</h3>
               <div className="badges" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
                 <span className="b b-blue">Listed — $100/mo or $1,000/yr</span>
-                <span className="b b-amber">Featured — $1,000/mo or $10,000/yr</span>
+                <span className="b b-amber">Featured — $500/mo or $5,000/yr</span>
                 <span className="b b-gray">Free — $0</span>
               </div>
               <p style={{ marginTop: 10 }}>MRR is estimated from tier counts in the database. Stripe is the billing source of truth.</p>

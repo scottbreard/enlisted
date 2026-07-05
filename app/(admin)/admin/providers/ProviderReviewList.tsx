@@ -411,7 +411,7 @@ export default function ProviderReviewList({
                           style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold)' }}>
                           {state === 'copied'
                             ? <><Check className="w-4 h-4" /> Copied!</>
-                            : <><Link2 className="w-4 h-4" /> {state === 'loading' ? 'Creating…' : `Payment Link — ${t === 'listed' ? 'Listed $1,000/yr' : 'Featured $10,000/yr'}`}</>}
+                            : <><Link2 className="w-4 h-4" /> {state === 'loading' ? 'Creating…' : `Payment Link — ${t === 'listed' ? 'Listed $1,000/yr' : 'Featured $5,000/yr'}`}</>}
                         </button>
                       )
                     })}
