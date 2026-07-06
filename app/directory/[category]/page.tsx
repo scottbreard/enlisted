@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { ChevronRight, Globe, Mail, Phone, Star, Lock } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarketCode } from '@/lib/market'
+import SiteFooter from '@/components/SiteFooter'
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   ir_firm:               'Investor relations firms help TSX, TSXV, CSE, and NEO listed companies build shareholder value through strategic communications, roadshows, and retail investor outreach. Compare Canadian IR agencies by exchange expertise and sector focus.',
@@ -288,6 +289,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           </div>
         </aside>
       </div>
+      <SiteFooter />
     </div>
   )
 }

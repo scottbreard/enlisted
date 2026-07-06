@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { ChevronRight, Globe, Mail, Phone, Link2, CheckCircle } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
+import SiteFooter from '@/components/SiteFooter'
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { slug } = await params
@@ -296,6 +297,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
           </div>
         </aside>
       </div>
+      <SiteFooter />
     </div>
   )
 }

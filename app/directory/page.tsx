@@ -4,6 +4,7 @@ import { ChevronRight, Star, Globe, ArrowRight } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import DirectoryClient from './DirectoryClient'
 import { getMarketCode } from '@/lib/market'
+import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
   title: 'Service Provider Directory — Enlisted',
@@ -134,6 +135,7 @@ export default async function DirectoryPage() {
 
       {/* Search + category grid (client component) */}
       <DirectoryClient categories={categories ?? []} />
+      <SiteFooter />
     </div>
   )
 }
