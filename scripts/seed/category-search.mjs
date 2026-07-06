@@ -66,10 +66,14 @@ async function verifyWebsite(url) {
 async function main() {
   const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 
-  // Find empty categories
+  // Find empty categories (paginate — provider_categories exceeds the 1000-row default)
   const { data: cats } = await db.from('service_categories').select('id, slug, name, group_name').order('sort_order')
-  const { data: pcs } = await db.from('provider_categories').select('category_id')
-  const filled = new Set((pcs ?? []).map((p) => p.category_id))
+  const filled = new Set()
+  for (let from = 0; ; from += 1000) {
+    const { data: pcs } = await db.from('provider_categories').select('category_id').range(from, from + 999)
+    for (const pc of pcs ?? []) filled.add(pc.category_id)
+    if (!pcs || pcs.length < 1000) break
+  }
   const empty = (cats ?? []).filter((c) => !filled.has(c.id)).slice(0, LIMIT)
   console.log(`${empty.length} empty categories to fill (of ${cats.length} total)`)
 
