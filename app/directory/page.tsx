@@ -53,6 +53,7 @@ export default async function DirectoryPage() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={26} />
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
+            <Link href="/directory" className="font-semibold" style={{ color: 'var(--color-navy)' }}>Directory</Link>
             <Link href="/about" className="hover:text-[var(--color-navy)] transition-colors">About</Link>
           </nav>
           <div className="flex items-center gap-3">
