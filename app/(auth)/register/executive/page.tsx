@@ -53,7 +53,7 @@ export default function ExecutiveRegisterPage() {
           </h2>
           <ul className="space-y-4">
             {benefits.map(item => (
-              <li key={item} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              <li key={item} className="flex items-start gap-3 text-[15px] font-medium text-white">
                 <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--color-gold)' }} />
                 {item}
               </li>
