@@ -7,6 +7,7 @@
 //   node scripts/outreach/generate-campaign.mjs                    # full run
 //   → scripts/outreach/output/campaign-YYYY-MM-DD.csv
 //
+// Sequence copy lives in marketing/provider-outreach.md (Campaign B).
 // Columns map to Instantly custom variables:
 //   email, first_name, company_name, category, opener, spots_left, claim_url
 
