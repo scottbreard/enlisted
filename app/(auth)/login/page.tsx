@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
 import EnlistedLogo from '@/components/EnlistedLogo'
+import SiteFooter from '@/components/SiteFooter'
 
 const schema = z.object({
   email: z.string().email('Enter a valid email'),
@@ -51,7 +52,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-16" style={{ backgroundColor: 'var(--color-blue-light)' }}>
+    <div className="min-h-screen flex flex-col">
+    <div className="flex-1 flex flex-col items-center justify-center px-4 py-16" style={{ backgroundColor: 'var(--color-blue-light)' }}>
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -118,6 +120,8 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
+    </div>
+    <SiteFooter />
     </div>
   )
 }

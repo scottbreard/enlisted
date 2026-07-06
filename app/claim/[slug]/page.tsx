@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { createClient } from '@/lib/supabase/client'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import { Building2, ShieldCheck } from 'lucide-react'
+import SiteFooter from '@/components/SiteFooter'
 
 const schema = z.object({
   email: z.string().email('Enter your work email'),
@@ -97,7 +98,8 @@ export default function ClaimListingPage({ params }: { params: Promise<{ slug: s
   const claimed = listing?.user_id != null
 
   return (
-    <div className="min-h-screen px-6 py-12" style={{ backgroundColor: 'var(--color-blue-light)' }}>
+    <div className="min-h-screen flex flex-col">
+    <div className="flex-1 px-6 py-12" style={{ backgroundColor: 'var(--color-blue-light)' }}>
       <div className="max-w-lg mx-auto">
 
         <div className="text-center mb-8">
@@ -211,6 +213,8 @@ export default function ClaimListingPage({ params }: { params: Promise<{ slug: s
           </Link>
         </p>
       </div>
+    </div>
+    <SiteFooter />
     </div>
   )
 }

@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import EnlistedLogo from '@/components/EnlistedLogo'
+import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = { title: 'Account Suspended — Enlisted' }
 
 export default function SuspendedPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center" style={{ backgroundColor: '#f8f9fc' }}>
+    <div className="min-h-screen flex flex-col">
+    <div className="flex-1 flex flex-col items-center justify-center px-6 text-center" style={{ backgroundColor: '#f8f9fc' }}>
       <div className="mb-10"><EnlistedLogo size={28} /></div>
       <div className="bg-white border rounded-2xl p-12 max-w-md w-full" style={{ borderColor: 'var(--color-border)' }}>
         <p className="text-4xl mb-4">🔒</p>
@@ -21,6 +23,8 @@ export default function SuspendedPage() {
           Contact Support
         </a>
       </div>
+    </div>
+    <SiteFooter />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 import EnlistedLogo from '@/components/EnlistedLogo'
 import ExecutiveRegisterForm from './ExecutiveRegisterForm'
+import SiteFooter from '@/components/SiteFooter'
 
 export const metadata: Metadata = {
   title: 'Create Your Free Executive Account',
@@ -40,7 +41,8 @@ function FormSkeleton() {
 
 export default function ExecutiveRegisterPage() {
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen flex flex-col">
+    <div className="flex-1 flex flex-col lg:flex-row">
       {/* Left panel */}
       <div className="hidden lg:flex lg:w-2/5 flex-col justify-between p-12 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
         <EnlistedLogo size={28} variant="dark" />
@@ -95,6 +97,8 @@ export default function ExecutiveRegisterPage() {
           </p>
         </div>
       </div>
+    </div>
+    <SiteFooter />
     </div>
   )
 }
