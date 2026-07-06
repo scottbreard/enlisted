@@ -97,7 +97,7 @@ export default function ProvidersPage() {
               Get in front of the executives<br />
               <span className="text-gold-sheen">running Canada's public companies.</span>
             </h1>
-            <p className="text-xl mb-10 leading-relaxed anim-fade-up anim-d-2" style={{ color: 'rgba(255,255,255,0.75)' }}>
+            <p className="text-xl mb-10 leading-relaxed anim-fade-up anim-d-2" style={{ color: 'rgba(255,255,255,0.9)' }}>
               Enlisted is the only platform where TSX, TSXV, CSE, and NEO executives
               go to find and hire professional service providers. No cold calls. No trade shows.
               No referral luck.
@@ -211,7 +211,7 @@ export default function ProvidersPage() {
               <h2 className="text-4xl font-extrabold tracking-tight text-white mb-4">
                 The two questions every provider asks us.
               </h2>
-              <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>
+              <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.88)' }}>
                 You're evaluating an advertising spend, so you deserve real answers — not marketplace hand-waving.
               </p>
             </div>
@@ -220,7 +220,7 @@ export default function ProvidersPage() {
               {/* Q1 — how many executives */}
               <div className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)' }}>
                 <h3 className="text-xl font-bold text-white mb-3">&ldquo;How many executives are on Enlisted?&rdquo;</h3>
-                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.9)' }}>
                   Executives onboard from <strong className="text-white">September 1, 2026</strong> — and that's deliberate.
                   We fill the directory first, because the first CFO who logs in needs to find
                   every service she'll ever need already here. That's you.
@@ -231,13 +231,13 @@ export default function ProvidersPage() {
                     <>Every registration is <strong className="text-white">verified against exchange listings</strong>. Officers and directors of listed companies only — no students, no consultants, no tire-kickers.</>,
                     <><strong className="text-white">700+ firms</strong> are already in the directory ahead of the executive launch.</>,
                   ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                    <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.9)' }}>
                       <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'var(--color-gold)' }} />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>
                   We publish real numbers, not vanity metrics. Email{' '}
                   <a href="mailto:hello@enlisted.ca" className="underline" style={{ color: 'var(--color-gold)' }}>hello@enlisted.ca</a>{' '}
                   any time and we'll tell you exactly how executive registration is tracking.
@@ -247,7 +247,7 @@ export default function ProvidersPage() {
               {/* Q2 — what keeps them coming back */}
               <div className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)' }}>
                 <h3 className="text-xl font-bold text-white mb-3">&ldquo;What keeps executives coming back?&rdquo;</h3>
-                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.9)' }}>
                   Enlisted isn't a phone book executives visit once. It's a free working dashboard
                   for the public-company side of their job — and every visit puts them in front of your listing.
                 </p>
@@ -264,7 +264,7 @@ export default function ProvidersPage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-white">{title}</p>
-                        <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{body}</p>
+                        <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>{body}</p>
                       </div>
                     </li>
                   ))}
@@ -384,7 +384,7 @@ export default function ProvidersPage() {
               style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>
               List Your Firm — It's Free <ArrowRight className="w-5 h-5" />
             </Link>
-            <p className="text-xs mt-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="text-xs mt-4" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Every provider is reviewed by Enlisted before going live in the directory.
             </p>
           </div>

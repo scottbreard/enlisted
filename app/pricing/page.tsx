@@ -94,7 +94,7 @@ export default function PricingPage() {
             <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight anim-fade-up">
               Simple, transparent pricing
             </h1>
-            <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Reach verified public company executives across TSX, TSXV, CSE, and NEO.
               No commissions. No lead fees. One flat annual rate.
             </p>
@@ -225,7 +225,7 @@ export default function PricingPage() {
           <div className="max-w-2xl mx-auto">
             <Star className="w-10 h-10 mx-auto mb-4" style={{ color: 'var(--color-gold)' }} />
             <h2 className="text-4xl font-extrabold text-white mb-4">Ready to get listed?</h2>
-            <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Join the marketplace purpose-built for Canadian public companies.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

@@ -60,7 +60,7 @@ export default function ExecutiveRegisterPage() {
             ))}
           </ul>
         </div>
-        <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>© 2026 Enlisted Inc.</p>
+        <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>© 2026 Enlisted Inc.</p>
       </div>
 
       {/* Right panel — form */}

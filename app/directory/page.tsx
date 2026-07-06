@@ -66,13 +66,13 @@ export default async function DirectoryPage() {
       {/* Hero */}
       <div className="text-white py-14 px-6" style={{ backgroundColor: 'var(--color-navy)' }}>
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.8)' }}>
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-white">Directory</span>
           </div>
           <h1 className="text-4xl font-extrabold mb-2 anim-fade-up">Service Provider Directory</h1>
-          <p style={{ color: 'rgba(255,255,255,0.7)' }}>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
             {categories?.length ?? 106} categories · {providerCount ?? 0} providers · Free to browse
           </p>
         </div>

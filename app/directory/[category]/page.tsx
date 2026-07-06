@@ -113,7 +113,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       {/* Hero */}
       <div className="text-white py-14 px-6" style={{ backgroundColor: 'var(--color-navy)' }}>
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.8)' }}>
             <Link href="/" className="hover:text-white">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <Link href="/directory" className="hover:text-white">Directory</Link>
@@ -122,7 +122,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           </div>
           <p className="text-sm font-bold tracking-widest uppercase mb-2" style={{ color: 'var(--color-gold)' }}>{cat.group_name}</p>
           <h1 className="text-4xl font-extrabold mb-2 anim-fade-up">{cat.name}</h1>
-          <p style={{ color: 'rgba(255,255,255,0.6)' }}>
+          <p style={{ color: 'rgba(255,255,255,0.85)' }}>
             {providers.length} provider{providers.length !== 1 ? 's' : ''} listed · Canada
           </p>
         </div>
@@ -279,7 +279,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           {/* CTA */}
           <div className="rounded-2xl p-5 text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
             <p className="font-bold mb-1">List your firm</p>
-            <p className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <p className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Get listed in Canada's directory for public company services.
             </p>
             <Link href="/register/provider" className="block text-center text-sm font-bold py-2 rounded-lg" style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>

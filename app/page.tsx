@@ -116,7 +116,7 @@ export default async function Home() {
                 ].map(s => (
                   <div key={s.label}>
                     <p className="text-2xl font-extrabold" style={{ color: 'var(--color-gold)' }}>{s.value}</p>
-                    <p className="text-xs text-white/45 mt-0.5">{s.label}</p>
+                    <p className="text-xs text-white/75 mt-0.5">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -132,7 +132,7 @@ export default async function Home() {
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-extrabold shrink-0" style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>P</div>
                     <div>
                       <p className="text-sm font-bold text-white">Pacific IR Group</p>
-                      <p className="text-xs text-white/40">Investor Relations · Vancouver, BC</p>
+                      <p className="text-xs text-white/70">Investor Relations · Vancouver, BC</p>
                     </div>
                   </div>
                   <span className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5" style={{ backgroundColor: 'rgba(184,134,11,0.2)', color: 'var(--color-gold)' }}>
@@ -149,35 +149,35 @@ export default async function Home() {
                   ].map(s => (
                     <div key={s.label} className="text-center py-4" style={{ backgroundColor: 'rgba(14,35,71,0.6)' }}>
                       <p className="text-xl font-extrabold text-white">{s.value}</p>
-                      <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
+                      <p className="text-xs text-white/70 mt-0.5">{s.label}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Exchange badges */}
                 <div className="px-5 py-4 border-b border-white/10">
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Exchanges Serviced</p>
+                  <p className="text-xs font-bold text-white/80 uppercase tracking-widest mb-3">Exchanges Serviced</p>
                   <div className="flex flex-wrap gap-2">
                     {['TSX', 'TSXV', 'CSE', 'NYSE', 'Nasdaq'].map(ex => (
-                      <span key={ex} className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}>{ex}</span>
+                      <span key={ex} className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.88)' }}>{ex}</span>
                     ))}
                   </div>
                 </div>
 
                 {/* Latest RFQ */}
                 <div className="px-5 py-4">
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Latest RFQ</p>
+                  <p className="text-xs font-bold text-white/80 uppercase tracking-widest mb-3">Latest RFQ</p>
                   <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                     <div className="flex items-center justify-between mb-1.5">
                       <p className="text-xs font-bold text-white">CFO · Aurex Mining Corp · {copy.heroMockExchange}</p>
                       <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>New</span>
                     </div>
-                    <p className="text-xs text-white/50 leading-relaxed">"Looking for an IR firm with junior mining experience ahead of our Q3 roadshow…"</p>
+                    <p className="text-xs text-white/80 leading-relaxed">"Looking for an IR firm with junior mining experience ahead of our Q3 roadshow…"</p>
                   </div>
                 </div>
 
               </div>
-              <p className="text-center text-xs text-white/25 mt-3">Provider dashboard — your data, live</p>
+              <p className="text-center text-xs text-white/60 mt-3">Provider dashboard — your data, live</p>
             </div>
           </div>
         </section>
@@ -364,7 +364,7 @@ export default async function Home() {
       </main>
 
       {/* ── Footer ── */}
-      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-12 px-6">
+      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/80 py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
             <div>
@@ -372,11 +372,11 @@ export default async function Home() {
               <span className="text-xs">🇨🇦 Proudly Canadian — built for TSX, TSXV, CSE &amp; NEO issuers</span>
             </div>
             <span className="flex flex-wrap gap-4">
-              <Link href="/directory" className="hover:text-white/80 transition-colors">Directory</Link>
-              <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
-              <Link href="/terms/providers" className="hover:text-white/80 transition-colors">Provider Terms</Link>
-              <Link href="/privacy" className="hover:text-white/80 transition-colors">Privacy</Link>
-              <Link href="/contact" className="hover:text-white/80 transition-colors">Contact</Link>
+              <Link href="/directory" className="hover:text-white transition-colors">Directory</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+              <Link href="/terms/providers" className="hover:text-white transition-colors">Provider Terms</Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+              <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
             </span>
           </div>
           <div className="mt-6 pt-6 border-t border-white/10 text-xs flex flex-col md:flex-row justify-between gap-2">
