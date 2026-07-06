@@ -146,7 +146,10 @@ export default function ContactPage() {
       {/* Footer */}
       <footer className="border-t py-8 px-6" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style={{ color: 'var(--color-gray-light)' }}>
-          <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
+          <span className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <EnlistedLogo size={16} />
+            <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
+          </span>
           <div className="flex gap-6">
             <Link href="/terms" className="hover:text-[var(--color-navy)] transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-[var(--color-navy)] transition-colors">Privacy</Link>
