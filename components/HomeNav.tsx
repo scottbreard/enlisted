@@ -27,7 +27,7 @@ export default function HomeNav() {
           </Link>
           <Link
             href="/register/executive"
-            className="text-sm font-bold px-4 py-2 rounded-lg text-white transition-colors"
+            className="text-sm font-bold px-4 py-2 rounded-lg text-white transition-colors btn-glow"
             style={{ backgroundColor: 'var(--color-navy)' }}
           >
             Register Free

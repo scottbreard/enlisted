@@ -103,7 +103,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60"
+              className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60 btn-glow"
               style={{ backgroundColor: 'var(--color-navy)' }}
             >
               {isSubmitting ? 'Signing in…' : 'Sign In'}

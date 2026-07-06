@@ -105,13 +105,13 @@ export default function StockPage() {
 
   if (noTicker) return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-6" style={{ color: 'var(--color-navy)' }}>Stock Dashboard</h1>
+      <h1 className="text-3xl font-extrabold mb-6 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Stock Dashboard</h1>
       <div className="flex items-start gap-3 p-5 rounded-2xl border-2" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)' }}>
         <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'var(--color-gold)' }} />
         <div>
           <p className="font-bold" style={{ color: 'var(--color-navy)' }}>Set your ticker symbol first</p>
           <p className="text-sm mt-1 mb-3" style={{ color: 'var(--color-gray)' }}>Go to My Profile and enter your company&apos;s exchange + ticker to unlock this dashboard.</p>
-          <Link href="/profile" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <Link href="/profile" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
             Go to Profile →
           </Link>
         </div>
@@ -122,7 +122,7 @@ export default function StockPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Stock Dashboard</h1>
+        <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Stock Dashboard</h1>
         <button onClick={() => load(true)} disabled={refreshing}
           className="flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-xl border disabled:opacity-50"
           style={{ borderColor: 'var(--color-border)', color: 'var(--color-navy)' }}>
@@ -142,7 +142,7 @@ export default function StockPage() {
           <p className="text-4xl mb-3">📉</p>
           <p className="font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Could not load stock data</p>
           <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>{error}</p>
-          <button onClick={() => load()} className="text-sm font-bold px-4 py-2 rounded-xl text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <button onClick={() => load()} className="text-sm font-bold px-4 py-2 rounded-xl text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
             Try Again
           </button>
         </div>

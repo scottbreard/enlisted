@@ -41,7 +41,7 @@ export default async function AdminProvidersPage({
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Provider Review</h1>
+        <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Provider Review</h1>
         <div className="flex items-center gap-4">
           {(pendingCount ?? 0) > 0 && (
             <span className="text-sm font-bold" style={{ color: '#f59e0b' }}>{pendingCount} pending</span>

@@ -293,7 +293,7 @@ export default function ProviderReviewList({
                           setEditTarget(null)
                           setEditFields({})
                         }}
-                        className="text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50"
+                        className="text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50 btn-glow"
                         style={{ backgroundColor: 'var(--color-navy)' }}>
                         Save Changes
                       </button>
@@ -350,7 +350,7 @@ export default function ProviderReviewList({
                           setRejectTarget(null)
                           setRejectReason('')
                         }}
-                        className="text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50"
+                        className="text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50 btn-glow"
                         style={{ backgroundColor: '#ef4444' }}>
                         Confirm Rejection
                       </button>
@@ -370,7 +370,7 @@ export default function ProviderReviewList({
                       <button
                         disabled={loading === p.id}
                         onClick={() => callApi(p.id, { action: 'approve' })}
-                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50"
+                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50 btn-glow"
                         style={{ backgroundColor: '#10b981' }}>
                         <CheckCircle className="w-4 h-4" />
                         {loading === p.id ? 'Approving…' : 'Approve'}
@@ -380,7 +380,7 @@ export default function ProviderReviewList({
                       <button
                         disabled={loading === p.id}
                         onClick={() => callApi(p.id, { action: 'approve' })}
-                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50"
+                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50 btn-glow"
                         style={{ backgroundColor: '#10b981' }}>
                         <CheckCircle className="w-4 h-4" /> Re-Approve
                       </button>
@@ -388,7 +388,7 @@ export default function ProviderReviewList({
                     {status !== 'rejected' && (
                       <button
                         onClick={() => { setRejectTarget(p.id); setRejectReason('') }}
-                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white"
+                        className="flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl text-white btn-glow"
                         style={{ backgroundColor: '#ef4444' }}>
                         <XCircle className="w-4 h-4" />
                         {status === 'approved' ? 'Revoke' : 'Reject'}

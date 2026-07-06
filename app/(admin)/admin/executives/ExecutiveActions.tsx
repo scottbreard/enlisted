@@ -36,7 +36,7 @@ export default function ExecutiveActions({
         <button
           disabled={loading}
           onClick={() => callApi('remove').then(() => setConfirmRemove(false))}
-          className="text-xs font-bold px-2 py-1 rounded-lg text-white disabled:opacity-50"
+          className="text-xs font-bold px-2 py-1 rounded-lg text-white disabled:opacity-50 btn-glow"
           style={{ backgroundColor: '#ef4444' }}
         >
           Confirm

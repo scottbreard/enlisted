@@ -15,18 +15,18 @@ export default function Error({
       <div className="mb-6">
         <EnlistedLogo size={28} />
       </div>
-      <h1 className="text-5xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>Something went wrong</h1>
+      <h1 className="text-5xl font-extrabold mb-4 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Something went wrong</h1>
       <p className="text-sm mb-8 max-w-sm" style={{ color: 'var(--color-gray)' }}>
         An unexpected error occurred. Our team has been notified.
       </p>
       <div className="flex gap-3">
         <button onClick={reset}
-          className="px-6 py-3 rounded-xl text-sm font-bold text-white"
+          className="px-6 py-3 rounded-xl text-sm font-bold text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}>
           Try again
         </button>
         <a href="/"
-          className="px-6 py-3 rounded-xl text-sm font-bold border"
+          className="px-6 py-3 rounded-xl text-sm font-bold border btn-glow"
           style={{ borderColor: 'var(--color-border)', color: 'var(--color-navy)' }}>
           Go home
         </a>

@@ -83,7 +83,7 @@ export default function AddComplianceEventPage() {
           <Calendar className="w-5 h-5" style={{ color: 'var(--color-navy)' }} />
         </div>
         <div>
-          <h1 className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Add Custom Event</h1>
+          <h1 className="text-2xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Add Custom Event</h1>
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Add a deadline or reminder to your compliance calendar.</p>
         </div>
       </div>

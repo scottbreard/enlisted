@@ -76,7 +76,7 @@ export default function PricingPage() {
           </nav>
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
-            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Register Free
             </Link>
           </div>
@@ -91,7 +91,7 @@ export default function PricingPage() {
             <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
               For Service Providers
             </p>
-            <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight">
+            <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight anim-fade-up">
               Simple, transparent pricing
             </h1>
             <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.7)' }}>

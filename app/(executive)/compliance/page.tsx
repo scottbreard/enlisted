@@ -118,13 +118,13 @@ export default async function CompliancePage() {
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Compliance Calendar</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Compliance Calendar</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
             Your regulatory filing deadlines, auto-generated for your exchange.
           </p>
         </div>
         <Link href="/compliance/add"
-          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white"
+          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}>
           <Plus className="w-4 h-4" /> Add Event
         </Link>
@@ -141,7 +141,7 @@ export default async function CompliancePage() {
             Add your exchange listing to your profile and we'll auto-generate all your filing deadlines — annual financials, AGM, interim reports, and more.
           </p>
           <Link href="/profile"
-            className="font-bold px-6 py-3 rounded-xl text-white inline-block"
+            className="font-bold px-6 py-3 rounded-xl text-white inline-block btn-glow"
             style={{ backgroundColor: 'var(--color-navy)' }}>
             Complete Your Profile →
           </Link>

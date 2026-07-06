@@ -132,7 +132,7 @@ export default function ProfilePage() {
     <div className="p-8 max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>My Profile</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>My Profile</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
             Keep your profile up to date to unlock compliance calendar and peer insights.
           </p>
@@ -140,7 +140,7 @@ export default function ProfilePage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-60 transition-all"
+          className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-60 transition-all btn-glow"
           style={{ backgroundColor: saved ? '#10b981' : 'var(--color-navy)' }}
         >
           {saved ? <><CheckCircle className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> {saving ? 'Saving…' : 'Save Changes'}</>}

@@ -141,7 +141,7 @@ export default function ProviderDashboardPage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>
             Welcome back, {profile.company_name}
           </h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
@@ -282,7 +282,7 @@ export default function ProviderDashboardPage() {
                 <p className="text-3xl mb-2">📬</p>
                 <p className="font-bold text-sm mb-1" style={{ color: 'var(--color-navy)' }}>RFQs require a paid plan</p>
                 <p className="text-xs mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($1,200/yr) to receive quote requests from executives.</p>
-                <Link href="/provider/billing" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+                <Link href="/provider/billing" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
                   Upgrade Plan
                 </Link>
               </div>

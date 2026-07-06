@@ -31,7 +31,7 @@ export default async function AdminRevenuePage() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-8" style={{ color: 'var(--color-navy)' }}>Revenue</h1>
+      <h1 className="text-3xl font-extrabold mb-8 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Revenue</h1>
 
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[

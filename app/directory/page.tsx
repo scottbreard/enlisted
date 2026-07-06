@@ -56,7 +56,7 @@ export default async function DirectoryPage() {
           </nav>
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
-            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Register Free
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default async function DirectoryPage() {
             <ChevronRight className="w-3 h-3" />
             <span className="text-white">Directory</span>
           </div>
-          <h1 className="text-4xl font-extrabold mb-2">Service Provider Directory</h1>
+          <h1 className="text-4xl font-extrabold mb-2 anim-fade-up">Service Provider Directory</h1>
           <p style={{ color: 'rgba(255,255,255,0.7)' }}>
             {categories?.length ?? 106} categories · {providerCount ?? 0} providers · Free to browse
           </p>

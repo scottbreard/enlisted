@@ -121,7 +121,7 @@ export default async function DashboardPage() {
         <div className="flex items-start justify-between">
           <div>
             <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-gray)' }}>{greeting}</p>
-            <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>
+            <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>
               {profile.first_name} {profile.last_name}
             </h1>
             <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
             </p>
           </div>
           {profile.is_founding_member && (
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold"
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold btn-glow"
               style={{ backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gold)' }}>
               <Star className="w-4 h-4 fill-current" />
               Founding Executive #{profile.founding_member_number}
@@ -147,7 +147,7 @@ export default async function DashboardPage() {
           { label: 'Open RFQs',         value: openRfqs?.length ?? 0, icon: Send, href: '/rfq' },
         ].map(stat => (
           <Link key={stat.label} href={stat.href}
-            className="bg-white border rounded-2xl p-5 hover:shadow-md transition-shadow"
+            className="bg-white border rounded-2xl p-5 card-lift"
             style={{ borderColor: 'var(--color-border)' }}>
             <stat.icon className="w-5 h-5 mb-3" style={{ color: 'var(--color-navy)' }} />
             <p className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>{stat.value}</p>
@@ -160,7 +160,7 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
         {quickActions.map(action => (
           <Link key={action.href} href={action.href}
-            className="bg-white border rounded-2xl p-4 hover:shadow-md transition-all group flex flex-col gap-3"
+            className="bg-white border rounded-2xl p-4 card-lift group flex flex-col gap-3"
             style={{ borderColor: 'var(--color-border)' }}>
             <div className="w-9 h-9 rounded-xl flex items-center justify-center"
               style={{ backgroundColor: `${action.color}15`, color: action.color }}>
@@ -184,7 +184,7 @@ export default async function DashboardPage() {
             <div className="text-center py-6">
               <Calendar className="w-8 h-8 mx-auto mb-2" style={{ color: 'var(--color-gray-light)' }} />
               <p className="text-sm mb-3" style={{ color: 'var(--color-gray)' }}>No deadlines yet</p>
-              <Link href="/compliance" className="text-xs font-bold px-4 py-2 rounded-lg text-white inline-block"
+              <Link href="/compliance" className="text-xs font-bold px-4 py-2 rounded-lg text-white inline-block btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}>
                 Set Up Calendar
               </Link>
@@ -226,7 +226,7 @@ export default async function DashboardPage() {
             <div className="text-center py-6">
               <Briefcase className="w-8 h-8 mx-auto mb-2" style={{ color: 'var(--color-gray-light)' }} />
               <p className="text-sm mb-3" style={{ color: 'var(--color-gray)' }}>Track your service providers here</p>
-              <Link href="/vault" className="text-xs font-bold px-4 py-2 rounded-lg text-white inline-block"
+              <Link href="/vault" className="text-xs font-bold px-4 py-2 rounded-lg text-white inline-block btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}>
                 Add a Provider
               </Link>

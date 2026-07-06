@@ -76,7 +76,7 @@ export default function ProvidersPage() {
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
             <Link href="/register/provider"
-              className="text-sm font-bold px-4 py-2 rounded-lg text-white"
+              className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow"
               style={{ backgroundColor: 'var(--color-gold)' }}>
               List Your Firm
             </Link>

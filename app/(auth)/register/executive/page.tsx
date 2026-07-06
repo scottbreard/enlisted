@@ -71,7 +71,7 @@ export default function ExecutiveRegisterPage() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl shadow-blue-900/5 border p-8 anim-fade-up" style={{ borderColor: 'var(--color-border)' }}>
-            <h1 className="text-2xl font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>
+            <h1 className="text-2xl font-extrabold mb-1 anim-fade-up" style={{ color: 'var(--color-navy)' }}>
               Create your free account
             </h1>
             <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>

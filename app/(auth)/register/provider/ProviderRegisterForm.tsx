@@ -269,7 +269,7 @@ export default function ProviderRegisterForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60"
+            className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60 btn-glow"
             style={{ backgroundColor: 'var(--color-navy)' }}
           >
             {isSubmitting ? 'Creating account…' : plan ? 'Create Account & Continue to Payment' : 'Create Free Listing'}

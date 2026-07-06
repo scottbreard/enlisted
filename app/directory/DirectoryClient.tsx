@@ -125,7 +125,7 @@ export default function DirectoryClient({ categories }: { categories: Category[]
             <p className="text-4xl mb-3">🔍</p>
             <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>No categories match &ldquo;{query}&rdquo;</p>
             <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Try a different search term or browse all categories.</p>
-            <button onClick={() => setQuery('')} className="text-sm font-bold px-4 py-2 rounded-xl text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <button onClick={() => setQuery('')} className="text-sm font-bold px-4 py-2 rounded-xl text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Clear search
             </button>
           </div>

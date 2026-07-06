@@ -22,7 +22,7 @@ export default function AboutPage() {
             <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
               About Enlisted.ca
             </p>
-            <h1 className="text-5xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-5xl font-extrabold mb-6 leading-tight anim-fade-up">
               Built for the people running Canada's public companies.
             </h1>
             <p className="text-xl text-white/65 max-w-2xl mx-auto leading-relaxed">

@@ -120,12 +120,12 @@ export default function AnalyticsPage() {
 
   if (profile.tier === 'free') return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-6" style={{ color: 'var(--color-navy)' }}>Analytics</h1>
+      <h1 className="text-3xl font-extrabold mb-6 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Analytics</h1>
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>
         <Lock className="w-10 h-10 mx-auto mb-3" style={{ color: 'var(--color-gold)' }} />
         <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>Analytics require a paid plan</p>
         <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Upgrade to Listed ($1,200/yr) to see profile views, search appearances, and RFQ stats.</p>
-        <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+        <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
           Upgrade Plan
         </a>
       </div>
@@ -139,7 +139,7 @@ export default function AnalyticsPage() {
     <div className="p-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Analytics</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Analytics</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>Profile performance over the last 30 days.</p>
         </div>
         {!isFeatured && (
@@ -196,7 +196,7 @@ export default function AnalyticsPage() {
                 <p className="font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>Want deeper insights?</p>
                 <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Featured Partners get search-rank position tracking, message conversion rates, and RFQ click-through analytics.</p>
               </div>
-              <a href="/provider/billing" className="shrink-0 text-sm font-bold px-5 py-2.5 rounded-xl text-white ml-4" style={{ backgroundColor: 'var(--color-navy)' }}>
+              <a href="/provider/billing" className="shrink-0 text-sm font-bold px-5 py-2.5 rounded-xl text-white ml-4 btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
                 Upgrade to Featured
               </a>
             </div>

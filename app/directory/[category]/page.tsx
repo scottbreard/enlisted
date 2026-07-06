@@ -103,7 +103,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <EnlistedLogo size={26} />
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
-            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Register Free
             </Link>
           </div>
@@ -121,7 +121,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <span className="text-white">{cat.name}</span>
           </div>
           <p className="text-sm font-bold tracking-widest uppercase mb-2" style={{ color: 'var(--color-gold)' }}>{cat.group_name}</p>
-          <h1 className="text-4xl font-extrabold mb-2">{cat.name}</h1>
+          <h1 className="text-4xl font-extrabold mb-2 anim-fade-up">{cat.name}</h1>
           <p style={{ color: 'rgba(255,255,255,0.6)' }}>
             {providers.length} provider{providers.length !== 1 ? 's' : ''} listed · Canada
           </p>
@@ -143,7 +143,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
               <p className="text-4xl mb-4">🔍</p>
               <h2 className="text-xl font-bold mb-2" style={{ color: 'var(--color-navy)' }}>No providers listed yet</h2>
               <p className="mb-6" style={{ color: 'var(--color-gray)' }}>Be the first {cat.name} firm on Enlisted.</p>
-              <Link href="/register/provider" className="font-bold px-6 py-3 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+              <Link href="/register/provider" className="font-bold px-6 py-3 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
                 List Your Firm
               </Link>
             </div>
@@ -245,7 +245,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
                       {!isFree && (
                         <Link href={`/directory/${category}/${provider.slug}`}
-                          className="shrink-0 text-sm font-bold px-4 py-2 rounded-xl text-white"
+                          className="shrink-0 text-sm font-bold px-4 py-2 rounded-xl text-white btn-glow"
                           style={{ backgroundColor: 'var(--color-navy)' }}>
                           View Profile
                         </Link>

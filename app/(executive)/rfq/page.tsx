@@ -67,11 +67,11 @@ export default function RFQPage() {
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>My RFQs</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>My RFQs</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>Request quotes from service providers in the directory.</p>
         </div>
         <button onClick={() => setShowForm(v => !v)}
-          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white"
+          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}>
           <Plus className="w-4 h-4" />
           New RFQ
@@ -137,7 +137,7 @@ export default function RFQPage() {
                 Cancel
               </button>
               <button type="submit" disabled={submitting || !form.provider_id || !form.title || !form.description}
-                className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-50"
+                className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-50 btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}>
                 <Send className="w-4 h-4" />
                 {submitting ? 'Sending…' : 'Send RFQ'}
@@ -159,7 +159,7 @@ export default function RFQPage() {
           <p className="text-4xl mb-3">📬</p>
           <p className="font-bold mb-1" style={{ color: 'var(--color-navy)' }}>No RFQs yet</p>
           <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Find a provider in the directory and send your first quote request.</p>
-          <Link href="/directory" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <Link href="/directory" className="text-sm font-bold px-4 py-2 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
             Browse Directory
           </Link>
         </div>

@@ -70,11 +70,11 @@ export default function RolodexPage() {
     <div className="p-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Rolodex</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Rolodex</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>Your personal directory of advisors, service providers, and contacts.</p>
         </div>
         <button onClick={() => setShowForm(v => !v)}
-          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white"
+          className="flex items-center gap-2 text-sm font-bold px-4 py-2.5 rounded-xl text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}>
           <Plus className="w-4 h-4" /> Add Contact
         </button>
@@ -131,7 +131,7 @@ export default function RolodexPage() {
                 Cancel
               </button>
               <button type="submit" disabled={saving || !form.name}
-                className="text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-50"
+                className="text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-50 btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}>
                 {saving ? 'Saving…' : 'Save Contact'}
               </button>
@@ -167,7 +167,7 @@ export default function RolodexPage() {
       ) : (
         <div className="grid grid-cols-2 gap-4">
           {filtered.map((contact: any) => (
-            <div key={contact.id} className="bg-white border rounded-2xl p-5 group hover:shadow-md transition-shadow" style={{ borderColor: 'var(--color-border)' }}>
+            <div key={contact.id} className="bg-white border rounded-2xl p-5 group card-lift" style={{ borderColor: 'var(--color-border)' }}>
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <p className="font-bold" style={{ color: 'var(--color-navy)' }}>{contact.name}</p>

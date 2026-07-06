@@ -30,7 +30,7 @@ export default function TermsPage() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>Legal</p>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>Terms of Service</h1>
+          <h1 className="text-4xl font-extrabold mb-3 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Terms of Service</h1>
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Effective date: {EFFECTIVE} · Last updated: {EFFECTIVE}</p>
           <div className="mt-4 p-4 rounded-xl border-l-4 text-sm" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gray-dark)' }}>
             Please read these Terms carefully before using Enlisted.ca. By creating an account or accessing the Platform, you agree to be bound by these Terms. If you do not agree, do not use the Platform.

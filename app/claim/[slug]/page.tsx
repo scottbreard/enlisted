@@ -102,7 +102,7 @@ export default function ClaimListingPage({ params }: { params: Promise<{ slug: s
 
         <div className="text-center mb-8">
           <div className="mb-5 flex justify-center"><EnlistedLogo size={28} /></div>
-          <h1 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--color-navy)' }}>
+          <h1 className="text-3xl font-extrabold mb-2 anim-fade-up" style={{ color: 'var(--color-navy)' }}>
             Claim your listing
           </h1>
           {listing && (
@@ -188,7 +188,7 @@ export default function ClaimListingPage({ params }: { params: Promise<{ slug: s
               <button
                 type="submit"
                 disabled={isSubmitting || !listing}
-                className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60"
+                className="w-full py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60 btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}
               >
                 {isSubmitting ? 'Claiming…' : 'Claim This Listing'}

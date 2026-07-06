@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>Legal</p>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>Privacy Policy</h1>
+          <h1 className="text-4xl font-extrabold mb-3 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Privacy Policy</h1>
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Effective date: {EFFECTIVE} · Last updated: {EFFECTIVE}</p>
           <div className="mt-4 p-4 rounded-xl border-l-4 text-sm" style={{ borderColor: 'var(--color-blue)', backgroundColor: 'var(--color-blue-light)', color: 'var(--color-gray-dark)' }}>
             {COMPANY} ("<strong>Enlisted</strong>," "<strong>we</strong>," "<strong>us</strong>") is committed to protecting your privacy. This Policy explains how we collect, use, disclose, and safeguard personal information in compliance with the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) and applicable provincial privacy laws.

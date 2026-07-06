@@ -69,7 +69,7 @@ export default function NewsPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>News Feed</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>News Feed</h1>
           {company && (
             <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
               {ticker && <span className="font-bold" style={{ color: 'var(--color-blue)' }}>{ticker} · </span>}
@@ -133,7 +133,7 @@ export default function NewsPage() {
           <p className="text-4xl mb-3">📡</p>
           <p className="font-bold" style={{ color: 'var(--color-navy)' }}>Couldn&apos;t load news</p>
           <p className="text-sm mt-1 mb-4" style={{ color: 'var(--color-gray)' }}>{error}</p>
-          <button onClick={() => load()} className="text-sm font-bold px-4 py-2 rounded-xl text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+          <button onClick={() => load()} className="text-sm font-bold px-4 py-2 rounded-xl text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
             Try Again
           </button>
         </div>
@@ -147,7 +147,7 @@ export default function NewsPage() {
         <div className="space-y-3">
           {filtered.map((article, i) => (
             <a key={i} href={article.link} target="_blank" rel="noopener noreferrer"
-              className="block bg-white border rounded-2xl p-5 hover:shadow-md transition-shadow group"
+              className="block bg-white border rounded-2xl p-5 card-lift group"
               style={{ borderColor: article.ticker ? 'var(--color-blue)' : 'var(--color-border)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5"

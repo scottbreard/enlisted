@@ -64,12 +64,12 @@ export default function ProviderRFQPage() {
 
   if (profile.tier !== 'featured') return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-6" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
+      <h1 className="text-3xl font-extrabold mb-6 anim-fade-up" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
       <div className="text-center py-16 bg-white border-2 rounded-2xl" style={{ borderColor: 'var(--color-gold)' }}>
         <Lock className="w-10 h-10 mx-auto mb-3" style={{ color: 'var(--color-gold)' }} />
         <p className="font-bold text-lg mb-1" style={{ color: 'var(--color-navy)' }}>RFQs are a Featured benefit</p>
         <p className="text-sm mb-4" style={{ color: 'var(--color-gray)' }}>Only Featured providers ($6,000/yr, max 5 per category) receive quote requests from executives.</p>
-        <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+        <a href="/provider/billing" className="text-sm font-bold px-5 py-2.5 rounded-xl text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
           Get Featured
         </a>
       </div>
@@ -82,7 +82,7 @@ export default function ProviderRFQPage() {
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>RFQ Inbox</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
             Featured Partner — quote requests from verified executives arrive here.
           </p>
@@ -161,7 +161,7 @@ export default function ProviderRFQPage() {
                           <div className="flex justify-end mt-2">
                             <button onClick={() => handleRespond(rfq.id)}
                               disabled={!responseText.trim() || responding === rfq.id}
-                              className="flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50"
+                              className="flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-xl text-white disabled:opacity-50 btn-glow"
                               style={{ backgroundColor: 'var(--color-navy)' }}>
                               <Send className="w-3.5 h-3.5" />
                               {responding === rfq.id ? 'Sending…' : 'Send Response'}

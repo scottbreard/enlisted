@@ -174,7 +174,7 @@ function BillingContent() {
 
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Billing & Plan</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Billing & Plan</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>All prices in CAD. Annual subscription — renews each September 1 unless cancelled. Non-refundable after 7 days.</p>
         </div>
         {hasPaidPlan && (
@@ -287,7 +287,7 @@ function BillingContent() {
               <button
                 onClick={() => !isCurrent && !isDowngrade && !featuredFull && handleCheckout(tier.key)}
                 disabled={isCurrent || loading === tier.key || isDowngrade || !termsAccepted || featuredFull}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold transition-all disabled:opacity-50"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold transition-all disabled:opacity-50 btn-glow"
                 style={{
                   backgroundColor: isCurrent ? tier.bg : 'var(--color-navy)',
                   color: isCurrent ? tier.color : 'white',

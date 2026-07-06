@@ -47,7 +47,7 @@ export default async function AdminProspectsPage({
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Executive Prospects</h1>
+        <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Executive Prospects</h1>
         <p className="text-sm" style={{ color: 'var(--color-gray)' }}>{(count ?? 0).toLocaleString()} prospects</p>
       </div>
       <p className="text-sm mb-6" style={{ color: 'var(--color-gray)' }}>

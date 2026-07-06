@@ -44,7 +44,7 @@ export default async function AdminExecutivesPage({
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Executives</h1>
+        <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Executives</h1>
         <div className="flex items-center gap-4 text-sm" style={{ color: 'var(--color-gray)' }}>
           <span><strong style={{ color: 'var(--color-navy)' }}>{(activeCount ?? 0) + (suspendedCount ?? 0)}</strong> total</span>
           <span><strong style={{ color: 'var(--color-gold)' }}>{foundingCount ?? 0}</strong> founding</span>
@@ -86,7 +86,7 @@ export default async function AdminExecutivesPage({
           className="flex-1 px-4 py-2.5 rounded-xl border text-sm outline-none"
           style={{ borderColor: 'var(--color-border)' }}
         />
-        <button type="submit" className="px-5 py-2.5 rounded-xl text-sm font-bold text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+        <button type="submit" className="px-5 py-2.5 rounded-xl text-sm font-bold text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
           Search
         </button>
       </form>

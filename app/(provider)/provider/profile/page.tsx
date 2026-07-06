@@ -163,7 +163,7 @@ export default function ProviderProfilePage() {
     <div className="p-8 max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold" style={{ color: 'var(--color-navy)' }}>Edit Profile</h1>
+          <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Edit Profile</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>
             {isFree
               ? 'Only your company name is shown on the free plan. Upgrade to display full details.'
@@ -171,7 +171,7 @@ export default function ProviderProfilePage() {
           </p>
         </div>
         <button onClick={handleSave} disabled={saving}
-          className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-60 transition-all"
+          className="flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl text-white disabled:opacity-60 transition-all btn-glow"
           style={{ backgroundColor: saved ? '#10b981' : 'var(--color-navy)' }}>
           {saved ? <><CheckCircle className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> {saving ? 'Saving…' : 'Save Changes'}</>}
         </button>
@@ -334,7 +334,7 @@ export default function ProviderProfilePage() {
         <div className="flex gap-3 flex-wrap">
           {exchanges.map(code => (
             <button key={code} onClick={() => toggleExchange(code)}
-              className="px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all"
+              className="px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all btn-glow"
               style={{
                 borderColor: selectedExchanges.includes(code) ? 'var(--color-navy)' : 'var(--color-border)',
                 backgroundColor: selectedExchanges.includes(code) ? 'var(--color-navy)' : 'white',

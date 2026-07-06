@@ -32,7 +32,7 @@ export default function ProviderRegisterPage() {
 
         <div className="text-center">
           <div className="mb-5 flex justify-center"><EnlistedLogo size={28} /></div>
-          <h1 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--color-navy)' }}>
+          <h1 className="text-3xl font-extrabold mb-2 anim-fade-up" style={{ color: 'var(--color-navy)' }}>
             List your firm on Enlisted
           </h1>
         </div>

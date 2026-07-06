@@ -31,7 +31,7 @@ export default function ProviderTermsPage() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>Legal</p>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>Provider Terms &amp; Conditions</h1>
+          <h1 className="text-4xl font-extrabold mb-3 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Provider Terms &amp; Conditions</h1>
           <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Effective date: {EFFECTIVE} · Last updated: {EFFECTIVE}</p>
           <div className="mt-4 p-4 rounded-xl border-l-4 text-sm" style={{ borderColor: 'var(--color-gold)', backgroundColor: 'var(--color-gold-light)', color: 'var(--color-gray-dark)' }}>
             These Provider Terms &amp; Conditions supplement our <Link href="/terms" className="underline" style={{ color: 'var(--color-blue)' }}>Terms of Service</Link> and apply to service providers purchasing a paid subscription on the Enlisted platform. By completing a subscription purchase, you agree to these terms on behalf of the firm you represent.

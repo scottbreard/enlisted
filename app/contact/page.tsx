@@ -21,7 +21,7 @@ export default function ContactPage() {
           </nav>
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
-            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Register Free
             </Link>
           </div>
@@ -33,7 +33,7 @@ export default function ContactPage() {
         {/* Hero */}
         <section className="py-20 px-6 text-center" style={{ backgroundColor: 'var(--color-navy)' }}>
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-5xl font-extrabold text-white mb-4">Get in touch</h1>
+            <h1 className="text-5xl font-extrabold text-white mb-4 anim-fade-up">Get in touch</h1>
             <p className="text-xl" style={{ color: 'rgba(255,255,255,0.7)' }}>
               Questions about listings, accounts, or the platform — we're here to help.
             </p>

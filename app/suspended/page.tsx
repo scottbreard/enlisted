@@ -9,13 +9,13 @@ export default function SuspendedPage() {
       <div className="mb-10"><EnlistedLogo size={28} /></div>
       <div className="bg-white border rounded-2xl p-12 max-w-md w-full" style={{ borderColor: 'var(--color-border)' }}>
         <p className="text-4xl mb-4">🔒</p>
-        <h1 className="text-2xl font-extrabold mb-3" style={{ color: 'var(--color-navy)' }}>Account suspended</h1>
+        <h1 className="text-2xl font-extrabold mb-3 anim-fade-up" style={{ color: 'var(--color-navy)' }}>Account suspended</h1>
         <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--color-gray)' }}>
           Your account has been suspended following our executive vetting review. If you believe this is an error, please contact us.
         </p>
         <a
           href="mailto:hello@enlisted.ca"
-          className="inline-block text-sm font-bold px-6 py-3 rounded-xl text-white"
+          className="inline-block text-sm font-bold px-6 py-3 rounded-xl text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}
         >
           Contact Support

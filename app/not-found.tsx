@@ -8,19 +8,19 @@ export default function NotFound() {
       <div className="mb-6">
         <EnlistedLogo size={28} />
       </div>
-      <h1 className="text-8xl font-extrabold mb-4" style={{ color: 'var(--color-navy)' }}>404</h1>
+      <h1 className="text-8xl font-extrabold mb-4 anim-fade-up" style={{ color: 'var(--color-navy)' }}>404</h1>
       <p className="text-xl font-bold mb-2" style={{ color: 'var(--color-navy)' }}>Page not found</p>
       <p className="text-sm mb-8 max-w-sm" style={{ color: 'var(--color-gray)' }}>
         The page you're looking for doesn't exist or has been moved.
       </p>
       <div className="flex gap-3">
         <Link href="/"
-          className="px-6 py-3 rounded-xl text-sm font-bold text-white"
+          className="px-6 py-3 rounded-xl text-sm font-bold text-white btn-glow"
           style={{ backgroundColor: 'var(--color-navy)' }}>
           Go home
         </Link>
         <Link href="/directory"
-          className="px-6 py-3 rounded-xl text-sm font-bold border"
+          className="px-6 py-3 rounded-xl text-sm font-bold border btn-glow"
           style={{ borderColor: 'var(--color-border)', color: 'var(--color-navy)' }}>
           Browse directory
         </Link>

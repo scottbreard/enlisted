@@ -87,7 +87,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
           <EnlistedLogo size={26} />
           <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign In</Link>
-            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white" style={{ backgroundColor: 'var(--color-navy)' }}>
+            <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
               Register Free
             </Link>
           </div>
@@ -125,7 +125,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 flex-wrap mb-2">
-                  <h1 className="text-2xl font-extrabold" style={{ color: 'var(--color-navy)' }}>{provider.company_name}</h1>
+                  <h1 className="text-2xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>{provider.company_name}</h1>
                   <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: tier.bg, color: tier.color }}>
                     {tier.label}
                   </span>
@@ -212,7 +212,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
                   ? `${discounts[0].discount_value}% off`
                   : `$${discounts[0].discount_value} off`}
               </p>
-              <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white inline-block" style={{ backgroundColor: 'var(--color-navy)' }}>
+              <Link href="/register/executive" className="text-sm font-bold px-4 py-2 rounded-lg text-white inline-block btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
                 Register Free to Claim
               </Link>
             </div>
