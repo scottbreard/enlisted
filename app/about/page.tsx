@@ -25,7 +25,7 @@ export default function AboutPage() {
             <h1 className="text-5xl font-extrabold mb-6 leading-tight anim-fade-up">
               Built for the people running Canada's public companies.
             </h1>
-            <p className="text-xl text-white/65 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
               Finding the right IR firm, securities lawyer, or transfer agent shouldn't take weeks of cold calls and conflicted referrals. We built the platform we wished existed.
             </p>
           </div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
         <section className="py-16 px-6" style={{ backgroundColor: 'var(--color-navy)' }}>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-extrabold text-white mb-4">Ready to get started?</h2>
-            <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Enlisted is free for public company executives. Register in under 2 minutes.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -213,7 +213,7 @@ export default function AboutPage() {
 
       </main>
 
-      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/50 py-10 px-6">
+      <footer style={{ backgroundColor: '#0e2347' }} className="text-white/80 py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <span className="text-white font-extrabold text-lg">Enlisted.ca</span>
           <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
