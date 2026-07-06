@@ -6,6 +6,7 @@ import {
   ArrowRight, CheckCircle, Star
 } from 'lucide-react'
 import HomeNav from '@/components/HomeNav'
+import EnlistedLogo from '@/components/EnlistedLogo'
 import { getMarket } from '@/lib/market'
 import { createClient } from '@/lib/supabase/server'
 
@@ -368,7 +369,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
             <div>
-              <span className="text-white font-extrabold text-lg block">Enlisted.ca</span>
+              <span className="block mb-1"><EnlistedLogo variant="dark" size={20} /></span>
               <span className="text-xs">🇨🇦 Proudly Canadian — built for TSX, TSXV, CSE &amp; NEO issuers</span>
             </div>
             <span className="flex flex-wrap gap-4">

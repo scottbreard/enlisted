@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Shield, Users, TrendingUp } from 'lucide-react'
 import HomeNav from '@/components/HomeNav'
+import EnlistedLogo from '@/components/EnlistedLogo'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -215,7 +216,7 @@ export default function AboutPage() {
 
       <footer style={{ backgroundColor: '#0e2347' }} className="text-white/80 py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-          <span className="text-white font-extrabold text-lg">Enlisted.ca</span>
+          <EnlistedLogo variant="dark" size={20} />
           <span>© 2026 Enlisted.ca, a division of Stock Marketing Inc. All rights reserved.</span>
           <span className="flex flex-wrap gap-4">
             <Link href="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
