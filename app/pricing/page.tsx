@@ -67,7 +67,7 @@ export default function PricingPage() {
     <div className="flex flex-col min-h-screen bg-white">
 
       {/* Nav */}
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
+      <header className="nav-blur border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={28} />
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
@@ -107,7 +107,7 @@ export default function PricingPage() {
             {TIERS.map((tier) => (
               <div
                 key={tier.name}
-                className="bg-white rounded-2xl overflow-hidden flex flex-col"
+                className="bg-white rounded-2xl overflow-hidden flex flex-col card-lift"
                 style={{
                   border: tier.highlight ? `2px solid var(--color-gold)` : `1px solid var(--color-border)`,
                   boxShadow: tier.highlight ? '0 8px 40px rgba(184,134,11,0.15)' : '0 2px 12px rgba(0,0,0,0.06)',
@@ -145,7 +145,7 @@ export default function PricingPage() {
                   {/* CTA */}
                   <Link
                     href={tier.ctaHref}
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mb-8 transition-all"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mb-8 btn-glow"
                     style={{
                       backgroundColor: tier.highlight ? 'var(--color-gold)' : 'var(--color-navy)',
                       color: 'white',

@@ -15,7 +15,7 @@ export default function TermsPage() {
     <div className="min-h-screen" style={{ backgroundColor: '#f8f9fc' }}>
 
       {/* Nav */}
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
+      <header className="nav-blur border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={24} />
           <div className="flex items-center gap-3">

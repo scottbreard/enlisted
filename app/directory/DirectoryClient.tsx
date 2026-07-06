@@ -145,7 +145,7 @@ export default function DirectoryClient({ categories }: { categories: Category[]
                     <Link
                       key={cat.slug}
                       href={categoryHref(cat.slug)}
-                      className="bg-white border rounded-xl px-4 py-3 hover:shadow-md hover:border-blue-300 transition-all group"
+                      className="bg-white border rounded-xl px-4 py-3 card-lift hover:border-blue-300 group"
                       style={{ borderColor: 'var(--color-border)' }}
                     >
                       <p className="text-sm font-semibold group-hover:text-blue-700 transition-colors leading-snug" style={{ color: 'var(--color-gray-dark)' }}>

@@ -70,7 +70,7 @@ export default function ExecutiveRegisterPage() {
             <EnlistedLogo size={28} />
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border p-8" style={{ borderColor: 'var(--color-border)' }}>
+          <div className="bg-white rounded-2xl shadow-xl shadow-blue-900/5 border p-8 anim-fade-up" style={{ borderColor: 'var(--color-border)' }}>
             <h1 className="text-2xl font-extrabold mb-1" style={{ color: 'var(--color-navy)' }}>
               Create your free account
             </h1>

@@ -66,7 +66,7 @@ export default function ProvidersPage() {
     <div className="flex flex-col min-h-screen bg-white">
 
       {/* Nav */}
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
+      <header className="nav-blur border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={28} />
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
@@ -89,27 +89,27 @@ export default function ProvidersPage() {
         {/* Hero */}
         <section className="py-24 px-6 text-center" style={{ backgroundColor: 'var(--color-navy)' }}>
           <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase anim-fade-up"
               style={{ backgroundColor: 'rgba(212,160,23,0.15)', color: 'var(--color-gold)', border: '1px solid rgba(212,160,23,0.3)' }}>
               For Service Providers
             </div>
-            <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight tracking-tight">
+            <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight tracking-tight anim-fade-up anim-d-1">
               Get in front of the executives<br />
-              <span style={{ color: 'var(--color-gold)' }}>running Canada's public companies.</span>
+              <span className="text-gold-sheen">running Canada's public companies.</span>
             </h1>
-            <p className="text-xl mb-10 leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
+            <p className="text-xl mb-10 leading-relaxed anim-fade-up anim-d-2" style={{ color: 'rgba(255,255,255,0.75)' }}>
               Enlisted is the only platform where TSX, TSXV, CSE, and NEO executives
               go to find and hire professional service providers. No cold calls. No trade shows.
               No referral luck.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 anim-fade-up anim-d-3">
               <Link href="/register/provider"
-                className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-base"
+                className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-base btn-glow btn-glow-gold"
                 style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>
                 List Your Firm Free <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/pricing"
-                className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-base border"
+                className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl text-base border btn-glow"
                 style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'white' }}>
                 View Pricing
               </Link>
@@ -313,7 +313,7 @@ export default function ProvidersPage() {
                       <span className="text-4xl font-extrabold" style={{ color: 'var(--color-navy)' }}>{tier.price}</span>
                     </div>
                     <Link href={tier.name === 'Free' ? '/register/provider' : `/register/provider?plan=${tier.name.toLowerCase()}`}
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mt-5 mb-7"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm mt-5 mb-7 btn-glow"
                       style={{
                         backgroundColor: tier.highlight ? 'var(--color-gold)' : 'var(--color-navy)',
                         color: 'white',

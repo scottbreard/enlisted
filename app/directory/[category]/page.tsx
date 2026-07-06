@@ -98,7 +98,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f8f9fc' }}>
       {/* Nav */}
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
+      <header className="nav-blur border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={26} />
           <div className="flex items-center gap-3">
@@ -155,7 +155,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 return (
                   <div
                     key={provider.id}
-                    className="bg-white border rounded-2xl p-6 hover:shadow-md transition-shadow"
+                    className="bg-white border rounded-2xl p-6 card-lift"
                     style={{ borderColor: 'var(--color-border)' }}
                   >
                     <div className="flex items-start gap-4">

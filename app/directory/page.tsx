@@ -48,7 +48,7 @@ export default async function DirectoryPage() {
     <div className="min-h-screen" style={{ backgroundColor: '#f8f9fc' }}>
 
       {/* Nav */}
-      <header className="bg-white border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
+      <header className="nav-blur border-b sticky top-0 z-50" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <EnlistedLogo size={26} />
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: 'var(--color-gray)' }}>
@@ -98,7 +98,7 @@ export default async function DirectoryPage() {
                   <Link
                     key={p.id}
                     href={primaryCat?.slug ? `/directory/${primaryCat.slug}/${p.slug}` : `/directory/${p.slug}`}
-                    className="flex items-start gap-4 p-4 rounded-2xl border bg-white hover:shadow-md transition-all group"
+                    className="flex items-start gap-4 p-4 rounded-2xl border bg-white card-lift group"
                     style={{ borderColor: 'var(--color-border)', borderLeft: '3px solid var(--color-gold)' }}
                   >
                     {/* Logo or initials */}

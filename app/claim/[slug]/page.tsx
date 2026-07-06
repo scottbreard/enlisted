@@ -145,7 +145,7 @@ export default function ClaimListingPage({ params }: { params: Promise<{ slug: s
             <p className="text-sm" style={{ color: 'var(--color-gray)' }}>Completing your claim…</p>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-sm border p-8" style={{ borderColor: 'var(--color-border)' }}>
+          <div className="bg-white rounded-2xl shadow-xl shadow-blue-900/5 border p-8 anim-fade-up" style={{ borderColor: 'var(--color-border)' }}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div>
                 <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--color-gray-dark)' }}>

@@ -69,7 +69,7 @@ export default async function Home() {
             {/* Left: copy */}
             <div>
               {/* Exchange pills */}
-              <div className="flex flex-wrap items-center gap-2 mb-7">
+              <div className="flex flex-wrap items-center gap-2 mb-7 anim-fade-up">
                 {exchanges.map(ex => (
                   <span
                     key={ex}
@@ -81,25 +81,25 @@ export default async function Home() {
                 ))}
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
+              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5 anim-fade-up anim-d-1">
                 Find the right firm.{' '}
-                <span style={{ color: 'var(--color-gold)' }}>Run a better</span>{' '}
+                <span className="text-gold-sheen">Run a better</span>{' '}
                 public company.
               </h1>
-              <p className="text-lg text-white mb-8 leading-relaxed max-w-xl">
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-xl anim-fade-up anim-d-2">
                 The independent directory of professional service providers for TSX, TSXV, CSE, and NEO executives. Compare IR firms, lawyers, auditors, market makers, and 90+ categories — then manage everything in one place. Free for executives. Always.
               </p>
-              <div className="flex flex-wrap gap-3 mb-10">
+              <div className="flex flex-wrap gap-3 mb-10 anim-fade-up anim-d-3">
                 <Link
                   href="/register/executive"
-                  className="font-bold px-7 py-3.5 rounded-xl text-base transition-all inline-flex items-center gap-2 hover:brightness-110"
+                  className="font-bold px-7 py-3.5 rounded-xl text-base inline-flex items-center gap-2 btn-glow btn-glow-gold"
                   style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}
                 >
                   Register Free <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href={directoryHref}
-                  className="font-semibold px-7 py-3.5 rounded-xl text-base transition-all border text-white hover:bg-white/10"
+                  className="font-semibold px-7 py-3.5 rounded-xl text-base border text-white hover:bg-white/10 btn-glow"
                   style={{ borderColor: 'rgba(255,255,255,0.25)', backgroundColor: 'rgba(255,255,255,0.06)' }}
                 >
                   Browse Providers
@@ -107,7 +107,7 @@ export default async function Home() {
               </div>
 
               {/* Stats row */}
-              <div className="flex flex-wrap gap-8 pt-8 border-t border-white/10">
+              <div className="flex flex-wrap gap-8 pt-8 border-t border-white/10 anim-fade-up anim-d-4">
                 {[
                   { value: providerStat, label: providerCount && providerCount >= 50 ? 'Firms listed' : 'Service categories' },
                   { value: '4', label: 'Canadian exchanges' },
@@ -124,7 +124,7 @@ export default async function Home() {
 
             {/* Right: mock provider profile preview */}
             <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/10 overflow-hidden shadow-2xl" style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
+              <div className="rounded-2xl border border-white/10 overflow-hidden shadow-ambient anim-fade-up anim-d-2 anim-float" style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
 
                 {/* Provider header */}
                 <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
@@ -219,7 +219,7 @@ export default async function Home() {
                   <Link
                     key={cat.slug}
                     href={`/directory/${cat.slug}`}
-                    className="group border rounded-2xl p-5 transition-all hover:shadow-lg hover:border-[var(--color-navy)] flex items-center gap-4"
+                    className="group border rounded-2xl p-5 card-lift hover:border-[var(--color-navy)] flex items-center gap-4 bg-white"
                     style={{ borderColor: 'var(--color-border)' }}
                   >
                     <div
@@ -252,7 +252,7 @@ export default async function Home() {
         {/* ── Executive value prop ── */}
         <section className="py-24 px-6" style={{ backgroundColor: 'var(--color-blue-light)' }}>
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <div className="relative rounded-3xl overflow-hidden shadow-ambient aspect-[4/3] card-lift">
               <Image
                 src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
                 alt="Bay Street financial district towers, Toronto"
@@ -294,7 +294,7 @@ export default async function Home() {
               </ul>
               <Link
                 href="/register/executive"
-                className="font-semibold px-6 py-3 rounded-xl transition-colors inline-flex items-center gap-2 text-white"
+                className="font-semibold px-6 py-3 rounded-xl inline-flex items-center gap-2 text-white btn-glow"
                 style={{ backgroundColor: 'var(--color-navy)' }}
               >
                 Register as an Executive — Free <ArrowRight className="w-4 h-4" />
@@ -317,7 +317,7 @@ export default async function Home() {
             </div>
             <Link
               href="/register/executive"
-              className="shrink-0 font-bold px-8 py-4 rounded-xl text-white transition-colors whitespace-nowrap"
+              className="shrink-0 font-bold px-8 py-4 rounded-xl text-white whitespace-nowrap btn-glow"
               style={{ backgroundColor: 'var(--color-navy)' }}
             >
               Claim Your Spot
@@ -346,7 +346,7 @@ export default async function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/register/provider"
-                className="font-bold px-8 py-4 rounded-xl text-lg transition-colors"
+                className="font-bold px-8 py-4 rounded-xl text-lg btn-glow btn-glow-gold"
                 style={{ backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)' }}
               >
                 List Your Firm

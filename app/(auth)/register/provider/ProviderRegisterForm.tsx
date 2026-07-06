@@ -137,7 +137,7 @@ export default function ProviderRegisterForm() {
           </p>
         </div>
       ) : (
-      <div className="bg-white rounded-2xl shadow-sm border p-8" style={{ borderColor: 'var(--color-border)' }}>
+      <div className="bg-white rounded-2xl shadow-xl shadow-blue-900/5 border p-8 anim-fade-up" style={{ borderColor: 'var(--color-border)' }}>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 

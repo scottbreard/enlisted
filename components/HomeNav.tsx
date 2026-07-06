@@ -9,7 +9,7 @@ export default function HomeNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-white border-b border-[var(--color-border)] sticky top-0 z-50">
+    <header className="nav-blur border-b border-[var(--color-border)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <EnlistedLogo size={20} />
