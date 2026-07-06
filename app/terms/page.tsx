@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import EnlistedLogo from '@/components/EnlistedLogo'
+import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
   title: 'Terms of Service — Enlisted.ca',
@@ -235,6 +236,7 @@ export default function TermsPage() {
           <Link href="/" className="hover:underline" style={{ color: 'var(--color-blue)' }}>Back to Home →</Link>
         </div>
       </div>
+      <SiteFooter />
     </div>
   )
 }
