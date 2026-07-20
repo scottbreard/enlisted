@@ -53,7 +53,7 @@ export default function AboutPage() {
                   {
                     icon: Shield,
                     title: 'Vetted',
-                    desc: 'Every service provider is reviewed before going live. No spam, no shell companies, no misleading claims.',
+                    desc: 'Every service provider is reviewed before going live. No spam, no misleading claims.',
                   },
                   {
                     icon: Users,
