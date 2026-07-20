@@ -99,7 +99,7 @@ first: 700+ firms are already listed, and yours can be one of them.
 **The audience isn't hypothetical.** Our launch database covers 13,000+ executives
 and directors across every TSX, TSXV, CSE, and NEO issuer, and we contact them
 directly — starting with the ~5,000 we hold direct email addresses for. Membership
-is free for them, forever.
+is free for them.
 
 **And they don't visit once.** Enlisted gives executives a working dashboard they
 return to: a compliance calendar auto-built from their exchange's filing deadlines,

@@ -9,7 +9,7 @@ import SiteFooter from '@/components/SiteFooter'
 export const metadata: Metadata = {
   title: 'Create Your Free Executive Account',
   description:
-    'Free forever for CEOs, CFOs, IROs, and corporate secretaries of listed companies. Browse 92 categories of service providers, compliance calendar, provider vault, and more.',
+    'Free for CEOs, CFOs, IROs, and corporate secretaries of listed companies. Browse 92 categories of service providers, compliance calendar, provider vault, and more.',
 }
 
 const benefits = [
@@ -48,7 +48,7 @@ export default function ExecutiveRegisterPage() {
         <EnlistedLogo size={28} variant="dark" />
         <div>
           <p className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: 'var(--color-gold)' }}>
-            Free for executives. Always.
+            Free for executives.
           </p>
           <h2 className="text-3xl font-extrabold mb-6 leading-tight">
             Every service your public company needs — in one place.

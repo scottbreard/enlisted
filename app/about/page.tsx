@@ -57,8 +57,8 @@ export default function AboutPage() {
                   },
                   {
                     icon: Users,
-                    title: 'Free for executives. Always.',
-                    desc: 'We are funded entirely by service providers who pay to be listed. Executives never pay — not now, not ever.',
+                    title: 'Free for executives.',
+                    desc: 'We are funded by service providers who pay to be listed. Membership is free for executives.',
                   },
                   {
                     icon: TrendingUp,
@@ -122,8 +122,8 @@ export default function AboutPage() {
                 },
                 {
                   number: '06',
-                  title: 'Always free',
-                  desc: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO listed company. No trial. No credit card. No catch.',
+                  title: 'Free to join',
+                  desc: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO listed company. No trial. No credit card.',
                 },
               ].map(({ number, title, desc }) => (
                 <div key={number} className="bg-white rounded-2xl p-6 border" style={{ borderColor: 'var(--color-border)' }}>

@@ -88,7 +88,7 @@ export default async function Home() {
                 public company.
               </h1>
               <p className="text-lg text-white mb-8 leading-relaxed max-w-xl anim-fade-up anim-d-2">
-                The independent directory of professional service providers for TSX, TSXV, CSE, and NEO executives. Compare IR firms, lawyers, auditors, market makers, and 90+ categories — then manage everything in one place. Free for executives. Always.
+                The independent directory of professional service providers for TSX, TSXV, CSE, and NEO executives. Compare IR firms, lawyers, auditors, market makers, and 90+ categories — then manage everything in one place. Free for executives.
               </p>
               <div className="flex flex-wrap gap-3 mb-10 anim-fade-up anim-d-3">
                 <Link
@@ -191,7 +191,7 @@ export default async function Home() {
                 ? `${Math.floor(providerCount / 10) * 10}+ firms listed — Computershare, TSX Trust, Stikeman Elliott, Osler & more`
                 : 'Every listing vetted before going live',
               'Every CPAB-registered audit firm in Canada',
-              'Free for executives. Always.',
+              'Free for executives.',
               'Built for TSX · TSXV · CSE · NEO',
             ].map((item, i) => (
               <span key={i} className="flex items-center gap-2">
