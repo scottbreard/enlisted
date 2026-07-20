@@ -105,9 +105,9 @@ export default function PricingPage() {
             <div className="bg-white border rounded-2xl p-5 flex items-start gap-3" style={{ borderColor: 'var(--color-border)' }}>
               <span className="text-xl">🛡️</span>
               <div>
-                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>7-day money-back guarantee</p>
+                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>No commissions. No lead fees.</p>
                 <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
-                  Every annual plan is refundable in full within 7 days of purchase — no questions asked.
+                  One flat annual price. Every client you win through Enlisted is 100% yours.
                 </p>
               </div>
             </div>

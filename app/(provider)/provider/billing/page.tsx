@@ -175,7 +175,7 @@ function BillingContent() {
       <div className="flex items-start justify-between mb-8">
         <div>
           <h1 className="text-3xl font-extrabold anim-fade-up" style={{ color: 'var(--color-navy)' }}>Billing & Plan</h1>
-          <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>All prices in CAD. Annual subscription — renews each September 1 unless cancelled. Non-refundable after 7 days.</p>
+          <p className="text-sm mt-1" style={{ color: 'var(--color-gray)' }}>All prices in CAD. Annual subscription — renews each September 1 unless cancelled. All sales are final.</p>
         </div>
         {hasPaidPlan && (
           <button onClick={handlePortal} disabled={portalLoading}

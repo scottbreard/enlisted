@@ -119,7 +119,7 @@ export default async function OnePagerPage() {
         {/* Terms line */}
         <p className="text-[11px] mb-5" style={{ color: 'var(--color-gray)' }}>
           Annual terms anchor to September 1 — subscribe now, and your 12-month term begins the day executives
-          arrive. 7-day full money-back guarantee. No commissions or lead fees, ever.
+          arrive. All sales are final. No commissions or lead fees, ever.
         </p>
 
         {/* CTA */}

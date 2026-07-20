@@ -58,7 +58,7 @@ export default function ProviderTermsPage() {
 
           <Section title="4. Cancellation and Refunds">
             <p>You may cancel your subscription at any time through the billing portal. Cancellation takes effect at the end of the current subscription term; your paid features remain active until then.</p>
-            <p className="mt-3">Annual subscription fees are <strong>refundable in full within seven (7) days of purchase</strong> and non-refundable thereafter, except: (a) as described in Section 1 for material feature reductions; (b) where we terminate your subscription without cause; or (c) where required by applicable law.</p>
+            <p className="mt-3">Annual subscription fees are <strong>non-refundable</strong>, except: (a) as described in Section 1 for material feature reductions; (b) where we terminate your subscription without cause; or (c) where required by applicable law.</p>
           </Section>
 
           <Section title="5. Listing Content and Conduct">
