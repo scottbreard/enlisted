@@ -190,7 +190,6 @@ export default async function Home() {
               providerCount && providerCount >= 50
                 ? `${Math.floor(providerCount / 10) * 10}+ firms listed — Computershare, TSX Trust, Stikeman Elliott, Osler & more`
                 : 'Every listing vetted before going live',
-              'Every CPAB-registered audit firm in Canada',
               'Free for executives.',
               'Built for TSX · TSXV · CSE · NEO',
             ].map((item, i) => (
