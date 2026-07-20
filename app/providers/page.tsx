@@ -378,7 +378,7 @@ export default function ProvidersPage() {
                       <a href="https://calendly.com/scott-dirona/enlisted-introductory-call" target="_blank" rel="noopener noreferrer"
                         className="block text-center text-sm font-semibold py-2.5 rounded-xl border mb-7 -mt-5"
                         style={{ borderColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
-                        Book a call with the founder first
+                        Book a call with us first
                       </a>
                     )}
                     <ul className="space-y-2.5 flex-1">

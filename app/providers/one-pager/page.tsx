@@ -139,7 +139,7 @@ export default async function OnePagerPage() {
       <div className="print:hidden text-center pb-10">
         <a href={CALENDLY} target="_blank" rel="noopener noreferrer"
           className="inline-block text-sm font-bold px-6 py-3 rounded-xl text-white btn-glow" style={{ backgroundColor: 'var(--color-navy)' }}>
-          Book a 30-minute call with Scott
+          Book a 30-minute call with us
         </a>
       </div>
     </div>

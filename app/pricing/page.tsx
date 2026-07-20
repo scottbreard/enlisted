@@ -179,7 +179,7 @@ export default function PricingPage() {
                     <a href="https://calendly.com/scott-dirona/enlisted-introductory-call" target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-sm mb-8 -mt-5 border"
                       style={{ borderColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
-                      Book a call with the founder first
+                      Book a call with us first
                     </a>
                   )}
 
