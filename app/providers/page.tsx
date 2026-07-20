@@ -28,9 +28,9 @@ const TIERS = [
     price: '$6,000/yr',
     badge: 'Only 5 per category',
     highlight: false,
-    description: 'Top placement in your category, monthly newsletter feature, video profile, and AI Assistant. Limited to 5 firms per category.',
+    description: 'Top placement in your category, monthly newsletter feature, and video profile. Limited to 5 firms per category.',
     cta: 'Get Featured',
-    features: ['Top of category placement', '750-word profile + case studies', 'Team profiles + video embed', 'Logo + website link in the monthly executive newsletter', 'AI Assistant trained on public markets', 'Homepage feature rotation'],
+    features: ['Top of category placement', '750-word profile + case studies', 'Team profiles + video embed', 'Logo + website link in the monthly executive newsletter', 'Homepage feature rotation'],
     missing: [],
   },
 ]

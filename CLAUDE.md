@@ -24,7 +24,7 @@ Annual billing only — no monthly plans.
 |------|--------|--------------|
 | Free | $0 | Name, category, city only — no logo, website, or contact shown |
 | Listed | $1,200/yr | Full contact, logo, 300-word description, exchange badges |
-| Featured | $6,000/yr | + Top placement, video, monthly newsletter logo+link, AI Assistant, homepage feature |
+| Featured | $6,000/yr | + Top placement, video, monthly newsletter logo+link, homepage feature |
 
 Executives are always FREE.
 

@@ -47,7 +47,6 @@ const TIERS = [
       'Exclusive RFQ access from verified executives',
       'Full analytics dashboard',
       'Logo + website link in the monthly executive newsletter',
-      'AI Assistant trained on public markets',
       'Priority support — 24h SLA',
     ],
   },
