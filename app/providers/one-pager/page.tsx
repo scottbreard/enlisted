@@ -129,8 +129,8 @@ export default async function OnePagerPage() {
             <p className="text-xs text-white/85">enlisted.ca/providers · Book a call: calendly.com/scott-dirona/enlisted-introductory-call</p>
           </div>
           <div className="text-right text-xs text-white/85 shrink-0">
-            <p className="font-bold text-white">Scott Breard, Founder</p>
-            <p>Enlisted — a division of Stock Marketing Inc.</p>
+            <p className="font-bold text-white">Enlisted</p>
+            <p>A division of Stock Marketing Inc.</p>
           </div>
         </div>
       </div>
