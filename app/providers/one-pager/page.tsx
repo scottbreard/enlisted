@@ -98,7 +98,7 @@ export default async function OnePagerPage() {
             <tr className="border-b" style={{ borderColor: 'var(--color-border)' }}>
               <td className="px-3 py-2 font-bold" style={{ color: 'var(--color-navy)' }}>Free</td>
               <td className="px-3 py-2">$0</td>
-              <td className="px-3 py-2">Name, category, and city in the directory. Searchable by executives.</td>
+              <td className="px-3 py-2">Name, city, and every applicable category in the directory. Searchable by executives.</td>
             </tr>
             <tr className="border-b" style={{ borderColor: 'var(--color-border)' }}>
               <td className="px-3 py-2 font-bold" style={{ color: 'var(--color-navy)' }}>Listed</td>
@@ -109,7 +109,7 @@ export default async function OnePagerPage() {
               <td className="px-3 py-2 font-bold" style={{ color: 'var(--color-gold)' }}>Featured</td>
               <td className="px-3 py-2 font-bold">$6,000</td>
               <td className="px-3 py-2">
-                Top of category placement, exclusive RFQ access, logo in the monthly executive newsletter,
+                Top placement in your primary category (listed in all others), exclusive RFQ access, logo in the monthly executive newsletter,
                 750-word profile with team, case studies &amp; video. <strong>Maximum 5 firms per category.</strong>
               </td>
             </tr>

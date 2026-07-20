@@ -10,7 +10,7 @@ const TIERS = [
     highlight: false,
     description: 'Your firm appears in the directory by name and category. No contact details or website shown.',
     cta: 'Create Free Listing',
-    features: ['Name in directory', 'Service category listed', 'City shown', 'Searchable by executives'],
+    features: ['Name in directory', 'Listed in every category you serve', 'City shown', 'Searchable by executives'],
     missing: ['Logo or website', 'Contact details', 'RFQ access', 'Analytics'],
   },
   {
@@ -28,9 +28,9 @@ const TIERS = [
     price: '$6,000/yr',
     badge: 'Only 5 per category',
     highlight: false,
-    description: 'Top placement in your category, monthly newsletter feature, and video profile. Limited to 5 firms per category.',
+    description: 'Top placement in your primary category, listed in all others you serve, plus newsletter feature and video profile. Limited to 5 Featured firms per category.',
     cta: 'Get Featured',
-    features: ['Top of category placement', '750-word profile + case studies', 'Team profiles + video embed', 'Logo + website link in the monthly executive newsletter', 'Homepage feature rotation'],
+    features: ['Top placement in your primary category', 'Listed in every other category you serve', '750-word profile + case studies', 'Team profiles + video embed', 'Logo + website link in the monthly executive newsletter', 'Homepage feature rotation'],
     missing: [],
   },
 ]

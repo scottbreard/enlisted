@@ -19,7 +19,7 @@ const TIERS = [
       'Full contact details — address, phone, email, website, LinkedIn',
       'Company logo',
       '300-word company description',
-      'Up to 3 service categories',
+      'Listed in every category you serve',
       'Exchange badges (TSX, TSXV, etc.)',
       'Standard placement (alphabetical within category)',
 
@@ -37,10 +37,11 @@ const TIERS = [
     popular: true,
     features: [
       'Everything in Listed',
-      'Top placement in category',
+      'Top placement in your primary category',
       '"Featured" badge on profile + listings',
       'Homepage rotation module',
-      '750-word bio, unlimited categories, all exchanges',
+      'Listed in every other category you serve',
+      '750-word bio, all exchanges',
       'Team page (up to 10 members)',
       'Up to 5 published case studies',
       'Video embed',
