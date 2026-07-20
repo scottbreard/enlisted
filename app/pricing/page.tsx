@@ -7,7 +7,7 @@ const TIERS = [
     name: 'Free',
     badge: null,
     annual: 0,
-    description: 'Your company name and service category appear in the directory. No contact details, no website — free forever.',
+    description: 'Your company name and service category appear in the directory. No contact details, no website — no cost.',
     cta: 'Create Free Listing',
     ctaHref: '/register/provider',
     highlight: false,

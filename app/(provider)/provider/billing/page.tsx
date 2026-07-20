@@ -337,7 +337,7 @@ function BillingContent() {
 
       {/* Listed / free note */}
       <div className="text-center p-5 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>
-        <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Free plan — always free</p>
+        <p className="text-sm font-bold mb-1" style={{ color: 'var(--color-navy)' }}>Free plan</p>
         <p className="text-xs" style={{ color: 'var(--color-gray)' }}>
           Your company name and category stay in the directory at no cost. Upgrade to Listed for full profile visibility, or Featured for RFQs and top placement.
         </p>
