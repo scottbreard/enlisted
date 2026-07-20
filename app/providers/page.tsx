@@ -375,7 +375,7 @@ export default function ProvidersPage() {
                       {tier.cta} <ArrowRight className="w-4 h-4" />
                     </Link>
                     {tier.name === 'Featured' && (
-                      <a href="https://calendly.com/scott-dirona/introductory-call-smi" target="_blank" rel="noopener noreferrer"
+                      <a href="https://calendly.com/scott-dirona/enlisted-introductory-call" target="_blank" rel="noopener noreferrer"
                         className="block text-center text-sm font-semibold py-2.5 rounded-xl border mb-7 -mt-5"
                         style={{ borderColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
                         Book a call with the founder first

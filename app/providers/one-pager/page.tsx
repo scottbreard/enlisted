@@ -7,7 +7,7 @@ export const metadata = {
   description: 'A one-page overview of the Enlisted directory for professional service providers: audience, tiers, pricing, and the September 1 launch.',
 }
 
-const CALENDLY = 'https://calendly.com/scott-dirona/introductory-call-smi'
+const CALENDLY = 'https://calendly.com/scott-dirona/enlisted-introductory-call'
 
 export default async function OnePagerPage() {
   const supabase = await createClient()
@@ -126,7 +126,7 @@ export default async function OnePagerPage() {
         <div className="rounded-xl p-4 flex items-center justify-between gap-4" style={{ backgroundColor: 'var(--color-navy)' }}>
           <div className="text-white">
             <p className="font-extrabold text-sm">Claim your listing free — or talk to us first.</p>
-            <p className="text-xs text-white/85">enlisted.ca/providers · Book a call: calendly.com/scott-dirona/introductory-call-smi</p>
+            <p className="text-xs text-white/85">enlisted.ca/providers · Book a call: calendly.com/scott-dirona/enlisted-introductory-call</p>
           </div>
           <div className="text-right text-xs text-white/85 shrink-0">
             <p className="font-bold text-white">Scott Breard, Founder</p>
