@@ -278,6 +278,60 @@ export default function ProvidersPage() {
           </div>
         </section>
 
+        {/* What executives see — free vs Featured */}
+        <section className="py-20 px-6" style={{ backgroundColor: '#FAFBFD' }}>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-sm font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--color-gold)' }}>What executives see</p>
+              <h2 className="text-4xl font-extrabold mb-4 tracking-tight" style={{ color: 'var(--color-navy)' }}>
+                Your listing, free vs. Featured.
+              </h2>
+              <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-gray)' }}>
+                This is exactly how your firm appears in the directory at each tier.
+              </p>
+            </div>
+
+            <div className="space-y-5">
+              {/* Free mock */}
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--color-gray-light)' }}>Free listing</p>
+                <div className="bg-white border rounded-2xl p-6 flex items-start gap-4" style={{ borderColor: 'var(--color-border)' }}>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 text-xl font-extrabold" style={{ backgroundColor: '#e5e7eb', color: 'var(--color-gray)' }}>Y</div>
+                  <div>
+                    <h3 className="font-extrabold text-lg" style={{ color: 'var(--color-navy)' }}>Your Firm Inc.</h3>
+                    <p className="text-xs italic mt-1" style={{ color: 'var(--color-gray-light)' }}>Toronto, ON · Contact details available on paid listings</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Featured mock */}
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--color-gold)' }}>Featured listing — top of category</p>
+                <div className="bg-white border-2 rounded-2xl p-6 flex items-start gap-4 shadow-lg" style={{ borderColor: 'var(--color-gold)' }}>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 text-xl font-extrabold text-white" style={{ backgroundColor: 'var(--color-navy)' }}>Y</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <h3 className="font-extrabold text-lg" style={{ color: 'var(--color-navy)' }}>Your Firm Inc.</h3>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1" style={{ backgroundColor: '#fef3c7', color: '#92400e' }}>
+                        <Star className="w-3 h-3 fill-current" /> Featured
+                      </span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>✓ Verified</span>
+                    </div>
+                    <p className="text-sm mb-2" style={{ color: 'var(--color-gray)' }}>Your tagline, in front of every executive who searches your category.</p>
+                    <p className="text-sm mb-3" style={{ color: 'var(--color-gray)' }}>A full 750-word profile, team page, case studies, and video — with your logo, exchange badges, and direct contact details shown to verified executives.</p>
+                    <div className="flex items-center gap-4 flex-wrap text-xs font-semibold" style={{ color: 'var(--color-blue)' }}>
+                      <span>Website</span><span>Email</span><span>(416) 555-0123</span>
+                      <span className="px-2 py-0.5 rounded-lg font-bold" style={{ backgroundColor: '#f3f4f6', color: 'var(--color-gray)' }}>TSX</span>
+                      <span className="px-2 py-0.5 rounded-lg font-bold" style={{ backgroundColor: '#f3f4f6', color: 'var(--color-gray)' }}>TSXV</span>
+                    </div>
+                  </div>
+                  <span className="shrink-0 text-sm font-bold px-4 py-2 rounded-xl text-white" style={{ backgroundColor: 'var(--color-navy)' }}>View Profile</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing */}
         <section className="py-20 px-6">
           <div className="max-w-5xl mx-auto">
@@ -320,6 +374,13 @@ export default function ProvidersPage() {
                       }}>
                       {tier.cta} <ArrowRight className="w-4 h-4" />
                     </Link>
+                    {tier.name === 'Featured' && (
+                      <a href="https://calendly.com/scott-dirona/introductory-call-smi" target="_blank" rel="noopener noreferrer"
+                        className="block text-center text-sm font-semibold py-2.5 rounded-xl border mb-7 -mt-5"
+                        style={{ borderColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
+                        Book a call with the founder first
+                      </a>
+                    )}
                     <ul className="space-y-2.5 flex-1">
                       {tier.features.map(f => (
                         <li key={f} className="flex items-start gap-2.5 text-sm">

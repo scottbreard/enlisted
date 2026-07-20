@@ -99,6 +99,28 @@ export default function PricingPage() {
               No commissions. No lead fees. One flat annual rate.
             </p>
           </div>
+
+          {/* Guarantee + ROI */}
+          <div className="max-w-5xl mx-auto mt-8 grid md:grid-cols-2 gap-4">
+            <div className="bg-white border rounded-2xl p-5 flex items-start gap-3" style={{ borderColor: 'var(--color-border)' }}>
+              <span className="text-xl">🛡️</span>
+              <div>
+                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>7-day money-back guarantee</p>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                  Every annual plan is refundable in full within 7 days of purchase — no questions asked.
+                </p>
+              </div>
+            </div>
+            <div className="bg-white border rounded-2xl p-5 flex items-start gap-3" style={{ borderColor: 'var(--color-border)' }}>
+              <span className="text-xl">📈</span>
+              <div>
+                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>The math is simple</p>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                  One engagement from one public company pays for Featured many times over. A conference booth costs more — and lasts three days.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Pricing cards */}
@@ -153,6 +175,13 @@ export default function PricingPage() {
                   >
                     {tier.cta} <ArrowRight className="w-4 h-4" />
                   </Link>
+                  {tier.name === 'Featured' && (
+                    <a href="https://calendly.com/scott-dirona/introductory-call-smi" target="_blank" rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-sm mb-8 -mt-5 border"
+                      style={{ borderColor: 'var(--color-gold)', color: 'var(--color-navy)' }}>
+                      Book a call with the founder first
+                    </a>
+                  )}
 
                   {/* Features */}
                   <ul className="space-y-3 flex-1">
