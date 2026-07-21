@@ -49,7 +49,7 @@ const HOW_IT_WORKS = [
   {
     num: '03',
     title: 'Receive RFQs and respond directly',
-    body: 'Executives send structured Requests for Quote directly through the platform. You respond, they choose. No middlemen, no lead fees, no commissions.',
+    body: 'Executives send structured Requests for Quote directly through the platform. You respond, they choose. Direct relationships, on your terms.',
   },
 ]
 
@@ -124,7 +124,7 @@ export default function ProvidersPage() {
               { num: '92', label: 'Service categories' },
               { num: '4', label: 'Canadian exchanges at launch' },
               { num: '13,000+', label: 'Executives & directors in our launch outreach' },
-              { num: '$0', label: 'Commission on any deal' },
+              { num: '5', label: 'Featured spots per category' },
             ].map(({ num, label }) => (
               <div key={label}>
                 <div className="text-3xl font-extrabold tracking-tight mb-1" style={{ color: 'var(--color-navy)' }}>{num}</div>
