@@ -95,7 +95,7 @@ export default function PricingPage() {
             </h1>
             <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Reach verified public company executives across TSX, TSXV, CSE, and NEO.
-              No commissions. No lead fees. One flat annual rate.
+              One flat annual rate.
             </p>
           </div>
 
@@ -104,9 +104,9 @@ export default function PricingPage() {
             <div className="bg-white border rounded-2xl p-5 flex items-start gap-3" style={{ borderColor: 'var(--color-border)' }}>
               <span className="text-xl">🛡️</span>
               <div>
-                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>No commissions. No lead fees.</p>
+                <p className="font-bold text-sm" style={{ color: 'var(--color-navy)' }}>One flat annual rate</p>
                 <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
-                  One flat annual price. Every client you win through Enlisted is 100% yours.
+                  Every client you win through Enlisted is 100% yours.
                 </p>
               </div>
             </div>

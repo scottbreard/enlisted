@@ -341,7 +341,7 @@ export default function ProvidersPage() {
                 Start free. Upgrade when you're ready.
               </h2>
               <p className="text-lg" style={{ color: 'var(--color-gray)' }}>
-                No commissions. No lead fees. One flat annual rate.
+                One flat annual rate.
               </p>
             </div>
 
