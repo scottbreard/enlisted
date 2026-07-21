@@ -178,7 +178,7 @@ export default async function Home() {
                 </div>
 
               </div>
-              <p className="text-center text-xs text-white/60 mt-3">Provider dashboard — your data, live</p>
+              <p className="text-center text-xs text-white/60 mt-3">Provider dashboard</p>
             </div>
           </div>
         </section>
