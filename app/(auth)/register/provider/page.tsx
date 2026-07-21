@@ -46,8 +46,6 @@ export default function ProviderRegisterPage() {
         <p className="text-center text-sm mt-4" style={{ color: 'var(--color-gray)' }}>
           Already have an account?{' '}
           <Link href="/login" className="font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Sign in</Link>
-          {' · '}
-          <Link href="/register/executive" className="font-semibold hover:underline" style={{ color: 'var(--color-navy)' }}>Register as an executive</Link>
         </p>
 
       </div>
