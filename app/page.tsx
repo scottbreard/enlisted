@@ -312,7 +312,8 @@ export default async function Home() {
                 Founding Executive spots — only 500 available
               </h3>
               <p className="mt-1" style={{ color: 'var(--color-gray)' }}>
-                The first 500 executives to register receive permanent Founding Executive status and exclusive benefits.
+                The first 500 executives keep free access to every executive feature we ever introduce,
+                carry the Founding Executive badge, and get a direct line to shape the platform.
               </p>
             </div>
             <Link
