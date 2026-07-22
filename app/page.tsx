@@ -29,7 +29,7 @@ export default async function Home() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const isLoggedIn = !!user
-  const directoryHref = isLoggedIn ? '/directory' : '/register/executive'
+  const directoryHref = '/directory'
 
   const market = getMarket()
   const { exchanges, copy, comingSoon } = market
@@ -159,7 +159,7 @@ export default async function Home() {
                 <div className="px-5 py-4 border-b border-white/10">
                   <p className="text-xs font-bold text-white/80 uppercase tracking-widest mb-3">Exchanges Serviced</p>
                   <div className="flex flex-wrap gap-2">
-                    {['TSX', 'TSXV', 'CSE', 'NYSE', 'Nasdaq'].map(ex => (
+                    {['TSX', 'TSXV', 'CSE', 'Cboe'].map(ex => (
                       <span key={ex} className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.88)' }}>{ex}</span>
                     ))}
                   </div>
@@ -338,7 +338,7 @@ export default async function Home() {
               For Service Providers
             </p>
             <h2 className="text-4xl font-extrabold text-white mb-4">
-              Reach Public Company Executives from Around the World.
+              Reach the Executives of Canada's Public Companies.
             </h2>
             <p className="text-lg mb-8 leading-relaxed font-semibold text-white">
               {copy.providerCTA}

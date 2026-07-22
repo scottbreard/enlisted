@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
                   Go to My Dashboard →
                 </a>
               </div>
-              <p style="color:#888;font-size:12px">Enlisted Inc. · enlisted.ca · Free for public company executives, always.</p>
+              <p style="color:#888;font-size:12px">Enlisted.ca, a division of Stock Marketing Inc. · Free for public company executives.</p>
             </div>
           </div>
         `,
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
                   Complete My Profile →
                 </a>
               </div>
-              <p style="color:#888;font-size:12px">Enlisted Inc. · enlisted.ca</p>
+              <p style="color:#888;font-size:12px">Enlisted.ca, a division of Stock Marketing Inc.</p>
             </div>
           </div>
         `,

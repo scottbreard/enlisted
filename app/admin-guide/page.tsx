@@ -258,7 +258,7 @@ export default function AdminGuidePage() {
         </div>
 
         <hr />
-        <div className="footer">Enlisted Inc. — Admin Guide v1.0 — June 2026 — Confidential</div>
+        <div className="footer">Enlisted.ca (Stock Marketing Inc.) — Admin Guide v1.0 — June 2026 — Confidential</div>
       </body>
     </html>
   )

@@ -4,7 +4,7 @@ import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
   title: 'Privacy Policy — Enlisted.ca',
-  description: 'Privacy Policy describing how Enlisted Inc. collects, uses, and protects personal information in compliance with PIPEDA.',
+  description: 'Privacy Policy describing how Enlisted.ca (a division of Stock Marketing Inc.) collects, uses, and protects personal information in compliance with PIPEDA.',
 }
 
 const EFFECTIVE = 'June 26, 2026'

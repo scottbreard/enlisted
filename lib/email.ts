@@ -67,7 +67,7 @@ export async function sendProviderWelcomeEmail({
             <p style="margin:0 0 12px;color:#555555;font-size:14px;line-height:1.6;">
               We onboard providers first — on purpose — so the directory is complete the day the first
               executive logs in. Our launch outreach covers 13,000+ executives and directors across every
-              TSX, TSXV, CSE, and NEO issuer, and every registration is verified against exchange listings.
+              TSX, TSXV, CSE, and Cboe Canada issuer, and every registration is verified against exchange listings.
             </p>
             <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">
               And they don't visit once: their free dashboard includes a compliance calendar with their
@@ -90,7 +90,7 @@ export async function sendProviderWelcomeEmail({
         <!-- Footer -->
         <tr><td style="padding:24px 40px;border-top:1px solid #dddddd;">
           <p style="margin:0;color:#888888;font-size:12px;line-height:1.6;">
-            Enlisted Inc. · Toronto, Ontario, Canada<br>
+            Enlisted.ca, a division of Stock Marketing Inc. · Toronto, Ontario, Canada<br>
             Questions? Reply to this email or contact <a href="mailto:hello@enlisted.ca" style="color:#2E75B6;">hello@enlisted.ca</a>
           </p>
         </td></tr>
@@ -175,7 +175,7 @@ export async function sendProviderApprovedEmail({
 
         <tr><td style="padding:24px 40px;border-top:1px solid #dddddd;">
           <p style="margin:0;color:#888888;font-size:12px;line-height:1.6;">
-            Enlisted Inc. · Toronto, Ontario, Canada<br>
+            Enlisted.ca, a division of Stock Marketing Inc. · Toronto, Ontario, Canada<br>
             Questions? <a href="mailto:hello@enlisted.ca" style="color:#2E75B6;">hello@enlisted.ca</a>
           </p>
         </td></tr>
@@ -238,7 +238,7 @@ export async function sendProviderRejectedEmail({
 
         <tr><td style="padding:24px 40px;border-top:1px solid #dddddd;">
           <p style="margin:0;color:#888888;font-size:12px;line-height:1.6;">
-            Enlisted Inc. · Toronto, Ontario, Canada<br>
+            Enlisted.ca, a division of Stock Marketing Inc. · Toronto, Ontario, Canada<br>
             Questions? Reply to this email or contact <a href="mailto:hello@enlisted.ca" style="color:#2E75B6;">hello@enlisted.ca</a>
           </p>
         </td></tr>

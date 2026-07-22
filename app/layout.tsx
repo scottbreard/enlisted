@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   description: market.seo.description,
   keywords: market.seo.keywords,
-  authors: [{ name: "Enlisted Inc." }],
-  creator: "Enlisted Inc.",
+  authors: [{ name: "Enlisted.ca, a division of Stock Marketing Inc." }],
+  creator: "Enlisted.ca, a division of Stock Marketing Inc.",
   openGraph: {
     type: "website",
     locale: market.locale,

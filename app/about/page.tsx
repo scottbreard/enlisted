@@ -45,7 +45,7 @@ export default function AboutPage() {
                   Canada has over 3,000 publicly listed companies. Their CEOs, CFOs, COOs, and IROs need lawyers, auditors, IR firms, market makers, transfer agents, and dozens of other specialists — yet there has never been a single, independent place to find, compare, and connect with them.
                 </p>
                 <p className="text-lg leading-relaxed" style={{ color: 'var(--color-gray)' }}>
-                  Enlisted.ca changes that. We are the global marketplace for public company services, starting with Canada.
+                  Enlisted.ca changes that. We are the Canadian marketplace for public company services — with Australia, the UK, and the US to follow.
                 </p>
               </div>
               <div className="space-y-5">
