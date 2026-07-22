@@ -1,5 +1,12 @@
 export type MarketCode = 'CA' | 'AU' | 'UK' | 'US'
 
+// Display names for exchange codes (codes stay stable in the DB;
+// NEO rebranded as Cboe Canada in 2023)
+export const EXCHANGE_LABELS: Record<string, string> = {
+  TSX: 'TSX', TSXV: 'TSXV', CSE: 'CSE', NEO: 'Cboe Canada',
+}
+export const exchangeLabel = (code: string) => EXCHANGE_LABELS[code] ?? code
+
 export interface MarketConfig {
   code: MarketCode
   name: string
@@ -38,18 +45,18 @@ const MARKETS: Record<MarketCode, MarketConfig> = {
     currencySymbol: '$',
     locale: 'en-CA',
     flag: '🇨🇦',
-    exchanges: ['TSX', 'TSXV', 'CSE', 'NEO'],
-    exchangeLabel: 'TSX, TSXV, CSE & NEO',
+    exchanges: ['TSX', 'TSXV', 'CSE', 'Cboe'],
+    exchangeLabel: 'TSX, TSXV, CSE & Cboe Canada',
     comingSoon: 'enlisted.au · enlisted.co.uk · enlisted.us',
     seo: {
       titleSuffix: 'Enlisted.ca',
-      description: 'Find and compare IR firms, market makers, securities lawyers, auditors, and 90+ specialist service providers for TSX, TSXV, CSE, and NEO listed companies. Free for executives.',
-      ogDescription: 'IR firms, market makers, securities lawyers, auditors & 90+ categories for TSX, TSXV, CSE & NEO. Free for executives.',
+      description: 'Find and compare IR firms, market makers, securities lawyers, auditors, and 90+ specialist service providers for TSX, TSXV, CSE, and Cboe Canada listed companies. Free for executives.',
+      ogDescription: 'IR firms, market makers, securities lawyers, auditors & 90+ categories for TSX, TSXV, CSE & Cboe Canada. Free for executives.',
       keywords: [
         'investor relations Canada', 'TSX service providers', 'TSXV IR firms',
         'public company services Canada', 'Canadian public markets directory',
         'securities lawyers Canada', 'transfer agents Canada', 'market makers Canada',
-        'CSE listed companies', 'NEO exchange',
+        'CSE listed companies', 'Cboe Canada',
       ],
     },
     copy: {
@@ -57,7 +64,7 @@ const MARKETS: Record<MarketCode, MarketConfig> = {
       heroHeadlineGold: 'Canadian public company',
       heroHeadlinePost: 'executives.',
       heroSub: 'Find and compare IR firms, market makers, legal counsel, auditors, and 90+ specialist categories — all in one place. Free for executives.',
-      executiveFreeNote: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO company. Search, compare, and connect with vetted service providers — plus manage your contracts and track compliance deadlines.',
+      executiveFreeNote: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or Cboe Canada company. Search, compare, and connect with vetted service providers — plus manage your contracts and track compliance deadlines.',
       providerCTA: 'Get your firm in front of the CEOs, CFOs, and IR officers of public companies around the world. Free to list — upgrade anytime.',
       heroMockTicker: 'TSX:AXM',
       heroMockExchange: 'TSX',

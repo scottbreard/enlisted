@@ -56,7 +56,7 @@ Send personally (small batches from getenlisted.ca inboxes), 3 touches.
 Hi {{first_name}},
 
 Enlisted.ca is the new marketplace where the executives of Canadian public
-companies — TSX, TSXV, CSE, and NEO — find every professional service they need.
+companies — TSX, TSXV, CSE, and Cboe Canada — find every professional service they need.
 Think of it as the directory the public markets never had.
 
 We've pre-built listings for the firms we believe belong at launch, and
@@ -97,7 +97,7 @@ find every service she'll ever need already there. So we're filling the director
 first: 700+ firms are already listed, and yours can be one of them.
 
 **The audience isn't hypothetical.** Our launch database covers 13,000+ executives
-and directors across every TSX, TSXV, CSE, and NEO issuer, and we contact them
+and directors across every TSX, TSXV, CSE, and Cboe Canada issuer, and we contact them
 directly — starting with the ~5,000 we hold direct email addresses for. Membership
 is free for them.
 
@@ -156,7 +156,7 @@ Scott
 
 I'm building Enlisted — the directory where the executives of Canada's public
 companies find their service providers. {{company_name}} is already listed under
-{{category}}, alongside 700+ firms across TSX, TSXV, CSE, and NEO.
+{{category}}, alongside 700+ firms across TSX, TSXV, CSE, and Cboe Canada.
 
 Your listing is live but unclaimed — right now it shows your name and city only.
 Claiming it is free and takes two minutes:

@@ -99,7 +99,7 @@ export default function DirectoryClient({ categories }: { categories: Category[]
                   border: `1px solid ${exchange === ex ? 'var(--color-gold)' : 'var(--color-border)'}`,
                 }}
               >
-                {ex}
+                {ex === 'NEO' ? 'Cboe Canada' : ex}
               </button>
             ))}
           </div>

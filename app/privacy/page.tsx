@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           <Section title="1. Scope">
             <p>This Policy applies to personal information collected through the Enlisted.ca platform, website, and related services (the "<strong>Platform</strong>") about:</p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-              <li><strong>Executive Users</strong> — executives and officers of TSX, TSXV, CSE, and NEO listed companies; and</li>
+              <li><strong>Executive Users</strong> — executives and officers of TSX, TSXV, CSE, and Cboe Canada listed companies; and</li>
               <li><strong>Provider Users</strong> — employees, principals, and representatives of service provider firms.</li>
             </ul>
             <p className="mt-3">This Policy does not apply to information about corporate entities (which is not personal information) or to third-party websites linked from the Platform.</p>

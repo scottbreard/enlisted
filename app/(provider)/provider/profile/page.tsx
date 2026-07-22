@@ -340,7 +340,7 @@ export default function ProviderProfilePage() {
                 backgroundColor: selectedExchanges.includes(code) ? 'var(--color-navy)' : 'white',
                 color: selectedExchanges.includes(code) ? 'white' : 'var(--color-gray)',
               }}>
-              {code}
+              {code === 'NEO' ? 'Cboe Canada' : code}
             </button>
           ))}
         </div>

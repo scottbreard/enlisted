@@ -94,7 +94,7 @@ export default function PricingPage() {
               Simple, transparent pricing
             </h1>
             <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.88)' }}>
-              Reach verified public company executives across TSX, TSXV, CSE, and NEO.
+              Reach verified public company executives across TSX, TSXV, CSE, and Cboe Canada.
               One flat annual rate.
             </p>
           </div>
@@ -212,7 +212,7 @@ export default function PricingPage() {
               {[
                 {
                   q: 'How many executives are registered right now?',
-                  a: 'Executives onboard from September 1, 2026 — providers launch first, deliberately, so the directory is complete on the day the first executive logs in. Our launch outreach covers 13,000+ executives and directors across every TSX, TSXV, CSE, and NEO issuer, and every registration is verified against exchange listings. We share real registration numbers with any provider who asks — email hello@enlisted.ca.',
+                  a: 'Executives onboard from September 1, 2026 — providers launch first, deliberately, so the directory is complete on the day the first executive logs in. Our launch outreach covers 13,000+ executives and directors across every TSX, TSXV, CSE, and Cboe Canada issuer, and every registration is verified against exchange listings. We share real registration numbers with any provider who asks — email hello@enlisted.ca.',
                 },
                 {
                   q: 'What will keep executives logging in?',

@@ -47,7 +47,7 @@ export default function ExecutiveRegisterForm() {
     resolver: zodResolver(schema),
   })
 
-  // Issuer type-ahead: search the live TSX/TSXV/CSE/NEO listing database
+  // Issuer type-ahead: search the live TSX/TSXV/CSE/Cboe Canada listing database
   type Issuer = { id: string; name: string; symbol: string; exchange_code: string }
   const [issuerQuery, setIssuerQuery] = useState('')
   const [issuerResults, setIssuerResults] = useState<Issuer[]>([])
@@ -251,7 +251,7 @@ export default function ExecutiveRegisterForm() {
                 </div>
               )}
               <p className="text-xs mt-1" style={{ color: 'var(--color-gray-light)' }}>
-                Matched against all 9,900+ TSX, TSXV, CSE &amp; NEO listings.{' '}
+                Matched against all 9,900+ TSX, TSXV, CSE &amp; Cboe Canada listings.{' '}
                 <button type="button" className="underline" onClick={() => { setManualCompany(true); clearIssuer() }}>Can&apos;t find your company?</button>
               </p>
             </div>
@@ -268,7 +268,7 @@ export default function ExecutiveRegisterForm() {
             <label className="block text-xs font-semibold mb-1" style={{ color: 'var(--color-gray-dark)' }}>Exchange</label>
             <select {...register('exchange')} className="w-full px-3 py-2.5 rounded-xl border text-sm outline-none bg-white" style={{ borderColor: errors.exchange ? '#ef4444' : 'var(--color-border)' }}>
               <option value="">Select</option>
-              {exchanges.map(e => <option key={e} value={e}>{e}</option>)}
+              {exchanges.map(e => <option key={e} value={e}>{e === 'NEO' ? 'Cboe Canada' : e}</option>)}
             </select>
             {errors.exchange && <p className="text-red-500 text-xs mt-1">{errors.exchange.message}</p>}
           </div>

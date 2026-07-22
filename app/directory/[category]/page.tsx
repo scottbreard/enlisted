@@ -7,11 +7,11 @@ import { getMarketCode } from '@/lib/market'
 import SiteFooter from '@/components/SiteFooter'
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
-  ir_firm:               'Investor relations firms help TSX, TSXV, CSE, and NEO listed companies build shareholder value through strategic communications, roadshows, and retail investor outreach. Compare Canadian IR agencies by exchange expertise and sector focus.',
-  market_maker:          'Registered market makers and designated brokers provide continuous two-sided quotes for Canadian public company shares, improving liquidity and reducing bid-ask spreads on TSX, TSXV, CSE, and NEO.',
+  ir_firm:               'Investor relations firms help TSX, TSXV, CSE, and Cboe Canada listed companies build shareholder value through strategic communications, roadshows, and retail investor outreach. Compare Canadian IR agencies by exchange expertise and sector focus.',
+  market_maker:          'Registered market makers and designated brokers provide continuous two-sided quotes for Canadian public company shares, improving liquidity and reducing bid-ask spreads on TSX, TSXV, CSE, and Cboe Canada.',
   securities_law:        'Securities lawyers advise Canadian public companies on prospectus filings, continuous disclosure obligations, M&A, and regulatory compliance under provincial securities law and exchange rules.',
-  auditor_accounting:    'Audit firms and accounting practices serving Canadian public issuers provide financial statement audits, NI 52-110 audit committee support, and IFRS or ASPE reporting for TSX, TSXV, CSE, and NEO companies.',
-  transfer_agent:        'Transfer agents maintain shareholder registers, process share transfers and dividends, and manage DRS services for Canadian public companies listed on TSX, TSXV, CSE, and NEO.',
+  auditor_accounting:    'Audit firms and accounting practices serving Canadian public issuers provide financial statement audits, NI 52-110 audit committee support, and IFRS or ASPE reporting for TSX, TSXV, CSE, and Cboe Canada companies.',
+  transfer_agent:        'Transfer agents maintain shareholder registers, process share transfers and dividends, and manage DRS services for Canadian public companies listed on TSX, TSXV, CSE, and Cboe Canada.',
   outsourced_cfo:        'Outsourced CFO firms provide part-time or interim chief financial officer services to smaller listed companies, handling financial reporting, treasury, and board-level financial governance.',
   pr_communications:     'PR and communications firms help Canadian public companies craft news releases, manage media relations, and build brand awareness with retail and institutional investors.',
   ir_website:            'IR website and digital agencies design investor relations websites, shareholder portals, and digital communications tools that meet Canadian disclosure requirements.',
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const { data: cat } = await supabase.from('service_categories').select('name, group_name').eq('slug', category).single()
   if (!cat) return { title: 'Not Found' }
   const description = CATEGORY_DESCRIPTIONS[category]
-    ?? `Browse ${cat.name} service providers for Canadian public companies on TSX, TSXV, CSE, and NEO listed on Enlisted.ca.`
+    ?? `Browse ${cat.name} service providers for Canadian public companies on TSX, TSXV, CSE, and Cboe Canada listed on Enlisted.ca.`
   return {
     title: `${cat.name} for Canadian Public Companies`,
     description,

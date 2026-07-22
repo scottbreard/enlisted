@@ -11,7 +11,7 @@ Enlisted Inc. is the global marketplace for public company services — an indep
 
 | Domain | Market | Exchanges | Launch |
 |--------|--------|-----------|--------|
-| enlisted.ca | Canada | TSX, TSXV, CSE, NEO | Phase 1 — Q3 2026 |
+| enlisted.ca | Canada | TSX, TSXV, CSE, Cboe Canada | Phase 1 — Q3 2026 |
 | enlisted.au | Australia | ASX, NSX | Phase 2 — Q4 2026 |
 | enlisted.co.uk | UK | LSE Main, AIM | Phase 3 — Q1 2027 |
 | enlisted.us | USA | NYSE, Nasdaq, OTC | Phase 4 — Q3 2027 |

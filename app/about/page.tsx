@@ -63,7 +63,7 @@ export default function AboutPage() {
                   {
                     icon: TrendingUp,
                     title: 'Built for Canadian public markets',
-                    desc: 'TSX, TSXV, CSE, and NEO. Canadian compliance rules, Canadian exchanges, Canadian service providers.',
+                    desc: 'TSX, TSXV, CSE, and Cboe Canada. Canadian compliance rules, Canadian exchanges, Canadian service providers.',
                   },
                 ].map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="flex items-start gap-4 p-4 rounded-2xl" style={{ backgroundColor: '#f8f9fc' }}>
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 {
                   number: '06',
                   title: 'Free to join',
-                  desc: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or NEO listed company. No trial. No credit card.',
+                  desc: 'Enlisted is free for every executive at a TSX, TSXV, CSE, or Cboe Canada listed company. No trial. No credit card.',
                 },
               ].map(({ number, title, desc }) => (
                 <div key={number} className="bg-white rounded-2xl p-6 border" style={{ borderColor: 'var(--color-border)' }}>

@@ -52,7 +52,7 @@ export default function TermsPage() {
               <li>Be at least 18 years of age;</li>
               <li>Have the legal capacity to enter into binding contracts in your jurisdiction;</li>
               <li>Not be prohibited from using the Platform under applicable law; and</li>
-              <li>If registering as an <strong>Executive User</strong>, hold an active executive or officer role (CEO, CFO, COO, IRO, Corporate Secretary, President, or equivalent) at a company listed on the TSX, TSXV, CSE, or NEO exchange; or</li>
+              <li>If registering as an <strong>Executive User</strong>, hold an active executive or officer role (CEO, CFO, COO, IRO, Corporate Secretary, President, or equivalent) at a company listed on the TSX, TSXV, CSE, or Cboe Canada exchange; or</li>
               <li>If registering as a <strong>Provider User</strong>, be authorised to bind the firm or entity on whose behalf you register.</li>
             </ul>
             <p className="mt-3">We reserve the right to verify eligibility at any time and to suspend or terminate accounts that do not meet these criteria. Providing false eligibility information is a material breach of these Terms.</p>
@@ -69,7 +69,7 @@ export default function TermsPage() {
           </Section>
 
           <Section title="4. Executive Users — Free Access">
-            <p>Access to the Platform is provided to Executive Users at <strong>no charge</strong>. This free access is a core and permanent feature of the Platform for verified executives of TSX, TSXV, CSE, and NEO listed companies. We will provide not less than 90 days' written notice before introducing any fees for Executive Users.</p>
+            <p>Access to the Platform is provided to Executive Users at <strong>no charge</strong>. This free access is a core and permanent feature of the Platform for verified executives of TSX, TSXV, CSE, and Cboe Canada listed companies. We will provide not less than 90 days' written notice before introducing any fees for Executive Users.</p>
             <p className="mt-3">Executive Users may:</p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
               <li>Search and browse the service provider directory;</li>

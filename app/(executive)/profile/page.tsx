@@ -246,7 +246,7 @@ export default function ProfilePage() {
             <select value={exchangeForm.exchange_code} onChange={e => setExchangeForm(p => ({ ...p, exchange_code: e.target.value }))}
               className="w-full px-3 py-2.5 rounded-xl border text-sm outline-none bg-white" style={{ borderColor: 'var(--color-border)' }}>
               <option value="">Select exchange</option>
-              {exchanges.map(ex => <option key={ex} value={ex}>{ex}</option>)}
+              {exchanges.map(ex => <option key={ex} value={ex}>{ex === 'NEO' ? 'Cboe Canada' : ex}</option>)}
             </select>
           </div>
           <div>

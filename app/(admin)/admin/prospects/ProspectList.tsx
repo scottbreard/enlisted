@@ -49,7 +49,7 @@ export default function ProspectList({
 
         <select value={filters.exchange} onChange={e => nav({ exchange: e.target.value })} className="px-3 py-2 rounded-xl border text-sm bg-white" style={{ borderColor: 'var(--color-border)' }}>
           <option value="">All exchanges</option>
-          {EXCHANGES.map(x => <option key={x} value={x}>{x}</option>)}
+          {EXCHANGES.map(x => <option key={x} value={x}>{x === 'NEO' ? 'Cboe Canada' : x}</option>)}
         </select>
 
         <select value={filters.title} onChange={e => nav({ title: e.target.value })} className="px-3 py-2 rounded-xl border text-sm bg-white" style={{ borderColor: 'var(--color-border)' }}>

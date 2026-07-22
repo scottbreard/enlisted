@@ -8,7 +8,7 @@ import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
   title: 'Service Provider Directory — Enlisted',
-  description: 'Browse 106 categories of professional service providers serving TSX, TSXV, CSE, and NEO listed companies.',
+  description: 'Browse 106 categories of professional service providers serving TSX, TSXV, CSE, and Cboe Canada listed companies.',
 }
 
 export default async function DirectoryPage() {

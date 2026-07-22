@@ -46,7 +46,7 @@ export default async function OnePagerPage() {
         </h1>
         <p className="mb-4">
           Enlisted is the independent directory where the CEOs, CFOs, IROs, and corporate secretaries of
-          TSX, TSXV, CSE, and NEO listed companies find, compare, and hire professional service providers —
+          TSX, TSXV, CSE, and Cboe Canada listed companies find, compare, and hire professional service providers —
           across 90+ categories, from securities law and audit to IR, market making, and transfer agency.
         </p>
 

@@ -98,7 +98,7 @@ export default function ProvidersPage() {
               <span className="text-gold-sheen">running Canada's public companies.</span>
             </h1>
             <p className="text-xl mb-10 leading-relaxed anim-fade-up anim-d-2" style={{ color: 'rgba(255,255,255,0.9)' }}>
-              Enlisted is the only platform where TSX, TSXV, CSE, and NEO executives
+              Enlisted is the only platform where TSX, TSXV, CSE, and Cboe Canada executives
               go to find and hire professional service providers. No cold calls. No trade shows.
               No referral luck.
             </p>
@@ -227,7 +227,7 @@ export default function ProvidersPage() {
                 </p>
                 <ul className="space-y-3 mb-5">
                   {[
-                    <>Our launch outreach covers <strong className="text-white">13,000+ executives and directors</strong> across TSX, TSXV, CSE, and NEO issuers. Every public company is on the public record — we know exactly who the audience is, and we contact them directly.</>,
+                    <>Our launch outreach covers <strong className="text-white">13,000+ executives and directors</strong> across TSX, TSXV, CSE, and Cboe Canada issuers. Every public company is on the public record — we know exactly who the audience is, and we contact them directly.</>,
                     <>Every registration is <strong className="text-white">verified against exchange listings</strong>. Officers and directors of listed companies only — no students, no consultants, no tire-kickers.</>,
                     <><strong className="text-white">700+ firms</strong> are already in the directory ahead of the executive launch.</>,
                   ].map((item, i) => (
