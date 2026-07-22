@@ -132,7 +132,7 @@ export default async function Home() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-extrabold shrink-0" style={{ backgroundColor: 'var(--color-gold)', color: 'white' }}>P</div>
                     <div>
-                      <p className="text-sm font-bold text-white">Pacific IR Group</p>
+                      <p className="text-sm font-bold text-white">Summit IR Partners</p>
                       <p className="text-xs text-white/70">Investor Relations · Vancouver, BC</p>
                     </div>
                   </div>
@@ -170,7 +170,7 @@ export default async function Home() {
                   <p className="text-xs font-bold text-white/80 uppercase tracking-widest mb-3">Latest RFQ</p>
                   <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                     <div className="flex items-center justify-between mb-1.5">
-                      <p className="text-xs font-bold text-white">CFO · Aurex Mining Corp · {copy.heroMockExchange}</p>
+                      <p className="text-xs font-bold text-white">CFO · Northbridge Mining Corp · {copy.heroMockExchange}</p>
                       <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>New</span>
                     </div>
                     <p className="text-xs text-white/80 leading-relaxed">"Looking for an IR firm with junior mining experience ahead of our Q3 roadshow…"</p>
@@ -178,7 +178,7 @@ export default async function Home() {
                 </div>
 
               </div>
-              <p className="text-center text-xs text-white/60 mt-3">Provider dashboard</p>
+              <p className="text-center text-xs text-white/60 mt-3">Sample provider dashboard — illustrative data</p>
             </div>
           </div>
         </section>
